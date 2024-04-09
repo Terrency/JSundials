@@ -1,8 +1,6 @@
 package cn.catarc.jsundials.cvodes;
-
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 /**

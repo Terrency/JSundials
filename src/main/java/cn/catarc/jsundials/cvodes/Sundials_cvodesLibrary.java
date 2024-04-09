@@ -1,11 +1,14 @@
 package cn.catarc.jsundials.cvodes;
-
-import com.sun.jna.*;
+import com.sun.jna.Callback;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -345,7 +348,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * =================================================================<br>
 	 * Original signature : <code>int CVodeSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:62</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetLinearSolver(Pointer, SUNLinearSolver, SUNMatrix)} and {@link #CVodeSetLinearSolver(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNLinearSolver, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNMatrix)} and {@link #CVodeSetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetLinearSolver(Pointer cvode_mem, Pointer LS, Pointer A);
@@ -356,7 +359,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:62</i>
 	 */
-	int CVodeSetLinearSolver(Pointer cvode_mem, SUNLinearSolver LS, SUNMatrix A);
+	int CVodeSetLinearSolver(Pointer cvode_mem, Sundials_cvodesLibrary.SUNLinearSolver LS, Sundials_cvodesLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional inputs to the CVLS linear solver interface<br>
@@ -364,7 +367,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacFn(void*, CVLsJacFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:69</i>
 	 */
-	int CVodeSetJacFn(Pointer cvode_mem, CVLsJacFn jac);
+	int CVodeSetJacFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVLsJacFn jac);
 	/**
 	 * Original signature : <code>int CVodeSetJacEvalFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:70</i>
@@ -394,24 +397,24 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetPreconditioner(void*, CVLsPrecSetupFn, CVLsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:77</i>
 	 */
-	int CVodeSetPreconditioner(Pointer cvode_mem, CVLsPrecSetupFn pset, CVLsPrecSolveFn psolve);
+	int CVodeSetPreconditioner(Pointer cvode_mem, Sundials_cvodesLibrary.CVLsPrecSetupFn pset, Sundials_cvodesLibrary.CVLsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int CVodeSetJacTimes(void*, CVLsJacTimesSetupFn, CVLsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:79</i>
 	 */
-	int CVodeSetJacTimes(Pointer cvode_mem, CVLsJacTimesSetupFn jtsetup, CVLsJacTimesVecFn jtimes);
+	int CVodeSetJacTimes(Pointer cvode_mem, Sundials_cvodesLibrary.CVLsJacTimesSetupFn jtsetup, Sundials_cvodesLibrary.CVLsJacTimesVecFn jtimes);
 	/**
 	 * Original signature : <code>int CVodeSetLinSysFn(void*, CVLsLinSysFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:81</i>
 	 */
-	int CVodeSetLinSysFn(Pointer cvode_mem, CVLsLinSysFn linsys);
+	int CVodeSetLinSysFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVLsLinSysFn linsys);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional outputs from the CVLS linear solver interface<br>
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int CVodeGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:87</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJac(Pointer cvode_mem, Pointer J);
@@ -426,7 +429,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetJacTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:88</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetJacTime(Pointer, DoubleBuffer)} and {@link #CVodeGetJacTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetJacTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetJacTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJacTime(Pointer cvode_mem, DoubleByReference t_J);
@@ -438,7 +441,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetJacNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:89</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetJacNumSteps(Pointer, LongBuffer)} and {@link #CVodeGetJacNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetJacNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetJacNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJacNumSteps(Pointer cvode_mem, LongByReference nst_J);
@@ -450,7 +453,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:90</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLinWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -462,7 +465,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:92</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJacEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJacEvals(Pointer cvode_mem, LongByReference njevals);
@@ -474,7 +477,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:93</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumPrecEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumPrecEvals(Pointer cvode_mem, LongByReference npevals);
@@ -486,7 +489,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:94</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumPrecSolves(Pointer, LongBuffer)} and {@link #CVodeGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumPrecSolves(Pointer cvode_mem, LongByReference npsolves);
@@ -498,7 +501,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:95</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinIters(Pointer, LongBuffer)} and {@link #CVodeGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinIters(Pointer cvode_mem, LongByReference nliters);
@@ -510,7 +513,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:96</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinConvFails(Pointer, LongBuffer)} and {@link #CVodeGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinConvFails(Pointer cvode_mem, LongByReference nlcfails);
@@ -522,7 +525,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJTSetupEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:97</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJTSetupEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJTSetupEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJTSetupEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJTSetupEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJTSetupEvals(Pointer cvode_mem, LongByReference njtsetups);
@@ -534,7 +537,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:98</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJtimesEvals(Pointer cvode_mem, LongByReference njvevals);
@@ -546,7 +549,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:99</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumLinRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinRhsEvals(Pointer cvode_mem, LongByReference nfevalsLS);
@@ -558,7 +561,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLinSolveStats(void*, long long*, long long*, long long*, long long*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:100</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLinSolveStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #CVodeGetLinSolveStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLinSolveStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetLinSolveStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLinSolveStats(Pointer cvode_mem, LongByReference njevals, LongByReference nfevalsLS, LongByReference nliters, LongByReference nlcfails, LongByReference npevals, LongByReference npsolves, LongByReference njtsetups, LongByReference njtimes);
@@ -570,7 +573,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:105</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastLinFlag(Pointer, LongBuffer)} and {@link #CVodeGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastLinFlag(Pointer cvode_mem, LongByReference flag);
@@ -590,7 +593,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * =================================================================<br>
 	 * Original signature : <code>int CVodeSetLinearSolverB(void*, int, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:174</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetLinearSolverB(Pointer, int, SUNLinearSolver, SUNMatrix)} and {@link #CVodeSetLinearSolverB(Pointer, int, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetLinearSolverB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNLinearSolver, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNMatrix)} and {@link #CVodeSetLinearSolverB(com.sun.jna.Pointer, int, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetLinearSolverB(Pointer cvode_mem, int which, Pointer LS, Pointer A);
@@ -601,7 +604,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetLinearSolverB(void*, int, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:174</i>
 	 */
-	int CVodeSetLinearSolverB(Pointer cvode_mem, int which, SUNLinearSolver LS, SUNMatrix A);
+	int CVodeSetLinearSolverB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.SUNLinearSolver LS, Sundials_cvodesLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Each CVodeSet***B or CVodeSet***BS function below links the<br>
@@ -612,12 +615,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacFnB(void*, int, CVLsJacFnB)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:184</i>
 	 */
-	int CVodeSetJacFnB(Pointer cvode_mem, int which, CVLsJacFnB jacB);
+	int CVodeSetJacFnB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsJacFnB jacB);
 	/**
 	 * Original signature : <code>int CVodeSetJacFnBS(void*, int, CVLsJacFnBS)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:185</i>
 	 */
-	int CVodeSetJacFnBS(Pointer cvode_mem, int which, CVLsJacFnBS jacBS);
+	int CVodeSetJacFnBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsJacFnBS jacBS);
 	/**
 	 * Original signature : <code>int CVodeSetEpsLinB(void*, int, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:188</i>
@@ -637,38 +640,38 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetPreconditionerB(void*, int, CVLsPrecSetupFnB, CVLsPrecSolveFnB)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:197</i>
 	 */
-	int CVodeSetPreconditionerB(Pointer cvode_mem, int which, CVLsPrecSetupFnB psetB, CVLsPrecSolveFnB psolveB);
+	int CVodeSetPreconditionerB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsPrecSetupFnB psetB, Sundials_cvodesLibrary.CVLsPrecSolveFnB psolveB);
 	/**
 	 * Original signature : <code>int CVodeSetPreconditionerBS(void*, int, CVLsPrecSetupFnBS, CVLsPrecSolveFnBS)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:200</i>
 	 */
-	int CVodeSetPreconditionerBS(Pointer cvode_mem, int which, CVLsPrecSetupFnBS psetBS, CVLsPrecSolveFnBS psolveBS);
+	int CVodeSetPreconditionerBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsPrecSetupFnBS psetBS, Sundials_cvodesLibrary.CVLsPrecSolveFnBS psolveBS);
 	/**
 	 * Original signature : <code>int CVodeSetJacTimesB(void*, int, CVLsJacTimesSetupFnB, CVLsJacTimesVecFnB)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:204</i>
 	 */
-	int CVodeSetJacTimesB(Pointer cvode_mem, int which, CVLsJacTimesSetupFnB jtsetupB, CVLsJacTimesVecFnB jtimesB);
+	int CVodeSetJacTimesB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsJacTimesSetupFnB jtsetupB, Sundials_cvodesLibrary.CVLsJacTimesVecFnB jtimesB);
 	/**
 	 * Original signature : <code>int CVodeSetJacTimesBS(void*, int, CVLsJacTimesSetupFnBS, CVLsJacTimesVecFnBS)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:207</i>
 	 */
-	int CVodeSetJacTimesBS(Pointer cvode_mem, int which, CVLsJacTimesSetupFnBS jtsetupBS, CVLsJacTimesVecFnBS jtimesBS);
+	int CVodeSetJacTimesBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsJacTimesSetupFnBS jtsetupBS, Sundials_cvodesLibrary.CVLsJacTimesVecFnBS jtimesBS);
 	/**
 	 * Original signature : <code>int CVodeSetLinSysFnB(void*, int, CVLsLinSysFnB)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:211</i>
 	 */
-	int CVodeSetLinSysFnB(Pointer cvode_mem, int which, CVLsLinSysFnB linsys);
+	int CVodeSetLinSysFnB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsLinSysFnB linsys);
 	/**
 	 * Original signature : <code>int CVodeSetLinSysFnBS(void*, int, CVLsLinSysFnBS)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_ls.h:213</i>
 	 */
-	int CVodeSetLinSysFnBS(Pointer cvode_mem, int which, CVLsLinSysFnBS linsys);
+	int CVodeSetLinSysFnBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVLsLinSysFnBS linsys);
 	/**
 	 * Projection initialization functions<br>
 	 * Original signature : <code>int CVodeSetProjFn(void*, CVProjFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_proj.h:18</i>
 	 */
-	int CVodeSetProjFn(Pointer cvode_mem, CVProjFn pfun);
+	int CVodeSetProjFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVProjFn pfun);
 	/**
 	 * Optional input functions<br>
 	 * Original signature : <code>int CVodeSetProjErrEst(void*, int)</code><br>
@@ -699,7 +702,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVodeGetNumProjEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_proj.h:28</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumProjEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumProjEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumProjEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumProjEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumProjEvals(Pointer cvode_mem, LongByReference nproj);
@@ -712,7 +715,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumProjFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_proj.h:29</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumProjFails(Pointer, LongBuffer)} and {@link #CVodeGetNumProjFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumProjFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumProjFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumProjFails(Pointer cvode_mem, LongByReference nprf);
@@ -725,7 +728,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Initialization functions<br>
 	 * Original signature : <code>void* CVodeCreate(int, SUNContext)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:174</i><br>
-	 * @deprecated use the safer methods {@link #CVodeCreate(int, SUNContext)} and {@link #CVodeCreate(int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeCreate(int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNContext)} and {@link #CVodeCreate(int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	Pointer CVodeCreate(int lmm, Pointer sunctx);
@@ -734,23 +737,23 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>void* CVodeCreate(int, SUNContext)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:174</i>
 	 */
-	Pointer CVodeCreate(int lmm, SUNContext sunctx);
+	Pointer CVodeCreate(int lmm, Sundials_cvodesLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int CVodeInit(void*, CVRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:176</i><br>
-	 * @deprecated use the safer methods {@link #CVodeInit(Pointer, CVRhsFn, double, N_Vector)} and {@link #CVodeInit(Pointer, CVRhsFn, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFn, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFn, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeInit(Pointer cvode_mem, CVRhsFn f, double t0, Pointer y0);
+	int CVodeInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVRhsFn f, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int CVodeInit(void*, CVRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:176</i>
 	 */
-	int CVodeInit(Pointer cvode_mem, CVRhsFn f, double t0, N_Vector y0);
+	int CVodeInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVRhsFn f, double t0, Sundials_cvodesLibrary.N_Vector y0);
 	/**
 	 * Original signature : <code>int CVodeReInit(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:178</i><br>
-	 * @deprecated use the safer methods {@link #CVodeReInit(Pointer, double, N_Vector)} and {@link #CVodeReInit(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeReInit(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeReInit(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeReInit(Pointer cvode_mem, double t0, Pointer y0);
@@ -758,7 +761,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeReInit(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:178</i>
 	 */
-	int CVodeReInit(Pointer cvode_mem, double t0, N_Vector y0);
+	int CVodeReInit(Pointer cvode_mem, double t0, Sundials_cvodesLibrary.N_Vector y0);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int CVodeSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -768,7 +771,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:183</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSVtolerances(Pointer, double, N_Vector)} and {@link #CVodeSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSVtolerances(Pointer cvode_mem, double reltol, Pointer abstol);
@@ -776,17 +779,17 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:183</i>
 	 */
-	int CVodeSVtolerances(Pointer cvode_mem, double reltol, N_Vector abstol);
+	int CVodeSVtolerances(Pointer cvode_mem, double reltol, Sundials_cvodesLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int CVodeWFtolerances(void*, CVEwtFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:185</i>
 	 */
-	int CVodeWFtolerances(Pointer cvode_mem, CVEwtFn efun);
+	int CVodeWFtolerances(Pointer cvode_mem, Sundials_cvodesLibrary.CVEwtFn efun);
 	/**
 	 * Optional input functions<br>
 	 * Original signature : <code>int CVodeSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:189</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetConstraints(Pointer, N_Vector)} and {@link #CVodeSetConstraints(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeSetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetConstraints(Pointer cvode_mem, Pointer constraints);
@@ -795,7 +798,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:189</i>
 	 */
-	int CVodeSetConstraints(Pointer cvode_mem, N_Vector constraints);
+	int CVodeSetConstraints(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector constraints);
 	/**
 	 * Original signature : <code>int CVodeSetDeltaGammaMaxLSetup(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:190</i>
@@ -855,7 +858,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetMonitorFn(void*, CVMonitorFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:202</i>
 	 */
-	int CVodeSetMonitorFn(Pointer cvode_mem, CVMonitorFn fn);
+	int CVodeSetMonitorFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVMonitorFn fn);
 	/**
 	 * Original signature : <code>int CVodeSetMonitorFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:203</i>
@@ -865,7 +868,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNlsRhsFn(void*, CVRhsFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:204</i>
 	 */
-	int CVodeSetNlsRhsFn(Pointer cvode_mem, CVRhsFn f);
+	int CVodeSetNlsRhsFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVRhsFn f);
 	/**
 	 * Original signature : <code>int CVodeSetNonlinConvCoef(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:205</i>
@@ -874,7 +877,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:206</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolver(Pointer, SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolver(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetNonlinearSolver(Pointer cvode_mem, Pointer NLS);
@@ -882,7 +885,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:206</i>
 	 */
-	int CVodeSetNonlinearSolver(Pointer cvode_mem, SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolver(Pointer cvode_mem, Sundials_cvodesLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int CVodeSetStabLimDet(void*, int)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:208</i>
@@ -964,12 +967,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeRootInit(void*, int, CVRootFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:239</i>
 	 */
-	int CVodeRootInit(Pointer cvode_mem, int nrtfn, CVRootFn g);
+	int CVodeRootInit(Pointer cvode_mem, int nrtfn, Sundials_cvodesLibrary.CVRootFn g);
 	/**
 	 * Rootfinding optional input functions<br>
 	 * Original signature : <code>int CVodeSetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:242</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetRootDirection(Pointer, IntBuffer)} and {@link #CVodeSetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeSetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSetRootDirection(Pointer cvode_mem, IntByReference rootdir);
@@ -988,7 +991,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Solver function<br>
 	 * Original signature : <code>int CVode(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:246</i><br>
-	 * @deprecated use the safer methods {@link #CVode(Pointer, double, N_Vector, DoubleBuffer, int)} and {@link #CVode(Pointer, double, Pointer, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #CVode(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #CVode(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
 	int CVode(Pointer cvode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
@@ -997,12 +1000,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVode(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:246</i>
 	 */
-	int CVode(Pointer cvode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask);
+	int CVode(Pointer cvode_mem, double tout, Sundials_cvodesLibrary.N_Vector yout, DoubleBuffer tret, int itask);
 	/**
 	 * Utility functions to update/compute y based on ycor<br>
 	 * Original signature : <code>int CVodeComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:250</i><br>
-	 * @deprecated use the safer methods {@link #CVodeComputeState(Pointer, N_Vector, N_Vector)} and {@link #CVodeComputeState(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeComputeState(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeComputeState(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeComputeState(Pointer cvode_mem, Pointer ycor, Pointer y);
@@ -1011,11 +1014,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:250</i>
 	 */
-	int CVodeComputeState(Pointer cvode_mem, N_Vector ycor, N_Vector y);
+	int CVodeComputeState(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector ycor, Sundials_cvodesLibrary.N_Vector y);
 	/**
 	 * Original signature : <code>int CVodeComputeStateSens(void*, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:251</i><br>
-	 * @deprecated use the safer method {@link #CVodeComputeStateSens(Pointer, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeComputeStateSens(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeComputeStateSens(Pointer cvode_mem, Pointer yScor, Pointer yS);
@@ -1027,7 +1030,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeComputeStateSens1(void*, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:253</i><br>
-	 * @deprecated use the safer methods {@link #CVodeComputeStateSens1(Pointer, int, N_Vector, N_Vector)} and {@link #CVodeComputeStateSens1(Pointer, int, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeComputeStateSens1(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeComputeStateSens1(com.sun.jna.Pointer, int, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeComputeStateSens1(Pointer cvode_mem, int idx, Pointer yScor1, Pointer yS1);
@@ -1035,12 +1038,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeComputeStateSens1(void*, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:253</i>
 	 */
-	int CVodeComputeStateSens1(Pointer cvode_mem, int idx, N_Vector yScor1, N_Vector yS1);
+	int CVodeComputeStateSens1(Pointer cvode_mem, int idx, Sundials_cvodesLibrary.N_Vector yScor1, Sundials_cvodesLibrary.N_Vector yS1);
 	/**
 	 * Dense output function<br>
 	 * Original signature : <code>int CVodeGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:257</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetDky(Pointer, double, int, N_Vector)} and {@link #CVodeGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetDky(Pointer cvode_mem, double t, int k, Pointer dky);
@@ -1049,12 +1052,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:257</i>
 	 */
-	int CVodeGetDky(Pointer cvode_mem, double t, int k, N_Vector dky);
+	int CVodeGetDky(Pointer cvode_mem, double t, int k, Sundials_cvodesLibrary.N_Vector dky);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVodeGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:261</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetWorkSpace(Pointer cvode_mem, LongByReference lenrw, LongByReference leniw);
@@ -1067,7 +1070,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:263</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumSteps(Pointer, LongBuffer)} and {@link #CVodeGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumSteps(Pointer cvode_mem, LongByReference nsteps);
@@ -1079,7 +1082,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:264</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevals);
@@ -1091,7 +1094,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:265</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinSolvSetups(Pointer, LongBuffer)} and {@link #CVodeGetNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinSolvSetups(Pointer cvode_mem, LongByReference nlinsetups);
@@ -1103,7 +1106,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:267</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumErrTestFails(Pointer, LongBuffer)} and {@link #CVodeGetNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumErrTestFails(Pointer cvode_mem, LongByReference netfails);
@@ -1115,7 +1118,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:268</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastOrder(Pointer, IntBuffer)} and {@link #CVodeGetLastOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetLastOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastOrder(Pointer cvode_mem, IntByReference qlast);
@@ -1127,7 +1130,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:269</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentOrder(Pointer, IntBuffer)} and {@link #CVodeGetCurrentOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetCurrentOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentOrder(Pointer cvode_mem, IntByReference qcur);
@@ -1139,7 +1142,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentGamma(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:270</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentGamma(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentGamma(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentGamma(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentGamma(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentGamma(Pointer cvode_mem, DoubleByReference gamma);
@@ -1151,7 +1154,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStabLimOrderReds(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:271</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStabLimOrderReds(Pointer, LongBuffer)} and {@link #CVodeGetNumStabLimOrderReds(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStabLimOrderReds(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStabLimOrderReds(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStabLimOrderReds(Pointer cvode_mem, LongByReference nslred);
@@ -1163,7 +1166,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetActualInitStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:273</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetActualInitStep(Pointer, DoubleBuffer)} and {@link #CVodeGetActualInitStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetActualInitStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetActualInitStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetActualInitStep(Pointer cvode_mem, DoubleByReference hinused);
@@ -1175,7 +1178,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:274</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastStep(Pointer, DoubleBuffer)} and {@link #CVodeGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastStep(Pointer cvode_mem, DoubleByReference hlast);
@@ -1187,7 +1190,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:275</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentStep(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentStep(Pointer cvode_mem, DoubleByReference hcur);
@@ -1199,7 +1202,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:276</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetCurrentState(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetCurrentState(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentState(Pointer cvode_mem, Pointer y);
@@ -1216,7 +1219,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentSensSolveIndex(void*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:278</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentSensSolveIndex(Pointer, IntBuffer)} and {@link #CVodeGetCurrentSensSolveIndex(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentSensSolveIndex(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetCurrentSensSolveIndex(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentSensSolveIndex(Pointer cvode_mem, IntByReference index);
@@ -1228,7 +1231,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:279</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentTime(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentTime(Pointer cvode_mem, DoubleByReference tcur);
@@ -1240,7 +1243,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:280</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #CVodeGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetTolScaleFactor(Pointer cvode_mem, DoubleByReference tolsfac);
@@ -1252,7 +1255,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:281</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetErrWeights(Pointer, N_Vector)} and {@link #CVodeGetErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetErrWeights(Pointer cvode_mem, Pointer eweight);
@@ -1260,11 +1263,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:281</i>
 	 */
-	int CVodeGetErrWeights(Pointer cvode_mem, N_Vector eweight);
+	int CVodeGetErrWeights(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector eweight);
 	/**
 	 * Original signature : <code>int CVodeGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:282</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetEstLocalErrors(Pointer, N_Vector)} and {@link #CVodeGetEstLocalErrors(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetEstLocalErrors(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetEstLocalErrors(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetEstLocalErrors(Pointer cvode_mem, Pointer ele);
@@ -1272,11 +1275,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:282</i>
 	 */
-	int CVodeGetEstLocalErrors(Pointer cvode_mem, N_Vector ele);
+	int CVodeGetEstLocalErrors(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector ele);
 	/**
 	 * Original signature : <code>int CVodeGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:283</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumGEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumGEvals(Pointer cvode_mem, LongByReference ngevals);
@@ -1288,7 +1291,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:284</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetRootInfo(Pointer, IntBuffer)} and {@link #CVodeGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetRootInfo(Pointer cvode_mem, IntByReference rootsfound);
@@ -1300,7 +1303,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetIntegratorStats(void*, long long*, long long*, long long*, long long*, int*, int*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:285</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetIntegratorStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, IntBuffer, IntBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #CVodeGetIntegratorStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, IntByReference, IntByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetIntegratorStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.IntBuffer, java.nio.IntBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #CVodeGetIntegratorStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetIntegratorStats(Pointer cvode_mem, LongByReference nsteps, LongByReference nfevals, LongByReference nlinsetups, LongByReference netfails, IntByReference qlast, IntByReference qcur, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);
@@ -1312,7 +1315,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:289</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemData(Pointer, DoubleBuffer, PointerByReference, PointerByReference, PointerByReference, DoubleBuffer, DoubleBuffer, PointerByReference, PointerByReference)} and {@link #CVodeGetNonlinearSystemData(Pointer, DoubleByReference, PointerByReference, PointerByReference, PointerByReference, DoubleByReference, DoubleByReference, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemData(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #CVodeGetNonlinearSystemData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleByReference tcur, Pointer ypred, Pointer yn, Pointer fn, DoubleByReference gamma, DoubleByReference rl1, Pointer zn1, PointerByReference user_data);
@@ -1329,7 +1332,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNonlinearSystemDataSens(void*, sunrealtype*, N_Vector**, N_Vector**, sunrealtype*, sunrealtype*, N_Vector**, void**)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:295</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemDataSens(Pointer, DoubleBuffer, PointerByReference, PointerByReference, DoubleBuffer, DoubleBuffer, PointerByReference, PointerByReference)} and {@link #CVodeGetNonlinearSystemDataSens(Pointer, DoubleByReference, PointerByReference, PointerByReference, DoubleByReference, DoubleByReference, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemDataSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #CVodeGetNonlinearSystemDataSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNonlinearSystemDataSens(Pointer cvode_mem, DoubleByReference tcur, PointerByReference ySpred, PointerByReference ySn, DoubleByReference gamma, DoubleByReference rl1, PointerByReference zn1, PointerByReference user_data);
@@ -1341,7 +1344,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:298</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #CVodeGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumNonlinSolvIters(Pointer cvode_mem, LongByReference nniters);
@@ -1353,7 +1356,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:300</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #CVodeGetNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumNonlinSolvConvFails(Pointer cvode_mem, LongByReference nnfails);
@@ -1365,7 +1368,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:302</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNonlinSolvStats(Pointer cvode_mem, LongByReference nniters, LongByReference nnfails);
@@ -1377,7 +1380,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStepSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:304</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStepSolveFails(Pointer, LongBuffer)} and {@link #CVodeGetNumStepSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStepSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStepSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStepSolveFails(Pointer cvode_mem, LongByReference nncfails);
@@ -1394,7 +1397,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodePrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:307</i><br>
-	 * @deprecated use the safer method {@link #CVodePrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #CVodePrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int CVodePrintAllStats(Pointer cvode_mem, Pointer outfile, int fmt);
@@ -1419,25 +1422,25 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacTimesRhsFn(void*, CVRhsFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:315</i>
 	 */
-	int CVodeSetJacTimesRhsFn(Pointer cvode_mem, CVRhsFn jtimesRhsFn);
+	int CVodeSetJacTimesRhsFn(Pointer cvode_mem, Sundials_cvodesLibrary.CVRhsFn jtimesRhsFn);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeQuadInit(void*, CVQuadRhsFn, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:322</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadInit(Pointer, CVQuadRhsFn, N_Vector)} and {@link #CVodeQuadInit(Pointer, CVQuadRhsFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFn, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeQuadInit(Pointer cvode_mem, CVQuadRhsFn fQ, Pointer yQ0);
+	int CVodeQuadInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVQuadRhsFn fQ, Pointer yQ0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeQuadInit(void*, CVQuadRhsFn, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:322</i>
 	 */
-	int CVodeQuadInit(Pointer cvode_mem, CVQuadRhsFn fQ, N_Vector yQ0);
+	int CVodeQuadInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVQuadRhsFn fQ, Sundials_cvodesLibrary.N_Vector yQ0);
 	/**
 	 * Original signature : <code>int CVodeQuadReInit(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:323</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadReInit(Pointer, N_Vector)} and {@link #CVodeQuadReInit(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadReInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadReInit(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadReInit(Pointer cvode_mem, Pointer yQ0);
@@ -1445,7 +1448,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeQuadReInit(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:323</i>
 	 */
-	int CVodeQuadReInit(Pointer cvode_mem, N_Vector yQ0);
+	int CVodeQuadReInit(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector yQ0);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int CVodeQuadSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -1455,7 +1458,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeQuadSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:328</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadSVtolerances(Pointer, double, N_Vector)} and {@link #CVodeQuadSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadSVtolerances(Pointer cvode_mem, double reltolQ, Pointer abstolQ);
@@ -1463,7 +1466,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeQuadSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:328</i>
 	 */
-	int CVodeQuadSVtolerances(Pointer cvode_mem, double reltolQ, N_Vector abstolQ);
+	int CVodeQuadSVtolerances(Pointer cvode_mem, double reltolQ, Sundials_cvodesLibrary.N_Vector abstolQ);
 	/**
 	 * Optional input specification functions<br>
 	 * Original signature : <code>int CVodeSetQuadErrCon(void*, int)</code><br>
@@ -1474,7 +1477,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Extraction and Dense Output Functions for Forward Problems<br>
 	 * Original signature : <code>int CVodeGetQuad(void*, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:335</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuad(Pointer, DoubleBuffer, N_Vector)} and {@link #CVodeGetQuad(Pointer, DoubleByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuad(com.sun.jna.Pointer, java.nio.DoubleBuffer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuad(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuad(Pointer cvode_mem, DoubleByReference tret, Pointer yQout);
@@ -1483,11 +1486,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuad(void*, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:335</i>
 	 */
-	int CVodeGetQuad(Pointer cvode_mem, DoubleBuffer tret, N_Vector yQout);
+	int CVodeGetQuad(Pointer cvode_mem, DoubleBuffer tret, Sundials_cvodesLibrary.N_Vector yQout);
 	/**
 	 * Original signature : <code>int CVodeGetQuadDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:337</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadDky(Pointer, double, int, N_Vector)} and {@link #CVodeGetQuadDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuadDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadDky(Pointer cvode_mem, double t, int k, Pointer dky);
@@ -1495,12 +1498,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuadDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:337</i>
 	 */
-	int CVodeGetQuadDky(Pointer cvode_mem, double t, int k, N_Vector dky);
+	int CVodeGetQuadDky(Pointer cvode_mem, double t, int k, Sundials_cvodesLibrary.N_Vector dky);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int CVodeGetQuadNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:341</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadNumRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetQuadNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetQuadNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadNumRhsEvals(Pointer cvode_mem, LongByReference nfQevals);
@@ -1513,7 +1516,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:342</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadNumErrTestFails(Pointer, LongBuffer)} and {@link #CVodeGetQuadNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetQuadNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadNumErrTestFails(Pointer cvode_mem, LongByReference nQetfails);
@@ -1525,7 +1528,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:344</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadErrWeights(Pointer, N_Vector)} and {@link #CVodeGetQuadErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuadErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadErrWeights(Pointer cvode_mem, Pointer eQweight);
@@ -1533,11 +1536,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuadErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:344</i>
 	 */
-	int CVodeGetQuadErrWeights(Pointer cvode_mem, N_Vector eQweight);
+	int CVodeGetQuadErrWeights(Pointer cvode_mem, Sundials_cvodesLibrary.N_Vector eQweight);
 	/**
 	 * Original signature : <code>int CVodeGetQuadStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:345</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetQuadStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetQuadStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadStats(Pointer cvode_mem, LongByReference nfQevals, LongByReference nQetfails);
@@ -1556,32 +1559,32 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeSensInit(void*, int, int, CVSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:356</i><br>
-	 * @deprecated use the safer method {@link #CVodeSensInit(Pointer, int, int, CVSensRhsFn, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeSensInit(com.sun.jna.Pointer, int, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVSensRhsFn, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int CVodeSensInit(Pointer cvode_mem, int Ns, int ism, CVSensRhsFn fS, Pointer yS0);
+	int CVodeSensInit(Pointer cvode_mem, int Ns, int ism, Sundials_cvodesLibrary.CVSensRhsFn fS, Pointer yS0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeSensInit(void*, int, int, CVSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:356</i>
 	 */
-	int CVodeSensInit(Pointer cvode_mem, int Ns, int ism, CVSensRhsFn fS, PointerByReference yS0);
+	int CVodeSensInit(Pointer cvode_mem, int Ns, int ism, Sundials_cvodesLibrary.CVSensRhsFn fS, PointerByReference yS0);
 	/**
 	 * Original signature : <code>int CVodeSensInit1(void*, int, int, CVSensRhs1Fn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:358</i><br>
-	 * @deprecated use the safer method {@link #CVodeSensInit1(Pointer, int, int, CVSensRhs1Fn, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeSensInit1(com.sun.jna.Pointer, int, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVSensRhs1Fn, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int CVodeSensInit1(Pointer cvode_mem, int Ns, int ism, CVSensRhs1Fn fS1, Pointer yS0);
+	int CVodeSensInit1(Pointer cvode_mem, int Ns, int ism, Sundials_cvodesLibrary.CVSensRhs1Fn fS1, Pointer yS0);
 	/**
 	 * Original signature : <code>int CVodeSensInit1(void*, int, int, CVSensRhs1Fn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:358</i>
 	 */
-	int CVodeSensInit1(Pointer cvode_mem, int Ns, int ism, CVSensRhs1Fn fS1, PointerByReference yS0);
+	int CVodeSensInit1(Pointer cvode_mem, int Ns, int ism, Sundials_cvodesLibrary.CVSensRhs1Fn fS1, PointerByReference yS0);
 	/**
 	 * Original signature : <code>int CVodeSensReInit(void*, int, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:360</i><br>
-	 * @deprecated use the safer method {@link #CVodeSensReInit(Pointer, int, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeSensReInit(com.sun.jna.Pointer, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSensReInit(Pointer cvode_mem, int ism, Pointer yS0);
@@ -1594,7 +1597,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int CVodeSensSStolerances(void*, sunrealtype, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:363</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSensSStolerances(Pointer, double, DoubleBuffer)} and {@link #CVodeSensSStolerances(Pointer, double, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeSensSStolerances(com.sun.jna.Pointer, double, java.nio.DoubleBuffer)} and {@link #CVodeSensSStolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSensSStolerances(Pointer cvode_mem, double reltolS, DoubleByReference abstolS);
@@ -1607,7 +1610,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSensSVtolerances(void*, sunrealtype, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:365</i><br>
-	 * @deprecated use the safer method {@link #CVodeSensSVtolerances(Pointer, double, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeSensSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSensSVtolerances(Pointer cvode_mem, double reltolS, Pointer abstolS);
@@ -1640,7 +1643,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSetSensParams(void*, sunrealtype*, sunrealtype*, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:374</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetSensParams(Pointer, DoubleBuffer, DoubleBuffer, IntBuffer)} and {@link #CVodeSetSensParams(Pointer, DoubleByReference, DoubleByReference, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetSensParams(com.sun.jna.Pointer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.IntBuffer)} and {@link #CVodeSetSensParams(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSetSensParams(Pointer cvode_mem, DoubleByReference p, DoubleByReference pbar, IntByReference plist);
@@ -1653,7 +1656,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Integrator nonlinear solver specification functions<br>
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensSim(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:378</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensSim(Pointer, SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensSim(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensSim(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensSim(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetNonlinearSolverSensSim(Pointer cvode_mem, Pointer NLS);
@@ -1662,11 +1665,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensSim(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:378</i>
 	 */
-	int CVodeSetNonlinearSolverSensSim(Pointer cvode_mem, SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolverSensSim(Pointer cvode_mem, Sundials_cvodesLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensStg(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:380</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensStg(Pointer, SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensStg(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensStg(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensStg(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetNonlinearSolverSensStg(Pointer cvode_mem, Pointer NLS);
@@ -1674,11 +1677,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensStg(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:380</i>
 	 */
-	int CVodeSetNonlinearSolverSensStg(Pointer cvode_mem, SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolverSensStg(Pointer cvode_mem, Sundials_cvodesLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensStg1(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:382</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensStg1(Pointer, SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensStg1(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverSensStg1(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverSensStg1(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetNonlinearSolverSensStg1(Pointer cvode_mem, Pointer NLS);
@@ -1686,7 +1689,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNonlinearSolverSensStg1(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:382</i>
 	 */
-	int CVodeSetNonlinearSolverSensStg1(Pointer cvode_mem, SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolverSensStg1(Pointer cvode_mem, Sundials_cvodesLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Enable/disable sensitivities<br>
 	 * Original signature : <code>int CVodeSensToggleOff(void*)</code><br>
@@ -1697,7 +1700,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Extraction and dense output functions<br>
 	 * Original signature : <code>int CVodeGetSens(void*, sunrealtype*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:389</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSens(Pointer, DoubleBuffer, PointerByReference)} and {@link #CVodeGetSens(Pointer, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #CVodeGetSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSens(Pointer cvode_mem, DoubleByReference tret, Pointer ySout);
@@ -1716,7 +1719,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:391</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSens1(Pointer, DoubleBuffer, int, N_Vector)} and {@link #CVodeGetSens1(Pointer, DoubleByReference, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSens1(com.sun.jna.Pointer, java.nio.DoubleBuffer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetSens1(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSens1(Pointer cvode_mem, DoubleByReference tret, int is, Pointer ySout);
@@ -1724,11 +1727,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:391</i>
 	 */
-	int CVodeGetSens1(Pointer cvode_mem, DoubleBuffer tret, int is, N_Vector ySout);
+	int CVodeGetSens1(Pointer cvode_mem, DoubleBuffer tret, int is, Sundials_cvodesLibrary.N_Vector ySout);
 	/**
 	 * Original signature : <code>int CVodeGetSensDky(void*, sunrealtype, int, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:394</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetSensDky(Pointer, double, int, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetSensDky(com.sun.jna.Pointer, double, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensDky(Pointer cvode_mem, double t, int k, Pointer dkyA);
@@ -1740,7 +1743,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:396</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensDky1(Pointer, double, int, int, N_Vector)} and {@link #CVodeGetSensDky1(Pointer, double, int, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensDky1(com.sun.jna.Pointer, double, int, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetSensDky1(com.sun.jna.Pointer, double, int, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensDky1(Pointer cvode_mem, double t, int k, int is, Pointer dky);
@@ -1748,12 +1751,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:396</i>
 	 */
-	int CVodeGetSensDky1(Pointer cvode_mem, double t, int k, int is, N_Vector dky);
+	int CVodeGetSensDky1(Pointer cvode_mem, double t, int k, int is, Sundials_cvodesLibrary.N_Vector dky);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int CVodeGetSensNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:400</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNumRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetSensNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetSensNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNumRhsEvals(Pointer cvode_mem, LongByReference nfSevals);
@@ -1766,7 +1769,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumRhsEvalsSens(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:401</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvalsSens(Pointer, LongBuffer)} and {@link #CVodeGetNumRhsEvalsSens(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvalsSens(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumRhsEvalsSens(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumRhsEvalsSens(Pointer cvode_mem, LongByReference nfevalsS);
@@ -1778,7 +1781,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:402</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNumErrTestFails(Pointer, LongBuffer)} and {@link #CVodeGetSensNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetSensNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNumErrTestFails(Pointer cvode_mem, LongByReference nSetfails);
@@ -1790,7 +1793,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:404</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNumLinSolvSetups(Pointer, LongBuffer)} and {@link #CVodeGetSensNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetSensNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNumLinSolvSetups(Pointer cvode_mem, LongByReference nlinsetupsS);
@@ -1802,7 +1805,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensErrWeights(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:406</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetSensErrWeights(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetSensErrWeights(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensErrWeights(Pointer cvode_mem, Pointer eSweight);
@@ -1814,7 +1817,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensStats(void*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:407</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #CVodeGetSensStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetSensStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensStats(Pointer cvode_mem, LongByReference nfSevals, LongByReference nfevalsS, LongByReference nSetfails, LongByReference nlinsetupsS);
@@ -1826,7 +1829,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:410</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #CVodeGetSensNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetSensNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNumNonlinSolvIters(Pointer cvode_mem, LongByReference nSniters);
@@ -1838,7 +1841,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:412</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #CVodeGetSensNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetSensNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNumNonlinSolvConvFails(Pointer cvode_mem, LongByReference nSnfails);
@@ -1850,7 +1853,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetSensNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:414</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetSensNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetSensNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetSensNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetSensNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetSensNonlinSolvStats(Pointer cvode_mem, LongByReference nSniters, LongByReference nSnfails);
@@ -1862,7 +1865,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStepSensSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:417</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStepSensSolveFails(Pointer, LongBuffer)} and {@link #CVodeGetNumStepSensSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStepSensSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStepSensSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStepSensSolveFails(Pointer cvode_mem, LongByReference nSncfails);
@@ -1874,7 +1877,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetStgrSensNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:419</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #CVodeGetStgrSensNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetStgrSensNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetStgrSensNumNonlinSolvIters(Pointer cvode_mem, LongByReference nSTGR1niters);
@@ -1886,7 +1889,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetStgrSensNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:421</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #CVodeGetStgrSensNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetStgrSensNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetStgrSensNumNonlinSolvConvFails(Pointer cvode_mem, LongByReference nSTGR1nfails);
@@ -1898,7 +1901,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetStgrSensNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:423</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetStgrSensNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetStgrSensNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetStgrSensNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetStgrSensNonlinSolvStats(Pointer cvode_mem, LongByReference nSTGR1niters, LongByReference nSTGR1nfails);
@@ -1910,7 +1913,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStepStgrSensSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:426</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStepStgrSensSolveFails(Pointer, LongBuffer)} and {@link #CVodeGetNumStepStgrSensSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStepStgrSensSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStepStgrSensSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStepStgrSensSolveFails(Pointer cvode_mem, LongByReference nSTGR1ncfails);
@@ -1929,20 +1932,20 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeQuadSensInit(void*, CVQuadSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:437</i><br>
-	 * @deprecated use the safer method {@link #CVodeQuadSensInit(Pointer, CVQuadSensRhsFn, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeQuadSensInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadSensRhsFn, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int CVodeQuadSensInit(Pointer cvode_mem, CVQuadSensRhsFn fQS, Pointer yQS0);
+	int CVodeQuadSensInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVQuadSensRhsFn fQS, Pointer yQS0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int CVodeQuadSensInit(void*, CVQuadSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:437</i>
 	 */
-	int CVodeQuadSensInit(Pointer cvode_mem, CVQuadSensRhsFn fQS, PointerByReference yQS0);
+	int CVodeQuadSensInit(Pointer cvode_mem, Sundials_cvodesLibrary.CVQuadSensRhsFn fQS, PointerByReference yQS0);
 	/**
 	 * Original signature : <code>int CVodeQuadSensReInit(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:439</i><br>
-	 * @deprecated use the safer method {@link #CVodeQuadSensReInit(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeQuadSensReInit(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadSensReInit(Pointer cvode_mem, Pointer yQS0);
@@ -1955,7 +1958,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int CVodeQuadSensSStolerances(void*, sunrealtype, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:442</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadSensSStolerances(Pointer, double, DoubleBuffer)} and {@link #CVodeQuadSensSStolerances(Pointer, double, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadSensSStolerances(com.sun.jna.Pointer, double, java.nio.DoubleBuffer)} and {@link #CVodeQuadSensSStolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadSensSStolerances(Pointer cvode_mem, double reltolQS, DoubleByReference abstolQS);
@@ -1968,7 +1971,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeQuadSensSVtolerances(void*, sunrealtype, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:445</i><br>
-	 * @deprecated use the safer method {@link #CVodeQuadSensSVtolerances(Pointer, double, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeQuadSensSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadSensSVtolerances(Pointer cvode_mem, double reltolQS, Pointer abstolQS);
@@ -1992,7 +1995,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Extraction and dense output functions<br>
 	 * Original signature : <code>int CVodeGetQuadSens(void*, sunrealtype*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:455</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSens(Pointer, DoubleBuffer, PointerByReference)} and {@link #CVodeGetQuadSens(Pointer, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #CVodeGetQuadSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSens(Pointer cvode_mem, DoubleByReference tret, Pointer yQSout);
@@ -2011,7 +2014,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:457</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSens1(Pointer, DoubleBuffer, int, N_Vector)} and {@link #CVodeGetQuadSens1(Pointer, DoubleByReference, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSens1(com.sun.jna.Pointer, java.nio.DoubleBuffer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuadSens1(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSens1(Pointer cvode_mem, DoubleByReference tret, int is, Pointer yQSout);
@@ -2019,11 +2022,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuadSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:457</i>
 	 */
-	int CVodeGetQuadSens1(Pointer cvode_mem, DoubleBuffer tret, int is, N_Vector yQSout);
+	int CVodeGetQuadSens1(Pointer cvode_mem, DoubleBuffer tret, int is, Sundials_cvodesLibrary.N_Vector yQSout);
 	/**
 	 * Original signature : <code>int CVodeGetQuadSensDky(void*, sunrealtype, int, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:460</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetQuadSensDky(Pointer, double, int, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetQuadSensDky(com.sun.jna.Pointer, double, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensDky(Pointer cvode_mem, double t, int k, Pointer dkyQS_all);
@@ -2035,7 +2038,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:462</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSensDky1(Pointer, double, int, int, N_Vector)} and {@link #CVodeGetQuadSensDky1(Pointer, double, int, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSensDky1(com.sun.jna.Pointer, double, int, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuadSensDky1(com.sun.jna.Pointer, double, int, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensDky1(Pointer cvode_mem, double t, int k, int is, Pointer dkyQS);
@@ -2043,12 +2046,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuadSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:462</i>
 	 */
-	int CVodeGetQuadSensDky1(Pointer cvode_mem, double t, int k, int is, N_Vector dkyQS);
+	int CVodeGetQuadSensDky1(Pointer cvode_mem, double t, int k, int is, Sundials_cvodesLibrary.N_Vector dkyQS);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int CVodeGetQuadSensNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:466</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSensNumRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetQuadSensNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSensNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetQuadSensNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensNumRhsEvals(Pointer cvode_mem, LongByReference nfQSevals);
@@ -2061,7 +2064,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadSensNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:468</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSensNumErrTestFails(Pointer, LongBuffer)} and {@link #CVodeGetQuadSensNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSensNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetQuadSensNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensNumErrTestFails(Pointer cvode_mem, LongByReference nQSetfails);
@@ -2073,7 +2076,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadSensErrWeights(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:470</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetQuadSensErrWeights(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetQuadSensErrWeights(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensErrWeights(Pointer cvode_mem, Pointer eQSweight);
@@ -2085,7 +2088,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetQuadSensStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:472</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadSensStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetQuadSensStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadSensStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetQuadSensStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadSensStats(Pointer cvode_mem, LongByReference nfQSevals, LongByReference nQSetfails);
@@ -2120,7 +2123,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Backward Problem Setup Functions<br>
 	 * Original signature : <code>int CVodeCreateB(void*, int, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:492</i><br>
-	 * @deprecated use the safer methods {@link #CVodeCreateB(Pointer, int, IntBuffer)} and {@link #CVodeCreateB(Pointer, int, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeCreateB(com.sun.jna.Pointer, int, java.nio.IntBuffer)} and {@link #CVodeCreateB(com.sun.jna.Pointer, int, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeCreateB(Pointer cvode_mem, int lmmB, IntByReference which);
@@ -2133,31 +2136,31 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeInitB(void*, int, CVRhsFnB, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:494</i><br>
-	 * @deprecated use the safer methods {@link #CVodeInitB(Pointer, int, CVRhsFnB, double, N_Vector)} and {@link #CVodeInitB(Pointer, int, CVRhsFnB, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFnB, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFnB, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeInitB(Pointer cvode_mem, int which, CVRhsFnB fB, double tB0, Pointer yB0);
+	int CVodeInitB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVRhsFnB fB, double tB0, Pointer yB0);
 	/**
 	 * Original signature : <code>int CVodeInitB(void*, int, CVRhsFnB, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:494</i>
 	 */
-	int CVodeInitB(Pointer cvode_mem, int which, CVRhsFnB fB, double tB0, N_Vector yB0);
+	int CVodeInitB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVRhsFnB fB, double tB0, Sundials_cvodesLibrary.N_Vector yB0);
 	/**
 	 * Original signature : <code>int CVodeInitBS(void*, int, CVRhsFnBS, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:496</i><br>
-	 * @deprecated use the safer methods {@link #CVodeInitBS(Pointer, int, CVRhsFnBS, double, N_Vector)} and {@link #CVodeInitBS(Pointer, int, CVRhsFnBS, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFnBS, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVRhsFnBS, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeInitBS(Pointer cvode_mem, int which, CVRhsFnBS fBs, double tB0, Pointer yB0);
+	int CVodeInitBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVRhsFnBS fBs, double tB0, Pointer yB0);
 	/**
 	 * Original signature : <code>int CVodeInitBS(void*, int, CVRhsFnBS, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:496</i>
 	 */
-	int CVodeInitBS(Pointer cvode_mem, int which, CVRhsFnBS fBs, double tB0, N_Vector yB0);
+	int CVodeInitBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVRhsFnBS fBs, double tB0, Sundials_cvodesLibrary.N_Vector yB0);
 	/**
 	 * Original signature : <code>int CVodeReInitB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:498</i><br>
-	 * @deprecated use the safer methods {@link #CVodeReInitB(Pointer, int, double, N_Vector)} and {@link #CVodeReInitB(Pointer, int, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeReInitB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeReInitB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeReInitB(Pointer cvode_mem, int which, double tB0, Pointer yB0);
@@ -2165,7 +2168,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeReInitB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:498</i>
 	 */
-	int CVodeReInitB(Pointer cvode_mem, int which, double tB0, N_Vector yB0);
+	int CVodeReInitB(Pointer cvode_mem, int which, double tB0, Sundials_cvodesLibrary.N_Vector yB0);
 	/**
 	 * Original signature : <code>int CVodeSStolerancesB(void*, int, sunrealtype, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:501</i>
@@ -2174,7 +2177,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:503</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSVtolerancesB(Pointer, int, double, N_Vector)} and {@link #CVodeSVtolerancesB(Pointer, int, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSVtolerancesB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeSVtolerancesB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSVtolerancesB(Pointer cvode_mem, int which, double reltolB, Pointer abstolB);
@@ -2182,35 +2185,35 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:503</i>
 	 */
-	int CVodeSVtolerancesB(Pointer cvode_mem, int which, double reltolB, N_Vector abstolB);
+	int CVodeSVtolerancesB(Pointer cvode_mem, int which, double reltolB, Sundials_cvodesLibrary.N_Vector abstolB);
 	/**
 	 * Original signature : <code>int CVodeQuadInitB(void*, int, CVQuadRhsFnB, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:506</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadInitB(Pointer, int, CVQuadRhsFnB, N_Vector)} and {@link #CVodeQuadInitB(Pointer, int, CVQuadRhsFnB, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFnB, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFnB, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeQuadInitB(Pointer cvode_mem, int which, CVQuadRhsFnB fQB, Pointer yQB0);
+	int CVodeQuadInitB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVQuadRhsFnB fQB, Pointer yQB0);
 	/**
 	 * Original signature : <code>int CVodeQuadInitB(void*, int, CVQuadRhsFnB, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:506</i>
 	 */
-	int CVodeQuadInitB(Pointer cvode_mem, int which, CVQuadRhsFnB fQB, N_Vector yQB0);
+	int CVodeQuadInitB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVQuadRhsFnB fQB, Sundials_cvodesLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int CVodeQuadInitBS(void*, int, CVQuadRhsFnBS, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:508</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadInitBS(Pointer, int, CVQuadRhsFnBS, N_Vector)} and {@link #CVodeQuadInitBS(Pointer, int, CVQuadRhsFnBS, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFnBS, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.CVQuadRhsFnBS, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeQuadInitBS(Pointer cvode_mem, int which, CVQuadRhsFnBS fQBs, Pointer yQB0);
+	int CVodeQuadInitBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVQuadRhsFnBS fQBs, Pointer yQB0);
 	/**
 	 * Original signature : <code>int CVodeQuadInitBS(void*, int, CVQuadRhsFnBS, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:508</i>
 	 */
-	int CVodeQuadInitBS(Pointer cvode_mem, int which, CVQuadRhsFnBS fQBs, N_Vector yQB0);
+	int CVodeQuadInitBS(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVQuadRhsFnBS fQBs, Sundials_cvodesLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int CVodeQuadReInitB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:510</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadReInitB(Pointer, int, N_Vector)} and {@link #CVodeQuadReInitB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadReInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadReInitB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadReInitB(Pointer cvode_mem, int which, Pointer yQB0);
@@ -2218,7 +2221,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeQuadReInitB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:510</i>
 	 */
-	int CVodeQuadReInitB(Pointer cvode_mem, int which, N_Vector yQB0);
+	int CVodeQuadReInitB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int CVodeQuadSStolerancesB(void*, int, sunrealtype, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:512</i>
@@ -2227,7 +2230,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeQuadSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:515</i><br>
-	 * @deprecated use the safer methods {@link #CVodeQuadSVtolerancesB(Pointer, int, double, N_Vector)} and {@link #CVodeQuadSVtolerancesB(Pointer, int, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeQuadSVtolerancesB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeQuadSVtolerancesB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeQuadSVtolerancesB(Pointer cvode_mem, int which, double reltolQB, Pointer abstolQB);
@@ -2235,12 +2238,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeQuadSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:515</i>
 	 */
-	int CVodeQuadSVtolerancesB(Pointer cvode_mem, int which, double reltolQB, N_Vector abstolQB);
+	int CVodeQuadSVtolerancesB(Pointer cvode_mem, int which, double reltolQB, Sundials_cvodesLibrary.N_Vector abstolQB);
 	/**
 	 * Solver Function For Forward Problems<br>
 	 * Original signature : <code>int CVodeF(void*, sunrealtype, N_Vector, sunrealtype*, int, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:521</i><br>
-	 * @deprecated use the safer methods {@link #CVodeF(Pointer, double, N_Vector, DoubleBuffer, int, IntBuffer)} and {@link #CVodeF(Pointer, double, Pointer, DoubleByReference, int, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeF(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector, java.nio.DoubleBuffer, int, java.nio.IntBuffer)} and {@link #CVodeF(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeF(Pointer cvode_mem, double tout, Pointer yout, DoubleByReference tret, int itask, IntByReference ncheckPtr);
@@ -2249,7 +2252,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeF(void*, sunrealtype, N_Vector, sunrealtype*, int, int*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:521</i>
 	 */
-	int CVodeF(Pointer cvode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask, IntBuffer ncheckPtr);
+	int CVodeF(Pointer cvode_mem, double tout, Sundials_cvodesLibrary.N_Vector yout, DoubleBuffer tret, int itask, IntBuffer ncheckPtr);
 	/**
 	 * Solver Function For Backward Problems<br>
 	 * Original signature : <code>int CVodeB(void*, sunrealtype, int)</code><br>
@@ -2300,7 +2303,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSetConstraintsB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:545</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetConstraintsB(Pointer, int, N_Vector)} and {@link #CVodeSetConstraintsB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetConstraintsB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeSetConstraintsB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetConstraintsB(Pointer cvode_mem, int which, Pointer constraintsB);
@@ -2308,7 +2311,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetConstraintsB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:545</i>
 	 */
-	int CVodeSetConstraintsB(Pointer cvode_mem, int which, N_Vector constraintsB);
+	int CVodeSetConstraintsB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.N_Vector constraintsB);
 	/**
 	 * Original signature : <code>int CVodeSetQuadErrConB(void*, int, int)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:547</i>
@@ -2317,7 +2320,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeSetNonlinearSolverB(void*, int, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:550</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverB(Pointer, int, SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolverB(com.sun.jna.Pointer, int, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolverB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeSetNonlinearSolverB(Pointer cvode_mem, int which, Pointer NLS);
@@ -2325,12 +2328,12 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNonlinearSolverB(void*, int, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:550</i>
 	 */
-	int CVodeSetNonlinearSolverB(Pointer cvode_mem, int which, SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolverB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Extraction And Dense Output Functions For Backward Problems<br>
 	 * Original signature : <code>int CVodeGetB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:555</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetB(Pointer, int, DoubleBuffer, N_Vector)} and {@link #CVodeGetB(Pointer, int, DoubleByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetB(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetB(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetB(Pointer cvode_mem, int which, DoubleByReference tBret, Pointer yB);
@@ -2339,11 +2342,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:555</i>
 	 */
-	int CVodeGetB(Pointer cvode_mem, int which, DoubleBuffer tBret, N_Vector yB);
+	int CVodeGetB(Pointer cvode_mem, int which, DoubleBuffer tBret, Sundials_cvodesLibrary.N_Vector yB);
 	/**
 	 * Original signature : <code>int CVodeGetQuadB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:557</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetQuadB(Pointer, int, DoubleBuffer, N_Vector)} and {@link #CVodeGetQuadB(Pointer, int, DoubleByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetQuadB(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetQuadB(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetQuadB(Pointer cvode_mem, int which, DoubleByReference tBret, Pointer qB);
@@ -2351,7 +2354,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetQuadB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:557</i>
 	 */
-	int CVodeGetQuadB(Pointer cvode_mem, int which, DoubleBuffer tBret, N_Vector qB);
+	int CVodeGetQuadB(Pointer cvode_mem, int which, DoubleBuffer tBret, Sundials_cvodesLibrary.N_Vector qB);
 	/**
 	 * Optional Output Functions For Backward Problems<br>
 	 * Original signature : <code>void* CVodeGetAdjCVodeBmem(void*, int)</code><br>
@@ -2361,7 +2364,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetAdjY(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:564</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetAdjY(Pointer, double, N_Vector)} and {@link #CVodeGetAdjY(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetAdjY(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetAdjY(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetAdjY(Pointer cvode_mem, double t, Pointer y);
@@ -2369,7 +2372,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetAdjY(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:564</i>
 	 */
-	int CVodeGetAdjY(Pointer cvode_mem, double t, N_Vector y);
+	int CVodeGetAdjY(Pointer cvode_mem, double t, Sundials_cvodesLibrary.N_Vector y);
 	/**
 	 * Original signature : <code>int CVodeGetAdjCheckPointsInfo(void*, CVadjCheckPointRec*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:577</i>
@@ -2380,7 +2383,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacTimesRhsFnB(void*, int, CVRhsFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:581</i>
 	 */
-	int CVodeSetJacTimesRhsFnB(Pointer cvode_mem, int which, CVRhsFn jtimesRhsFn);
+	int CVodeSetJacTimesRhsFnB(Pointer cvode_mem, int which, Sundials_cvodesLibrary.CVRhsFn jtimesRhsFn);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * CVodeGetAdjDataPointHermite<br>
@@ -2401,7 +2404,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int CVodeGetAdjDataPointHermite(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:603</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetAdjDataPointHermite(Pointer, int, DoubleBuffer, N_Vector, N_Vector)} and {@link #CVodeGetAdjDataPointHermite(Pointer, int, DoubleByReference, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetAdjDataPointHermite(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetAdjDataPointHermite(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetAdjDataPointHermite(Pointer cvode_mem, int which, DoubleByReference t, Pointer y, Pointer yd);
@@ -2426,11 +2429,11 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetAdjDataPointHermite(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:603</i>
 	 */
-	int CVodeGetAdjDataPointHermite(Pointer cvode_mem, int which, DoubleBuffer t, N_Vector y, N_Vector yd);
+	int CVodeGetAdjDataPointHermite(Pointer cvode_mem, int which, DoubleBuffer t, Sundials_cvodesLibrary.N_Vector y, Sundials_cvodesLibrary.N_Vector yd);
 	/**
 	 * Original signature : <code>int CVodeGetAdjDataPointPolynomial(void*, int, sunrealtype*, int*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:607</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetAdjDataPointPolynomial(Pointer, int, DoubleBuffer, IntBuffer, N_Vector)} and {@link #CVodeGetAdjDataPointPolynomial(Pointer, int, DoubleByReference, IntByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetAdjDataPointPolynomial(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, java.nio.IntBuffer, cn.catarc.jsundials.cvodes.Sundials_cvodesLibrary.N_Vector)} and {@link #CVodeGetAdjDataPointPolynomial(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int CVodeGetAdjDataPointPolynomial(Pointer cvode_mem, int which, DoubleByReference t, IntByReference order, Pointer y);
@@ -2438,7 +2441,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVodeGetAdjDataPointPolynomial(void*, int, sunrealtype*, int*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes.h:607</i>
 	 */
-	int CVodeGetAdjDataPointPolynomial(Pointer cvode_mem, int which, DoubleBuffer t, IntBuffer order, N_Vector y);
+	int CVodeGetAdjDataPointPolynomial(Pointer cvode_mem, int which, DoubleBuffer t, IntBuffer order, Sundials_cvodesLibrary.N_Vector y);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * CVodeGetAdjCurrentCheckPoint<br>
@@ -2458,7 +2461,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVBandPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bandpre.h:17</i><br>
-	 * @deprecated use the safer methods {@link #CVBandPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVBandPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBandPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVBandPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBandPrecGetWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -2471,7 +2474,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVBandPrecGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bandpre.h:19</i><br>
-	 * @deprecated use the safer methods {@link #CVBandPrecGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVBandPrecGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBandPrecGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVBandPrecGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBandPrecGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevalsBP);
@@ -2493,7 +2496,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVBBDPrecInit(void*, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, CVLocalFn, CVCommFn)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:20</i>
 	 */
-	int CVBBDPrecInit(Pointer cvode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, CVLocalFn gloc, CVCommFn cfn);
+	int CVBBDPrecInit(Pointer cvode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, Sundials_cvodesLibrary.CVLocalFn gloc, Sundials_cvodesLibrary.CVCommFn cfn);
 	/**
 	 * Original signature : <code>int CVBBDPrecReInit(void*, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:26</i>
@@ -2503,7 +2506,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVBBDPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:31</i><br>
-	 * @deprecated use the safer methods {@link #CVBBDPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVBBDPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBBDPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVBBDPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBBDPrecGetWorkSpace(Pointer cvode_mem, LongByReference lenrwBBDP, LongByReference leniwBBDP);
@@ -2516,7 +2519,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVBBDPrecGetNumGfnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:34</i><br>
-	 * @deprecated use the safer methods {@link #CVBBDPrecGetNumGfnEvals(Pointer, LongBuffer)} and {@link #CVBBDPrecGetNumGfnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBBDPrecGetNumGfnEvals(Pointer cvode_mem, LongByReference ngevalsBBDP);
@@ -2530,7 +2533,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Original signature : <code>int CVBBDPrecInitB(void*, int, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, CVLocalFnB, CVCommFnB)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:51</i>
 	 */
-	int CVBBDPrecInitB(Pointer cvode_mem, int which, long NlocalB, long mudqB, long mldqB, long mukeepB, long mlkeepB, double dqrelyB, CVLocalFnB glocB, CVCommFnB cfnB);
+	int CVBBDPrecInitB(Pointer cvode_mem, int which, long NlocalB, long mudqB, long mldqB, long mukeepB, long mlkeepB, double dqrelyB, Sundials_cvodesLibrary.CVLocalFnB glocB, Sundials_cvodesLibrary.CVCommFnB cfnB);
 	/**
 	 * Original signature : <code>int CVBBDPrecReInitB(void*, int, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_bbdpre.h:57</i>
@@ -2546,7 +2549,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVDiagGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_diag.h:36</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVDiagGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVDiagGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -2559,7 +2562,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVDiagGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_diag.h:38</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVDiagGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVDiagGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevalsLS);
@@ -2571,7 +2574,7 @@ public interface Sundials_cvodesLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVDiagGetLastFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvodes\cvodes_diag.h:39</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetLastFlag(Pointer, LongBuffer)} and {@link #CVDiagGetLastFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetLastFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVDiagGetLastFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetLastFlag(Pointer cvode_mem, LongByReference flag);

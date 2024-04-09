@@ -1,11 +1,14 @@
 package cn.catarc.jsundials.idas;
-
-import com.sun.jna.*;
+import com.sun.jna.Callback;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -287,7 +290,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * =================================================================<br>
 	 * Original signature : <code>int IDASetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:58</i><br>
-	 * @deprecated use the safer methods {@link #IDASetLinearSolver(Pointer, SUNLinearSolver, SUNMatrix)} and {@link #IDASetLinearSolver(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNLinearSolver, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNMatrix)} and {@link #IDASetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetLinearSolver(Pointer ida_mem, Pointer LS, Pointer A);
@@ -298,7 +301,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:58</i>
 	 */
-	int IDASetLinearSolver(Pointer ida_mem, SUNLinearSolver LS, SUNMatrix A);
+	int IDASetLinearSolver(Pointer ida_mem, Sundials_idasLibrary.SUNLinearSolver LS, Sundials_idasLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional inputs to the IDALS linear solver interface<br>
@@ -306,17 +309,17 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetJacFn(void*, IDALsJacFn)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:65</i>
 	 */
-	int IDASetJacFn(Pointer ida_mem, IDALsJacFn jac);
+	int IDASetJacFn(Pointer ida_mem, Sundials_idasLibrary.IDALsJacFn jac);
 	/**
 	 * Original signature : <code>int IDASetPreconditioner(void*, IDALsPrecSetupFn, IDALsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:66</i>
 	 */
-	int IDASetPreconditioner(Pointer ida_mem, IDALsPrecSetupFn pset, IDALsPrecSolveFn psolve);
+	int IDASetPreconditioner(Pointer ida_mem, Sundials_idasLibrary.IDALsPrecSetupFn pset, Sundials_idasLibrary.IDALsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int IDASetJacTimes(void*, IDALsJacTimesSetupFn, IDALsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:68</i>
 	 */
-	int IDASetJacTimes(Pointer ida_mem, IDALsJacTimesSetupFn jtsetup, IDALsJacTimesVecFn jtimes);
+	int IDASetJacTimes(Pointer ida_mem, Sundials_idasLibrary.IDALsJacTimesSetupFn jtsetup, Sundials_idasLibrary.IDALsJacTimesVecFn jtimes);
 	/**
 	 * Original signature : <code>int IDASetEpsLin(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:70</i>
@@ -343,7 +346,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int IDAGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:80</i><br>
-	 * @deprecated use the safer method {@link #IDAGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetJac(Pointer ida_mem, Pointer J);
@@ -358,7 +361,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetJacCj(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:81</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetJacCj(Pointer, DoubleBuffer)} and {@link #IDAGetJacCj(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetJacCj(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetJacCj(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetJacCj(Pointer ida_mem, DoubleByReference cj_J);
@@ -370,7 +373,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetJacTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:82</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetJacTime(Pointer, DoubleBuffer)} and {@link #IDAGetJacTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetJacTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetJacTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetJacTime(Pointer ida_mem, DoubleByReference t_J);
@@ -382,7 +385,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetJacNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:83</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetJacNumSteps(Pointer, LongBuffer)} and {@link #IDAGetJacNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetJacNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetJacNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetJacNumSteps(Pointer ida_mem, LongByReference nst_J);
@@ -394,7 +397,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:84</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetLinWorkSpace(Pointer ida_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -406,7 +409,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:86</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumJacEvals(Pointer, LongBuffer)} and {@link #IDAGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumJacEvals(Pointer ida_mem, LongByReference njevals);
@@ -418,7 +421,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:87</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumPrecEvals(Pointer, LongBuffer)} and {@link #IDAGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumPrecEvals(Pointer ida_mem, LongByReference npevals);
@@ -430,7 +433,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:88</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumPrecSolves(Pointer, LongBuffer)} and {@link #IDAGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumPrecSolves(Pointer ida_mem, LongByReference npsolves);
@@ -442,7 +445,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:89</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumLinIters(Pointer, LongBuffer)} and {@link #IDAGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumLinIters(Pointer ida_mem, LongByReference nliters);
@@ -454,7 +457,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:90</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumLinConvFails(Pointer, LongBuffer)} and {@link #IDAGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumLinConvFails(Pointer ida_mem, LongByReference nlcfails);
@@ -466,7 +469,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumJTSetupEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:91</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumJTSetupEvals(Pointer, LongBuffer)} and {@link #IDAGetNumJTSetupEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumJTSetupEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumJTSetupEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumJTSetupEvals(Pointer ida_mem, LongByReference njtsetups);
@@ -478,7 +481,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:92</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #IDAGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumJtimesEvals(Pointer ida_mem, LongByReference njvevals);
@@ -490,7 +493,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumLinResEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:93</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumLinResEvals(Pointer, LongBuffer)} and {@link #IDAGetNumLinResEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumLinResEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumLinResEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumLinResEvals(Pointer ida_mem, LongByReference nrevalsLS);
@@ -502,7 +505,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:94</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetLastLinFlag(Pointer, LongBuffer)} and {@link #IDAGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetLastLinFlag(Pointer ida_mem, LongByReference flag);
@@ -522,7 +525,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * =================================================================<br>
 	 * Original signature : <code>int IDASetLinearSolverB(void*, int, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:162</i><br>
-	 * @deprecated use the safer methods {@link #IDASetLinearSolverB(Pointer, int, SUNLinearSolver, SUNMatrix)} and {@link #IDASetLinearSolverB(Pointer, int, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetLinearSolverB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNLinearSolver, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNMatrix)} and {@link #IDASetLinearSolverB(com.sun.jna.Pointer, int, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetLinearSolverB(Pointer ida_mem, int which, Pointer LS, Pointer A);
@@ -533,7 +536,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetLinearSolverB(void*, int, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:162</i>
 	 */
-	int IDASetLinearSolverB(Pointer ida_mem, int which, SUNLinearSolver LS, SUNMatrix A);
+	int IDASetLinearSolverB(Pointer ida_mem, int which, Sundials_idasLibrary.SUNLinearSolver LS, Sundials_idasLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Each IDASet***B or IDASet***BS function below links the<br>
@@ -544,12 +547,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetJacFnB(void*, int, IDALsJacFnB)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:172</i>
 	 */
-	int IDASetJacFnB(Pointer ida_mem, int which, IDALsJacFnB jacB);
+	int IDASetJacFnB(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsJacFnB jacB);
 	/**
 	 * Original signature : <code>int IDASetJacFnBS(void*, int, IDALsJacFnBS)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:173</i>
 	 */
-	int IDASetJacFnBS(Pointer ida_mem, int which, IDALsJacFnBS jacBS);
+	int IDASetJacFnBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsJacFnBS jacBS);
 	/**
 	 * Original signature : <code>int IDASetEpsLinB(void*, int, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:175</i>
@@ -574,27 +577,27 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetPreconditionerB(void*, int, IDALsPrecSetupFnB, IDALsPrecSolveFnB)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:182</i>
 	 */
-	int IDASetPreconditionerB(Pointer ida_mem, int which, IDALsPrecSetupFnB psetB, IDALsPrecSolveFnB psolveB);
+	int IDASetPreconditionerB(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsPrecSetupFnB psetB, Sundials_idasLibrary.IDALsPrecSolveFnB psolveB);
 	/**
 	 * Original signature : <code>int IDASetPreconditionerBS(void*, int, IDALsPrecSetupFnBS, IDALsPrecSolveFnBS)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:185</i>
 	 */
-	int IDASetPreconditionerBS(Pointer ida_mem, int which, IDALsPrecSetupFnBS psetBS, IDALsPrecSolveFnBS psolveBS);
+	int IDASetPreconditionerBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsPrecSetupFnBS psetBS, Sundials_idasLibrary.IDALsPrecSolveFnBS psolveBS);
 	/**
 	 * Original signature : <code>int IDASetJacTimesB(void*, int, IDALsJacTimesSetupFnB, IDALsJacTimesVecFnB)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:188</i>
 	 */
-	int IDASetJacTimesB(Pointer ida_mem, int which, IDALsJacTimesSetupFnB jtsetupB, IDALsJacTimesVecFnB jtimesB);
+	int IDASetJacTimesB(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsJacTimesSetupFnB jtsetupB, Sundials_idasLibrary.IDALsJacTimesVecFnB jtimesB);
 	/**
 	 * Original signature : <code>int IDASetJacTimesBS(void*, int, IDALsJacTimesSetupFnBS, IDALsJacTimesVecFnBS)</code><br>
 	 * <i>native declaration : include\idas\idas_ls.h:191</i>
 	 */
-	int IDASetJacTimesBS(Pointer ida_mem, int which, IDALsJacTimesSetupFnBS jtsetupBS, IDALsJacTimesVecFnBS jtimesBS);
+	int IDASetJacTimesBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDALsJacTimesSetupFnBS jtsetupBS, Sundials_idasLibrary.IDALsJacTimesVecFnBS jtimesBS);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>void* IDACreate(SUNContext)</code><br>
 	 * <i>native declaration : include\idas\idas.h:163</i><br>
-	 * @deprecated use the safer methods {@link #IDACreate(SUNContext)} and {@link #IDACreate(Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDACreate(cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNContext)} and {@link #IDACreate(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	Pointer IDACreate(Pointer sunctx);
@@ -603,23 +606,23 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>void* IDACreate(SUNContext)</code><br>
 	 * <i>native declaration : include\idas\idas.h:163</i>
 	 */
-	Pointer IDACreate(SUNContext sunctx);
+	Pointer IDACreate(Sundials_idasLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int IDAInit(void*, IDAResFn, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:165</i><br>
-	 * @deprecated use the safer methods {@link #IDAInit(Pointer, IDAResFn, double, N_Vector, N_Vector)} and {@link #IDAInit(Pointer, IDAResFn, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFn, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFn, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAInit(Pointer ida_mem, IDAResFn res, double t0, Pointer yy0, Pointer yp0);
+	int IDAInit(Pointer ida_mem, Sundials_idasLibrary.IDAResFn res, double t0, Pointer yy0, Pointer yp0);
 	/**
 	 * Original signature : <code>int IDAInit(void*, IDAResFn, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:165</i>
 	 */
-	int IDAInit(Pointer ida_mem, IDAResFn res, double t0, N_Vector yy0, N_Vector yp0);
+	int IDAInit(Pointer ida_mem, Sundials_idasLibrary.IDAResFn res, double t0, Sundials_idasLibrary.N_Vector yy0, Sundials_idasLibrary.N_Vector yp0);
 	/**
 	 * Original signature : <code>int IDAReInit(void*, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:167</i><br>
-	 * @deprecated use the safer methods {@link #IDAReInit(Pointer, double, N_Vector, N_Vector)} and {@link #IDAReInit(Pointer, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAReInit(com.sun.jna.Pointer, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAReInit(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAReInit(Pointer ida_mem, double t0, Pointer yy0, Pointer yp0);
@@ -627,7 +630,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAReInit(void*, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:167</i>
 	 */
-	int IDAReInit(Pointer ida_mem, double t0, N_Vector yy0, N_Vector yp0);
+	int IDAReInit(Pointer ida_mem, double t0, Sundials_idasLibrary.N_Vector yy0, Sundials_idasLibrary.N_Vector yp0);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int IDASStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -637,7 +640,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:173</i><br>
-	 * @deprecated use the safer methods {@link #IDASVtolerances(Pointer, double, N_Vector)} and {@link #IDASVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASVtolerances(Pointer ida_mem, double reltol, Pointer abstol);
@@ -645,12 +648,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:173</i>
 	 */
-	int IDASVtolerances(Pointer ida_mem, double reltol, N_Vector abstol);
+	int IDASVtolerances(Pointer ida_mem, double reltol, Sundials_idasLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int IDAWFtolerances(void*, IDAEwtFn)</code><br>
 	 * <i>native declaration : include\idas\idas.h:175</i>
 	 */
-	int IDAWFtolerances(Pointer ida_mem, IDAEwtFn efun);
+	int IDAWFtolerances(Pointer ida_mem, Sundials_idasLibrary.IDAEwtFn efun);
 	/**
 	 * Initial condition calculation function<br>
 	 * Original signature : <code>int IDACalcIC(void*, int, sunrealtype)</code><br>
@@ -752,7 +755,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASetId(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:201</i><br>
-	 * @deprecated use the safer methods {@link #IDASetId(Pointer, N_Vector)} and {@link #IDASetId(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetId(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASetId(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetId(Pointer ida_mem, Pointer id);
@@ -760,11 +763,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetId(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:201</i>
 	 */
-	int IDASetId(Pointer ida_mem, N_Vector id);
+	int IDASetId(Pointer ida_mem, Sundials_idasLibrary.N_Vector id);
 	/**
 	 * Original signature : <code>int IDASetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:202</i><br>
-	 * @deprecated use the safer methods {@link #IDASetConstraints(Pointer, N_Vector)} and {@link #IDASetConstraints(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetConstraints(Pointer ida_mem, Pointer constraints);
@@ -772,7 +775,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:202</i>
 	 */
-	int IDASetConstraints(Pointer ida_mem, N_Vector constraints);
+	int IDASetConstraints(Pointer ida_mem, Sundials_idasLibrary.N_Vector constraints);
 	/**
 	 * Optional step adaptivity input functions<br>
 	 * Original signature : <code>int IDASetEtaFixedStepBounds(void*, sunrealtype, sunrealtype)</code><br>
@@ -819,7 +822,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetNlsResFn(void*, IDAResFn)</code><br>
 	 * <i>native declaration : include\idas\idas.h:222</i>
 	 */
-	int IDASetNlsResFn(Pointer IDA_mem, IDAResFn res);
+	int IDASetNlsResFn(Pointer IDA_mem, Sundials_idasLibrary.IDAResFn res);
 	/**
 	 * Original signature : <code>int IDASetNonlinConvCoef(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas.h:223</i>
@@ -828,7 +831,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:224</i><br>
-	 * @deprecated use the safer methods {@link #IDASetNonlinearSolver(Pointer, SUNNonlinearSolver)} and {@link #IDASetNonlinearSolver(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetNonlinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNNonlinearSolver)} and {@link #IDASetNonlinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetNonlinearSolver(Pointer ida_mem, Pointer NLS);
@@ -836,18 +839,18 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:224</i>
 	 */
-	int IDASetNonlinearSolver(Pointer ida_mem, SUNNonlinearSolver NLS);
+	int IDASetNonlinearSolver(Pointer ida_mem, Sundials_idasLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Rootfinding initialization function<br>
 	 * Original signature : <code>int IDARootInit(void*, int, IDARootFn)</code><br>
 	 * <i>native declaration : include\idas\idas.h:227</i>
 	 */
-	int IDARootInit(Pointer ida_mem, int nrtfn, IDARootFn g);
+	int IDARootInit(Pointer ida_mem, int nrtfn, Sundials_idasLibrary.IDARootFn g);
 	/**
 	 * Rootfinding optional input functions<br>
 	 * Original signature : <code>int IDASetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:230</i><br>
-	 * @deprecated use the safer methods {@link #IDASetRootDirection(Pointer, IntBuffer)} and {@link #IDASetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDASetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #IDASetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDASetRootDirection(Pointer ida_mem, IntByReference rootdir);
@@ -866,7 +869,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Solver function<br>
 	 * Original signature : <code>int IDASolve(void*, sunrealtype, sunrealtype*, N_Vector, N_Vector, int)</code><br>
 	 * <i>native declaration : include\idas\idas.h:234</i><br>
-	 * @deprecated use the safer methods {@link #IDASolve(Pointer, double, DoubleBuffer, N_Vector, N_Vector, int)} and {@link #IDASolve(Pointer, double, DoubleByReference, Pointer, Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #IDASolve(com.sun.jna.Pointer, double, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, int)} and {@link #IDASolve(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	int IDASolve(Pointer ida_mem, double tout, DoubleByReference tret, Pointer yret, Pointer ypret, int itask);
@@ -875,12 +878,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASolve(void*, sunrealtype, sunrealtype*, N_Vector, N_Vector, int)</code><br>
 	 * <i>native declaration : include\idas\idas.h:234</i>
 	 */
-	int IDASolve(Pointer ida_mem, double tout, DoubleBuffer tret, N_Vector yret, N_Vector ypret, int itask);
+	int IDASolve(Pointer ida_mem, double tout, DoubleBuffer tret, Sundials_idasLibrary.N_Vector yret, Sundials_idasLibrary.N_Vector ypret, int itask);
 	/**
 	 * Utility functions to update/compute y and yp based on ycor<br>
 	 * Original signature : <code>int IDAComputeY(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:238</i><br>
-	 * @deprecated use the safer methods {@link #IDAComputeY(Pointer, N_Vector, N_Vector)} and {@link #IDAComputeY(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAComputeY(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAComputeY(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAComputeY(Pointer ida_mem, Pointer ycor, Pointer y);
@@ -889,11 +892,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAComputeY(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:238</i>
 	 */
-	int IDAComputeY(Pointer ida_mem, N_Vector ycor, N_Vector y);
+	int IDAComputeY(Pointer ida_mem, Sundials_idasLibrary.N_Vector ycor, Sundials_idasLibrary.N_Vector y);
 	/**
 	 * Original signature : <code>int IDAComputeYp(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:239</i><br>
-	 * @deprecated use the safer methods {@link #IDAComputeYp(Pointer, N_Vector, N_Vector)} and {@link #IDAComputeYp(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAComputeYp(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAComputeYp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAComputeYp(Pointer ida_mem, Pointer ycor, Pointer yp);
@@ -901,11 +904,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAComputeYp(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:239</i>
 	 */
-	int IDAComputeYp(Pointer ida_mem, N_Vector ycor, N_Vector yp);
+	int IDAComputeYp(Pointer ida_mem, Sundials_idasLibrary.N_Vector ycor, Sundials_idasLibrary.N_Vector yp);
 	/**
 	 * Original signature : <code>int IDAComputeYSens(void*, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:240</i><br>
-	 * @deprecated use the safer method {@link #IDAComputeYSens(Pointer, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAComputeYSens(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAComputeYSens(Pointer ida_mem, Pointer ycor, Pointer yyS);
@@ -917,7 +920,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAComputeYpSens(void*, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:241</i><br>
-	 * @deprecated use the safer method {@link #IDAComputeYpSens(Pointer, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAComputeYpSens(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAComputeYpSens(Pointer ida_mem, Pointer ycor, Pointer ypS);
@@ -930,7 +933,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Dense output function<br>
 	 * Original signature : <code>int IDAGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:245</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetDky(Pointer, double, int, N_Vector)} and {@link #IDAGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetDky(Pointer ida_mem, double t, int k, Pointer dky);
@@ -939,12 +942,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:245</i>
 	 */
-	int IDAGetDky(Pointer ida_mem, double t, int k, N_Vector dky);
+	int IDAGetDky(Pointer ida_mem, double t, int k, Sundials_idasLibrary.N_Vector dky);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int IDAGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:248</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetWorkSpace(Pointer ida_mem, LongByReference lenrw, LongByReference leniw);
@@ -957,7 +960,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:250</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumSteps(Pointer, LongBuffer)} and {@link #IDAGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumSteps(Pointer ida_mem, LongByReference nsteps);
@@ -969,7 +972,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumResEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:251</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumResEvals(Pointer, LongBuffer)} and {@link #IDAGetNumResEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumResEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumResEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumResEvals(Pointer ida_mem, LongByReference nrevals);
@@ -981,7 +984,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:252</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumLinSolvSetups(Pointer, LongBuffer)} and {@link #IDAGetNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumLinSolvSetups(Pointer ida_mem, LongByReference nlinsetups);
@@ -993,7 +996,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:253</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumErrTestFails(Pointer, LongBuffer)} and {@link #IDAGetNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumErrTestFails(Pointer ida_mem, LongByReference netfails);
@@ -1005,7 +1008,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumBacktrackOps(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:254</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumBacktrackOps(Pointer, LongBuffer)} and {@link #IDAGetNumBacktrackOps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumBacktrackOps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumBacktrackOps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumBacktrackOps(Pointer ida_mem, LongByReference nbacktr);
@@ -1017,7 +1020,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetConsistentIC(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:255</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetConsistentIC(Pointer, N_Vector, N_Vector)} and {@link #IDAGetConsistentIC(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetConsistentIC(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetConsistentIC(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetConsistentIC(Pointer ida_mem, Pointer yy0_mod, Pointer yp0_mod);
@@ -1025,11 +1028,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetConsistentIC(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:255</i>
 	 */
-	int IDAGetConsistentIC(Pointer ida_mem, N_Vector yy0_mod, N_Vector yp0_mod);
+	int IDAGetConsistentIC(Pointer ida_mem, Sundials_idasLibrary.N_Vector yy0_mod, Sundials_idasLibrary.N_Vector yp0_mod);
 	/**
 	 * Original signature : <code>int IDAGetLastOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:257</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetLastOrder(Pointer, IntBuffer)} and {@link #IDAGetLastOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetLastOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #IDAGetLastOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetLastOrder(Pointer ida_mem, IntByReference klast);
@@ -1041,7 +1044,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:258</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetCurrentOrder(Pointer, IntBuffer)} and {@link #IDAGetCurrentOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetCurrentOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #IDAGetCurrentOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentOrder(Pointer ida_mem, IntByReference kcur);
@@ -1053,7 +1056,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentCj(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:259</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetCurrentCj(Pointer, DoubleBuffer)} and {@link #IDAGetCurrentCj(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetCurrentCj(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetCurrentCj(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentCj(Pointer ida_mem, DoubleByReference cj);
@@ -1065,7 +1068,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentY(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:260</i><br>
-	 * @deprecated use the safer method {@link #IDAGetCurrentY(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetCurrentY(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentY(Pointer ida_mem, Pointer ycur);
@@ -1082,7 +1085,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentYp(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:262</i><br>
-	 * @deprecated use the safer method {@link #IDAGetCurrentYp(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetCurrentYp(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentYp(Pointer ida_mem, Pointer ypcur);
@@ -1099,7 +1102,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetActualInitStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:264</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetActualInitStep(Pointer, DoubleBuffer)} and {@link #IDAGetActualInitStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetActualInitStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetActualInitStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetActualInitStep(Pointer ida_mem, DoubleByReference hinused);
@@ -1111,7 +1114,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:265</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetLastStep(Pointer, DoubleBuffer)} and {@link #IDAGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetLastStep(Pointer ida_mem, DoubleByReference hlast);
@@ -1123,7 +1126,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:266</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetCurrentStep(Pointer, DoubleBuffer)} and {@link #IDAGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentStep(Pointer ida_mem, DoubleByReference hcur);
@@ -1135,7 +1138,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:267</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetCurrentTime(Pointer, DoubleBuffer)} and {@link #IDAGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetCurrentTime(Pointer ida_mem, DoubleByReference tcur);
@@ -1147,7 +1150,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:268</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #IDAGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #IDAGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetTolScaleFactor(Pointer ida_mem, DoubleByReference tolsfact);
@@ -1159,7 +1162,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:269</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetErrWeights(Pointer, N_Vector)} and {@link #IDAGetErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetErrWeights(Pointer ida_mem, Pointer eweight);
@@ -1167,11 +1170,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:269</i>
 	 */
-	int IDAGetErrWeights(Pointer ida_mem, N_Vector eweight);
+	int IDAGetErrWeights(Pointer ida_mem, Sundials_idasLibrary.N_Vector eweight);
 	/**
 	 * Original signature : <code>int IDAGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:270</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetEstLocalErrors(Pointer, N_Vector)} and {@link #IDAGetEstLocalErrors(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetEstLocalErrors(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetEstLocalErrors(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetEstLocalErrors(Pointer ida_mem, Pointer ele);
@@ -1179,11 +1182,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:270</i>
 	 */
-	int IDAGetEstLocalErrors(Pointer ida_mem, N_Vector ele);
+	int IDAGetEstLocalErrors(Pointer ida_mem, Sundials_idasLibrary.N_Vector ele);
 	/**
 	 * Original signature : <code>int IDAGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:271</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumGEvals(Pointer, LongBuffer)} and {@link #IDAGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumGEvals(Pointer ida_mem, LongByReference ngevals);
@@ -1195,7 +1198,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:272</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetRootInfo(Pointer, IntBuffer)} and {@link #IDAGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #IDAGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetRootInfo(Pointer ida_mem, IntByReference rootsfound);
@@ -1207,7 +1210,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetIntegratorStats(void*, long long*, long long*, long long*, long long*, int*, int*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:273</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetIntegratorStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, IntBuffer, IntBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #IDAGetIntegratorStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, IntByReference, IntByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetIntegratorStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.IntBuffer, java.nio.IntBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #IDAGetIntegratorStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetIntegratorStats(Pointer ida_mem, LongByReference nsteps, LongByReference nrevals, LongByReference nlinsetups, LongByReference netfails, IntByReference qlast, IntByReference qcur, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);
@@ -1219,7 +1222,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, void**)</code><br>
 	 * <i>native declaration : include\idas\idas.h:279</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNonlinearSystemData(Pointer, DoubleBuffer, PointerByReference, PointerByReference, PointerByReference, PointerByReference, PointerByReference, DoubleBuffer, PointerByReference)} and {@link #IDAGetNonlinearSystemData(Pointer, DoubleByReference, PointerByReference, PointerByReference, PointerByReference, PointerByReference, PointerByReference, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNonlinearSystemData(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #IDAGetNonlinearSystemData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNonlinearSystemData(Pointer ida_mem, DoubleByReference tcur, Pointer yypred, Pointer yppred, Pointer yyn, Pointer ypn, Pointer res, DoubleByReference cj, PointerByReference user_data);
@@ -1236,7 +1239,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNonlinearSystemDataSens(void*, sunrealtype*, N_Vector**, N_Vector**, N_Vector**, N_Vector**, sunrealtype*, void**)</code><br>
 	 * <i>native declaration : include\idas\idas.h:284</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNonlinearSystemDataSens(Pointer, DoubleBuffer, PointerByReference, PointerByReference, PointerByReference, PointerByReference, DoubleBuffer, PointerByReference)} and {@link #IDAGetNonlinearSystemDataSens(Pointer, DoubleByReference, PointerByReference, PointerByReference, PointerByReference, PointerByReference, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNonlinearSystemDataSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #IDAGetNonlinearSystemDataSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNonlinearSystemDataSens(Pointer ida_mem, DoubleByReference tcur, PointerByReference yySpred, PointerByReference ypSpred, PointerByReference yySn, PointerByReference ypSn, DoubleByReference cj, PointerByReference user_data);
@@ -1248,7 +1251,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:287</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #IDAGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumNonlinSolvIters(Pointer ida_mem, LongByReference nniters);
@@ -1260,7 +1263,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:288</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #IDAGetNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumNonlinSolvConvFails(Pointer ida_mem, LongByReference nnfails);
@@ -1272,7 +1275,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:290</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNonlinSolvStats(Pointer ida_mem, LongByReference nniters, LongByReference nnfails);
@@ -1284,7 +1287,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumStepSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:292</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumStepSolveFails(Pointer, LongBuffer)} and {@link #IDAGetNumStepSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumStepSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumStepSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumStepSolveFails(Pointer ida_mem, LongByReference nncfails);
@@ -1301,7 +1304,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\idas\idas.h:294</i><br>
-	 * @deprecated use the safer method {@link #IDAPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #IDAPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int IDAPrintAllStats(Pointer ida_mem, Pointer outfile, int fmt);
@@ -1326,25 +1329,25 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetJacTimesResFn(void*, IDAResFn)</code><br>
 	 * <i>native declaration : include\idas\idas.h:302</i>
 	 */
-	int IDASetJacTimesResFn(Pointer ida_mem, IDAResFn jtimesResFn);
+	int IDASetJacTimesResFn(Pointer ida_mem, Sundials_idasLibrary.IDAResFn jtimesResFn);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDAQuadInit(void*, IDAQuadRhsFn, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:309</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadInit(Pointer, IDAQuadRhsFn, N_Vector)} and {@link #IDAQuadInit(Pointer, IDAQuadRhsFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFn, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAQuadInit(Pointer ida_mem, IDAQuadRhsFn rhsQ, Pointer yQ0);
+	int IDAQuadInit(Pointer ida_mem, Sundials_idasLibrary.IDAQuadRhsFn rhsQ, Pointer yQ0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDAQuadInit(void*, IDAQuadRhsFn, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:309</i>
 	 */
-	int IDAQuadInit(Pointer ida_mem, IDAQuadRhsFn rhsQ, N_Vector yQ0);
+	int IDAQuadInit(Pointer ida_mem, Sundials_idasLibrary.IDAQuadRhsFn rhsQ, Sundials_idasLibrary.N_Vector yQ0);
 	/**
 	 * Original signature : <code>int IDAQuadReInit(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:310</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadReInit(Pointer, N_Vector)} and {@link #IDAQuadReInit(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadReInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadReInit(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAQuadReInit(Pointer ida_mem, Pointer yQ0);
@@ -1352,7 +1355,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAQuadReInit(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:310</i>
 	 */
-	int IDAQuadReInit(Pointer ida_mem, N_Vector yQ0);
+	int IDAQuadReInit(Pointer ida_mem, Sundials_idasLibrary.N_Vector yQ0);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int IDAQuadSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -1362,7 +1365,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAQuadSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:315</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadSVtolerances(Pointer, double, N_Vector)} and {@link #IDAQuadSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAQuadSVtolerances(Pointer ida_mem, double reltolQ, Pointer abstolQ);
@@ -1370,7 +1373,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAQuadSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:315</i>
 	 */
-	int IDAQuadSVtolerances(Pointer ida_mem, double reltolQ, N_Vector abstolQ);
+	int IDAQuadSVtolerances(Pointer ida_mem, double reltolQ, Sundials_idasLibrary.N_Vector abstolQ);
 	/**
 	 * Optional input specification functions<br>
 	 * Original signature : <code>int IDASetQuadErrCon(void*, int)</code><br>
@@ -1381,7 +1384,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Extraction and dense output functions<br>
 	 * Original signature : <code>int IDAGetQuad(void*, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:322</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuad(Pointer, DoubleBuffer, N_Vector)} and {@link #IDAGetQuad(Pointer, DoubleByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuad(com.sun.jna.Pointer, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuad(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuad(Pointer ida_mem, DoubleByReference t, Pointer yQout);
@@ -1390,11 +1393,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuad(void*, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:322</i>
 	 */
-	int IDAGetQuad(Pointer ida_mem, DoubleBuffer t, N_Vector yQout);
+	int IDAGetQuad(Pointer ida_mem, DoubleBuffer t, Sundials_idasLibrary.N_Vector yQout);
 	/**
 	 * Original signature : <code>int IDAGetQuadDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:323</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadDky(Pointer, double, int, N_Vector)} and {@link #IDAGetQuadDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuadDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadDky(Pointer ida_mem, double t, int k, Pointer dky);
@@ -1402,12 +1405,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuadDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:323</i>
 	 */
-	int IDAGetQuadDky(Pointer ida_mem, double t, int k, N_Vector dky);
+	int IDAGetQuadDky(Pointer ida_mem, double t, int k, Sundials_idasLibrary.N_Vector dky);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int IDAGetQuadNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:327</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadNumRhsEvals(Pointer, LongBuffer)} and {@link #IDAGetQuadNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetQuadNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadNumRhsEvals(Pointer ida_mem, LongByReference nrhsQevals);
@@ -1420,7 +1423,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:328</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadNumErrTestFails(Pointer, LongBuffer)} and {@link #IDAGetQuadNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetQuadNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadNumErrTestFails(Pointer ida_mem, LongByReference nQetfails);
@@ -1432,7 +1435,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:329</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadErrWeights(Pointer, N_Vector)} and {@link #IDAGetQuadErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuadErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadErrWeights(Pointer ida_mem, Pointer eQweight);
@@ -1440,11 +1443,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuadErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:329</i>
 	 */
-	int IDAGetQuadErrWeights(Pointer ida_mem, N_Vector eQweight);
+	int IDAGetQuadErrWeights(Pointer ida_mem, Sundials_idasLibrary.N_Vector eQweight);
 	/**
 	 * Original signature : <code>int IDAGetQuadStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:330</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadStats(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetQuadStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetQuadStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadStats(Pointer ida_mem, LongByReference nrhsQevals, LongByReference nQetfails);
@@ -1463,20 +1466,20 @@ public interface Sundials_idasLibrary extends Library {
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDASensInit(void*, int, int, IDASensResFn, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:341</i><br>
-	 * @deprecated use the safer method {@link #IDASensInit(Pointer, int, int, IDASensResFn, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDASensInit(com.sun.jna.Pointer, int, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDASensResFn, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int IDASensInit(Pointer ida_mem, int Ns, int ism, IDASensResFn resS, Pointer yS0, Pointer ypS0);
+	int IDASensInit(Pointer ida_mem, int Ns, int ism, Sundials_idasLibrary.IDASensResFn resS, Pointer yS0, Pointer ypS0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDASensInit(void*, int, int, IDASensResFn, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:341</i>
 	 */
-	int IDASensInit(Pointer ida_mem, int Ns, int ism, IDASensResFn resS, PointerByReference yS0, PointerByReference ypS0);
+	int IDASensInit(Pointer ida_mem, int Ns, int ism, Sundials_idasLibrary.IDASensResFn resS, PointerByReference yS0, PointerByReference ypS0);
 	/**
 	 * Original signature : <code>int IDASensReInit(void*, int, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:343</i><br>
-	 * @deprecated use the safer method {@link #IDASensReInit(Pointer, int, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDASensReInit(com.sun.jna.Pointer, int, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDASensReInit(Pointer ida_mem, int ism, Pointer yS0, Pointer ypS0);
@@ -1489,7 +1492,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int IDASensSStolerances(void*, sunrealtype, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:347</i><br>
-	 * @deprecated use the safer methods {@link #IDASensSStolerances(Pointer, double, DoubleBuffer)} and {@link #IDASensSStolerances(Pointer, double, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDASensSStolerances(com.sun.jna.Pointer, double, java.nio.DoubleBuffer)} and {@link #IDASensSStolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDASensSStolerances(Pointer ida_mem, double reltolS, DoubleByReference abstolS);
@@ -1502,7 +1505,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASensSVtolerances(void*, sunrealtype, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:349</i><br>
-	 * @deprecated use the safer method {@link #IDASensSVtolerances(Pointer, double, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDASensSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDASensSVtolerances(Pointer ida_mem, double reltolS, Pointer abstolS);
@@ -1520,7 +1523,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Initial condition calculation function<br>
 	 * Original signature : <code>int IDAGetSensConsistentIC(void*, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:354</i><br>
-	 * @deprecated use the safer method {@link #IDAGetSensConsistentIC(Pointer, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetSensConsistentIC(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensConsistentIC(Pointer ida_mem, Pointer yyS0, Pointer ypS0);
@@ -1549,7 +1552,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASetSensParams(void*, sunrealtype*, sunrealtype*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:362</i><br>
-	 * @deprecated use the safer methods {@link #IDASetSensParams(Pointer, DoubleBuffer, DoubleBuffer, IntBuffer)} and {@link #IDASetSensParams(Pointer, DoubleByReference, DoubleByReference, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDASetSensParams(com.sun.jna.Pointer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.IntBuffer)} and {@link #IDASetSensParams(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDASetSensParams(Pointer ida_mem, DoubleByReference p, DoubleByReference pbar, IntByReference plist);
@@ -1562,7 +1565,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Integrator nonlinear solver specification functions<br>
 	 * Original signature : <code>int IDASetNonlinearSolverSensSim(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:366</i><br>
-	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverSensSim(Pointer, SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverSensSim(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverSensSim(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverSensSim(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetNonlinearSolverSensSim(Pointer ida_mem, Pointer NLS);
@@ -1571,11 +1574,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetNonlinearSolverSensSim(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:366</i>
 	 */
-	int IDASetNonlinearSolverSensSim(Pointer ida_mem, SUNNonlinearSolver NLS);
+	int IDASetNonlinearSolverSensSim(Pointer ida_mem, Sundials_idasLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int IDASetNonlinearSolverSensStg(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:368</i><br>
-	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverSensStg(Pointer, SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverSensStg(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverSensStg(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverSensStg(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetNonlinearSolverSensStg(Pointer ida_mem, Pointer NLS);
@@ -1583,7 +1586,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetNonlinearSolverSensStg(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:368</i>
 	 */
-	int IDASetNonlinearSolverSensStg(Pointer ida_mem, SUNNonlinearSolver NLS);
+	int IDASetNonlinearSolverSensStg(Pointer ida_mem, Sundials_idasLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Enable/disable sensitivities<br>
 	 * Original signature : <code>int IDASensToggleOff(void*)</code><br>
@@ -1594,7 +1597,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Extraction and dense output functions<br>
 	 * Original signature : <code>int IDAGetSens(void*, sunrealtype*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:375</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSens(Pointer, DoubleBuffer, PointerByReference)} and {@link #IDAGetSens(Pointer, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #IDAGetSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSens(Pointer ida_mem, DoubleByReference tret, Pointer yySout);
@@ -1613,7 +1616,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:377</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSens1(Pointer, DoubleBuffer, int, N_Vector)} and {@link #IDAGetSens1(Pointer, DoubleByReference, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSens1(com.sun.jna.Pointer, java.nio.DoubleBuffer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetSens1(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetSens1(Pointer ida_mem, DoubleByReference tret, int is, Pointer yySret);
@@ -1621,11 +1624,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:377</i>
 	 */
-	int IDAGetSens1(Pointer ida_mem, DoubleBuffer tret, int is, N_Vector yySret);
+	int IDAGetSens1(Pointer ida_mem, DoubleBuffer tret, int is, Sundials_idasLibrary.N_Vector yySret);
 	/**
 	 * Original signature : <code>int IDAGetSensDky(void*, sunrealtype, int, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:380</i><br>
-	 * @deprecated use the safer method {@link #IDAGetSensDky(Pointer, double, int, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetSensDky(com.sun.jna.Pointer, double, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensDky(Pointer ida_mem, double t, int k, Pointer dkyS);
@@ -1637,7 +1640,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:382</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensDky1(Pointer, double, int, int, N_Vector)} and {@link #IDAGetSensDky1(Pointer, double, int, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensDky1(com.sun.jna.Pointer, double, int, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetSensDky1(com.sun.jna.Pointer, double, int, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensDky1(Pointer ida_mem, double t, int k, int is, Pointer dkyS);
@@ -1645,12 +1648,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:382</i>
 	 */
-	int IDAGetSensDky1(Pointer ida_mem, double t, int k, int is, N_Vector dkyS);
+	int IDAGetSensDky1(Pointer ida_mem, double t, int k, int is, Sundials_idasLibrary.N_Vector dkyS);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int IDAGetSensNumResEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:386</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNumResEvals(Pointer, LongBuffer)} and {@link #IDAGetSensNumResEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNumResEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetSensNumResEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNumResEvals(Pointer ida_mem, LongByReference nresSevals);
@@ -1663,7 +1666,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumResEvalsSens(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:387</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumResEvalsSens(Pointer, LongBuffer)} and {@link #IDAGetNumResEvalsSens(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumResEvalsSens(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumResEvalsSens(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumResEvalsSens(Pointer ida_mem, LongByReference nresevalsS);
@@ -1675,7 +1678,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:388</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNumErrTestFails(Pointer, LongBuffer)} and {@link #IDAGetSensNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetSensNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNumErrTestFails(Pointer ida_mem, LongByReference nSetfails);
@@ -1687,7 +1690,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:389</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNumLinSolvSetups(Pointer, LongBuffer)} and {@link #IDAGetSensNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetSensNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNumLinSolvSetups(Pointer ida_mem, LongByReference nlinsetupsS);
@@ -1699,7 +1702,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensErrWeights(void*, N_Vector_S)</code><br>
 	 * <i>native declaration : include\idas\idas.h:391</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensErrWeights(Pointer, N_Vector_S)} and {@link #IDAGetSensErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector_S)} and {@link #IDAGetSensErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensErrWeights(Pointer ida_mem, Pointer eSweight);
@@ -1707,11 +1710,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetSensErrWeights(void*, N_Vector_S)</code><br>
 	 * <i>native declaration : include\idas\idas.h:391</i>
 	 */
-	int IDAGetSensErrWeights(Pointer ida_mem, N_Vector_S eSweight);
+	int IDAGetSensErrWeights(Pointer ida_mem, Sundials_idasLibrary.N_Vector_S eSweight);
 	/**
 	 * Original signature : <code>int IDAGetSensStats(void*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:392</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #IDAGetSensStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetSensStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensStats(Pointer ida_mem, LongByReference nresSevals, LongByReference nresevalsS, LongByReference nSetfails, LongByReference nlinsetupsS);
@@ -1723,7 +1726,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:395</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #IDAGetSensNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetSensNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNumNonlinSolvIters(Pointer ida_mem, LongByReference nSniters);
@@ -1735,7 +1738,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:397</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #IDAGetSensNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetSensNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNumNonlinSolvConvFails(Pointer ida_mem, LongByReference nSnfails);
@@ -1747,7 +1750,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetSensNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:399</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetSensNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetSensNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetSensNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetSensNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetSensNonlinSolvStats(Pointer ida_mem, LongByReference nSniters, LongByReference nSnfails);
@@ -1759,7 +1762,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetNumStepSensSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:401</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetNumStepSensSolveFails(Pointer, LongBuffer)} and {@link #IDAGetNumStepSensSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetNumStepSensSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetNumStepSensSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetNumStepSensSolveFails(Pointer ida_mem, LongByReference nSncfails);
@@ -1778,20 +1781,20 @@ public interface Sundials_idasLibrary extends Library {
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDAQuadSensInit(void*, IDAQuadSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:412</i><br>
-	 * @deprecated use the safer method {@link #IDAQuadSensInit(Pointer, IDAQuadSensRhsFn, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAQuadSensInit(com.sun.jna.Pointer, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadSensRhsFn, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int IDAQuadSensInit(Pointer ida_mem, IDAQuadSensRhsFn resQS, Pointer yQS0);
+	int IDAQuadSensInit(Pointer ida_mem, Sundials_idasLibrary.IDAQuadSensRhsFn resQS, Pointer yQS0);
 	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>int IDAQuadSensInit(void*, IDAQuadSensRhsFn, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:412</i>
 	 */
-	int IDAQuadSensInit(Pointer ida_mem, IDAQuadSensRhsFn resQS, PointerByReference yQS0);
+	int IDAQuadSensInit(Pointer ida_mem, Sundials_idasLibrary.IDAQuadSensRhsFn resQS, PointerByReference yQS0);
 	/**
 	 * Original signature : <code>int IDAQuadSensReInit(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:414</i><br>
-	 * @deprecated use the safer method {@link #IDAQuadSensReInit(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAQuadSensReInit(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAQuadSensReInit(Pointer ida_mem, Pointer yQS0);
@@ -1804,7 +1807,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int IDAQuadSensSStolerances(void*, sunrealtype, sunrealtype*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:417</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadSensSStolerances(Pointer, double, DoubleBuffer)} and {@link #IDAQuadSensSStolerances(Pointer, double, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadSensSStolerances(com.sun.jna.Pointer, double, java.nio.DoubleBuffer)} and {@link #IDAQuadSensSStolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int IDAQuadSensSStolerances(Pointer ida_mem, double reltolQS, DoubleByReference abstolQS);
@@ -1817,7 +1820,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAQuadSensSVtolerances(void*, sunrealtype, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:419</i><br>
-	 * @deprecated use the safer method {@link #IDAQuadSensSVtolerances(Pointer, double, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAQuadSensSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAQuadSensSVtolerances(Pointer ida_mem, double reltolQS, Pointer abstolQS);
@@ -1841,7 +1844,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Extraction and dense output functions<br>
 	 * Original signature : <code>int IDAGetQuadSens(void*, sunrealtype*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:427</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSens(Pointer, DoubleBuffer, PointerByReference)} and {@link #IDAGetQuadSens(Pointer, DoubleByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSens(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #IDAGetQuadSens(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSens(Pointer ida_mem, DoubleByReference tret, Pointer yyQSout);
@@ -1860,7 +1863,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:429</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSens1(Pointer, DoubleBuffer, int, N_Vector)} and {@link #IDAGetQuadSens1(Pointer, DoubleByReference, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSens1(com.sun.jna.Pointer, java.nio.DoubleBuffer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuadSens1(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSens1(Pointer ida_mem, DoubleByReference tret, int is, Pointer yyQSret);
@@ -1868,11 +1871,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuadSens1(void*, sunrealtype*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:429</i>
 	 */
-	int IDAGetQuadSens1(Pointer ida_mem, DoubleBuffer tret, int is, N_Vector yyQSret);
+	int IDAGetQuadSens1(Pointer ida_mem, DoubleBuffer tret, int is, Sundials_idasLibrary.N_Vector yyQSret);
 	/**
 	 * Original signature : <code>int IDAGetQuadSensDky(void*, sunrealtype, int, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:431</i><br>
-	 * @deprecated use the safer method {@link #IDAGetQuadSensDky(Pointer, double, int, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetQuadSensDky(com.sun.jna.Pointer, double, int, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensDky(Pointer ida_mem, double t, int k, Pointer dkyQS);
@@ -1884,7 +1887,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:433</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSensDky1(Pointer, double, int, int, N_Vector)} and {@link #IDAGetQuadSensDky1(Pointer, double, int, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSensDky1(com.sun.jna.Pointer, double, int, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuadSensDky1(com.sun.jna.Pointer, double, int, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensDky1(Pointer ida_mem, double t, int k, int is, Pointer dkyQS);
@@ -1892,12 +1895,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuadSensDky1(void*, sunrealtype, int, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:433</i>
 	 */
-	int IDAGetQuadSensDky1(Pointer ida_mem, double t, int k, int is, N_Vector dkyQS);
+	int IDAGetQuadSensDky1(Pointer ida_mem, double t, int k, int is, Sundials_idasLibrary.N_Vector dkyQS);
 	/**
 	 * Optional output specification functions<br>
 	 * Original signature : <code>int IDAGetQuadSensNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:437</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSensNumRhsEvals(Pointer, LongBuffer)} and {@link #IDAGetQuadSensNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSensNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetQuadSensNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensNumRhsEvals(Pointer ida_mem, LongByReference nrhsQSevals);
@@ -1910,7 +1913,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadSensNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:439</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSensNumErrTestFails(Pointer, LongBuffer)} and {@link #IDAGetQuadSensNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSensNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDAGetQuadSensNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensNumErrTestFails(Pointer ida_mem, LongByReference nQSetfails);
@@ -1922,7 +1925,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadSensErrWeights(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:441</i><br>
-	 * @deprecated use the safer method {@link #IDAGetQuadSensErrWeights(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #IDAGetQuadSensErrWeights(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensErrWeights(Pointer ida_mem, Pointer eQSweight);
@@ -1934,7 +1937,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetQuadSensStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:442</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadSensStats(Pointer, LongBuffer, LongBuffer)} and {@link #IDAGetQuadSensStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadSensStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDAGetQuadSensStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadSensStats(Pointer ida_mem, LongByReference nrhsQSevals, LongByReference nQSetfails);
@@ -1969,7 +1972,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Backward Problem Setup Functions<br>
 	 * Original signature : <code>int IDACreateB(void*, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:462</i><br>
-	 * @deprecated use the safer methods {@link #IDACreateB(Pointer, IntBuffer)} and {@link #IDACreateB(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDACreateB(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #IDACreateB(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDACreateB(Pointer ida_mem, IntByReference which);
@@ -1982,31 +1985,31 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAInitB(void*, int, IDAResFnB, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:464</i><br>
-	 * @deprecated use the safer methods {@link #IDAInitB(Pointer, int, IDAResFnB, double, N_Vector, N_Vector)} and {@link #IDAInitB(Pointer, int, IDAResFnB, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFnB, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFnB, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAInitB(Pointer ida_mem, int which, IDAResFnB resB, double tB0, Pointer yyB0, Pointer ypB0);
+	int IDAInitB(Pointer ida_mem, int which, Sundials_idasLibrary.IDAResFnB resB, double tB0, Pointer yyB0, Pointer ypB0);
 	/**
 	 * Original signature : <code>int IDAInitB(void*, int, IDAResFnB, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:464</i>
 	 */
-	int IDAInitB(Pointer ida_mem, int which, IDAResFnB resB, double tB0, N_Vector yyB0, N_Vector ypB0);
+	int IDAInitB(Pointer ida_mem, int which, Sundials_idasLibrary.IDAResFnB resB, double tB0, Sundials_idasLibrary.N_Vector yyB0, Sundials_idasLibrary.N_Vector ypB0);
 	/**
 	 * Original signature : <code>int IDAInitBS(void*, int, IDAResFnBS, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:467</i><br>
-	 * @deprecated use the safer methods {@link #IDAInitBS(Pointer, int, IDAResFnBS, double, N_Vector, N_Vector)} and {@link #IDAInitBS(Pointer, int, IDAResFnBS, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFnBS, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAResFnBS, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAInitBS(Pointer ida_mem, int which, IDAResFnBS resS, double tB0, Pointer yyB0, Pointer ypB0);
+	int IDAInitBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDAResFnBS resS, double tB0, Pointer yyB0, Pointer ypB0);
 	/**
 	 * Original signature : <code>int IDAInitBS(void*, int, IDAResFnBS, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:467</i>
 	 */
-	int IDAInitBS(Pointer ida_mem, int which, IDAResFnBS resS, double tB0, N_Vector yyB0, N_Vector ypB0);
+	int IDAInitBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDAResFnBS resS, double tB0, Sundials_idasLibrary.N_Vector yyB0, Sundials_idasLibrary.N_Vector ypB0);
 	/**
 	 * Original signature : <code>int IDAReInitB(void*, int, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:470</i><br>
-	 * @deprecated use the safer methods {@link #IDAReInitB(Pointer, int, double, N_Vector, N_Vector)} and {@link #IDAReInitB(Pointer, int, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAReInitB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAReInitB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAReInitB(Pointer ida_mem, int which, double tB0, Pointer yyB0, Pointer ypB0);
@@ -2014,7 +2017,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAReInitB(void*, int, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:470</i>
 	 */
-	int IDAReInitB(Pointer ida_mem, int which, double tB0, N_Vector yyB0, N_Vector ypB0);
+	int IDAReInitB(Pointer ida_mem, int which, double tB0, Sundials_idasLibrary.N_Vector yyB0, Sundials_idasLibrary.N_Vector ypB0);
 	/**
 	 * Original signature : <code>int IDASStolerancesB(void*, int, sunrealtype, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas.h:473</i>
@@ -2023,7 +2026,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:475</i><br>
-	 * @deprecated use the safer methods {@link #IDASVtolerancesB(Pointer, int, double, N_Vector)} and {@link #IDASVtolerancesB(Pointer, int, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASVtolerancesB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASVtolerancesB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASVtolerancesB(Pointer ida_mem, int which, double relTolB, Pointer absTolB);
@@ -2031,35 +2034,35 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:475</i>
 	 */
-	int IDASVtolerancesB(Pointer ida_mem, int which, double relTolB, N_Vector absTolB);
+	int IDASVtolerancesB(Pointer ida_mem, int which, double relTolB, Sundials_idasLibrary.N_Vector absTolB);
 	/**
 	 * Original signature : <code>int IDAQuadInitB(void*, int, IDAQuadRhsFnB, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:478</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadInitB(Pointer, int, IDAQuadRhsFnB, N_Vector)} and {@link #IDAQuadInitB(Pointer, int, IDAQuadRhsFnB, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFnB, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFnB, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAQuadInitB(Pointer ida_mem, int which, IDAQuadRhsFnB rhsQB, Pointer yQB0);
+	int IDAQuadInitB(Pointer ida_mem, int which, Sundials_idasLibrary.IDAQuadRhsFnB rhsQB, Pointer yQB0);
 	/**
 	 * Original signature : <code>int IDAQuadInitB(void*, int, IDAQuadRhsFnB, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:478</i>
 	 */
-	int IDAQuadInitB(Pointer ida_mem, int which, IDAQuadRhsFnB rhsQB, N_Vector yQB0);
+	int IDAQuadInitB(Pointer ida_mem, int which, Sundials_idasLibrary.IDAQuadRhsFnB rhsQB, Sundials_idasLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int IDAQuadInitBS(void*, int, IDAQuadRhsFnBS, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:481</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadInitBS(Pointer, int, IDAQuadRhsFnBS, N_Vector)} and {@link #IDAQuadInitBS(Pointer, int, IDAQuadRhsFnBS, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFnBS, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadInitBS(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.IDAQuadRhsFnBS, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int IDAQuadInitBS(Pointer ida_mem, int which, IDAQuadRhsFnBS rhsQS, Pointer yQB0);
+	int IDAQuadInitBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDAQuadRhsFnBS rhsQS, Pointer yQB0);
 	/**
 	 * Original signature : <code>int IDAQuadInitBS(void*, int, IDAQuadRhsFnBS, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:481</i>
 	 */
-	int IDAQuadInitBS(Pointer ida_mem, int which, IDAQuadRhsFnBS rhsQS, N_Vector yQB0);
+	int IDAQuadInitBS(Pointer ida_mem, int which, Sundials_idasLibrary.IDAQuadRhsFnBS rhsQS, Sundials_idasLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int IDAQuadReInitB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:484</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadReInitB(Pointer, int, N_Vector)} and {@link #IDAQuadReInitB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadReInitB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadReInitB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAQuadReInitB(Pointer ida_mem, int which, Pointer yQB0);
@@ -2067,7 +2070,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAQuadReInitB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:484</i>
 	 */
-	int IDAQuadReInitB(Pointer ida_mem, int which, N_Vector yQB0);
+	int IDAQuadReInitB(Pointer ida_mem, int which, Sundials_idasLibrary.N_Vector yQB0);
 	/**
 	 * Original signature : <code>int IDAQuadSStolerancesB(void*, int, sunrealtype, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas.h:486</i>
@@ -2076,7 +2079,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAQuadSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:489</i><br>
-	 * @deprecated use the safer methods {@link #IDAQuadSVtolerancesB(Pointer, int, double, N_Vector)} and {@link #IDAQuadSVtolerancesB(Pointer, int, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAQuadSVtolerancesB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAQuadSVtolerancesB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAQuadSVtolerancesB(Pointer ida_mem, int which, double reltolQB, Pointer abstolQB);
@@ -2084,12 +2087,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAQuadSVtolerancesB(void*, int, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:489</i>
 	 */
-	int IDAQuadSVtolerancesB(Pointer ida_mem, int which, double reltolQB, N_Vector abstolQB);
+	int IDAQuadSVtolerancesB(Pointer ida_mem, int which, double reltolQB, Sundials_idasLibrary.N_Vector abstolQB);
 	/**
 	 * Consistent IC calculation functions<br>
 	 * Original signature : <code>int IDACalcICB(void*, int, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:494</i><br>
-	 * @deprecated use the safer methods {@link #IDACalcICB(Pointer, int, double, N_Vector, N_Vector)} and {@link #IDACalcICB(Pointer, int, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDACalcICB(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDACalcICB(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDACalcICB(Pointer ida_mem, int which, double tout1, Pointer yy0, Pointer yp0);
@@ -2098,11 +2101,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDACalcICB(void*, int, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:494</i>
 	 */
-	int IDACalcICB(Pointer ida_mem, int which, double tout1, N_Vector yy0, N_Vector yp0);
+	int IDACalcICB(Pointer ida_mem, int which, double tout1, Sundials_idasLibrary.N_Vector yy0, Sundials_idasLibrary.N_Vector yp0);
 	/**
 	 * Original signature : <code>int IDACalcICBS(void*, int, sunrealtype, N_Vector, N_Vector, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:497</i><br>
-	 * @deprecated use the safer methods {@link #IDACalcICBS(Pointer, int, double, N_Vector, N_Vector, PointerByReference, PointerByReference)} and {@link #IDACalcICBS(Pointer, int, double, Pointer, Pointer, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #IDACalcICBS(com.sun.jna.Pointer, int, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #IDACalcICBS(com.sun.jna.Pointer, int, double, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int IDACalcICBS(Pointer ida_mem, int which, double tout1, Pointer yy0, Pointer yp0, Pointer yyS0, Pointer ypS0);
@@ -2110,7 +2113,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDACalcICBS(void*, int, sunrealtype, N_Vector, N_Vector, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:497</i>
 	 */
-	int IDACalcICBS(Pointer ida_mem, int which, double tout1, N_Vector yy0, N_Vector yp0, PointerByReference yyS0, PointerByReference ypS0);
+	int IDACalcICBS(Pointer ida_mem, int which, double tout1, Sundials_idasLibrary.N_Vector yy0, Sundials_idasLibrary.N_Vector yp0, PointerByReference yyS0, PointerByReference ypS0);
 	/**
 	 * Original signature : <code>int IDACalcICBS(void*, int, sunrealtype, N_Vector, N_Vector, N_Vector*, N_Vector*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:497</i>
@@ -2120,7 +2123,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Solver Function For Forward Problems<br>
 	 * Original signature : <code>int IDASolveF(void*, sunrealtype, sunrealtype*, N_Vector, N_Vector, int, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:503</i><br>
-	 * @deprecated use the safer methods {@link #IDASolveF(Pointer, double, DoubleBuffer, N_Vector, N_Vector, int, IntBuffer)} and {@link #IDASolveF(Pointer, double, DoubleByReference, Pointer, Pointer, int, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #IDASolveF(com.sun.jna.Pointer, double, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, int, java.nio.IntBuffer)} and {@link #IDASolveF(com.sun.jna.Pointer, double, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int IDASolveF(Pointer ida_mem, double tout, DoubleByReference tret, Pointer yret, Pointer ypret, int itask, IntByReference ncheckPtr);
@@ -2129,7 +2132,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASolveF(void*, sunrealtype, sunrealtype*, N_Vector, N_Vector, int, int*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:503</i>
 	 */
-	int IDASolveF(Pointer ida_mem, double tout, DoubleBuffer tret, N_Vector yret, N_Vector ypret, int itask, IntBuffer ncheckPtr);
+	int IDASolveF(Pointer ida_mem, double tout, DoubleBuffer tret, Sundials_idasLibrary.N_Vector yret, Sundials_idasLibrary.N_Vector ypret, int itask, IntBuffer ncheckPtr);
 	/**
 	 * Solver Function For Backward Problems<br>
 	 * Original signature : <code>int IDASolveB(void*, sunrealtype, int)</code><br>
@@ -2175,7 +2178,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASetIdB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:523</i><br>
-	 * @deprecated use the safer methods {@link #IDASetIdB(Pointer, int, N_Vector)} and {@link #IDASetIdB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetIdB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASetIdB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetIdB(Pointer ida_mem, int which, Pointer idB);
@@ -2183,11 +2186,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetIdB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:523</i>
 	 */
-	int IDASetIdB(Pointer ida_mem, int which, N_Vector idB);
+	int IDASetIdB(Pointer ida_mem, int which, Sundials_idasLibrary.N_Vector idB);
 	/**
 	 * Original signature : <code>int IDASetConstraintsB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:524</i><br>
-	 * @deprecated use the safer methods {@link #IDASetConstraintsB(Pointer, int, N_Vector)} and {@link #IDASetConstraintsB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetConstraintsB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDASetConstraintsB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetConstraintsB(Pointer ida_mem, int which, Pointer constraintsB);
@@ -2195,7 +2198,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetConstraintsB(void*, int, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:524</i>
 	 */
-	int IDASetConstraintsB(Pointer ida_mem, int which, N_Vector constraintsB);
+	int IDASetConstraintsB(Pointer ida_mem, int which, Sundials_idasLibrary.N_Vector constraintsB);
 	/**
 	 * Original signature : <code>int IDASetQuadErrConB(void*, int, int)</code><br>
 	 * <i>native declaration : include\idas\idas.h:526</i>
@@ -2204,7 +2207,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDASetNonlinearSolverB(void*, int, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:528</i><br>
-	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverB(Pointer, int, SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverB(Pointer, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDASetNonlinearSolverB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.SUNNonlinearSolver)} and {@link #IDASetNonlinearSolverB(com.sun.jna.Pointer, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDASetNonlinearSolverB(Pointer ida_mem, int which, Pointer NLS);
@@ -2212,12 +2215,12 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetNonlinearSolverB(void*, int, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\idas\idas.h:528</i>
 	 */
-	int IDASetNonlinearSolverB(Pointer ida_mem, int which, SUNNonlinearSolver NLS);
+	int IDASetNonlinearSolverB(Pointer ida_mem, int which, Sundials_idasLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Extraction And Dense Output Functions For Backward Problems<br>
 	 * Original signature : <code>int IDAGetB(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:533</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetB(Pointer, int, DoubleBuffer, N_Vector, N_Vector)} and {@link #IDAGetB(Pointer, int, DoubleByReference, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetB(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetB(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetB(Pointer ida_mem, int which, DoubleByReference tret, Pointer yy, Pointer yp);
@@ -2226,11 +2229,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetB(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:533</i>
 	 */
-	int IDAGetB(Pointer ida_mem, int which, DoubleBuffer tret, N_Vector yy, N_Vector yp);
+	int IDAGetB(Pointer ida_mem, int which, DoubleBuffer tret, Sundials_idasLibrary.N_Vector yy, Sundials_idasLibrary.N_Vector yp);
 	/**
 	 * Original signature : <code>int IDAGetQuadB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:535</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetQuadB(Pointer, int, DoubleBuffer, N_Vector)} and {@link #IDAGetQuadB(Pointer, int, DoubleByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetQuadB(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetQuadB(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetQuadB(Pointer ida_mem, int which, DoubleByReference tret, Pointer qB);
@@ -2238,7 +2241,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetQuadB(void*, int, sunrealtype*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:535</i>
 	 */
-	int IDAGetQuadB(Pointer ida_mem, int which, DoubleBuffer tret, N_Vector qB);
+	int IDAGetQuadB(Pointer ida_mem, int which, DoubleBuffer tret, Sundials_idasLibrary.N_Vector qB);
 	/**
 	 * Optional Output Functions For Backward Problems<br>
 	 * Original signature : <code>void* IDAGetAdjIDABmem(void*, int)</code><br>
@@ -2248,7 +2251,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDAGetConsistentICB(void*, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:542</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetConsistentICB(Pointer, int, N_Vector, N_Vector)} and {@link #IDAGetConsistentICB(Pointer, int, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetConsistentICB(com.sun.jna.Pointer, int, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetConsistentICB(com.sun.jna.Pointer, int, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetConsistentICB(Pointer ida_mem, int which, Pointer yyB0, Pointer ypB0);
@@ -2256,11 +2259,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetConsistentICB(void*, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:542</i>
 	 */
-	int IDAGetConsistentICB(Pointer ida_mem, int which, N_Vector yyB0, N_Vector ypB0);
+	int IDAGetConsistentICB(Pointer ida_mem, int which, Sundials_idasLibrary.N_Vector yyB0, Sundials_idasLibrary.N_Vector ypB0);
 	/**
 	 * Original signature : <code>int IDAGetAdjY(void*, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:545</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetAdjY(Pointer, double, N_Vector, N_Vector)} and {@link #IDAGetAdjY(Pointer, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetAdjY(com.sun.jna.Pointer, double, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetAdjY(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetAdjY(Pointer ida_mem, double t, Pointer yy, Pointer yp);
@@ -2268,7 +2271,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetAdjY(void*, sunrealtype, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:545</i>
 	 */
-	int IDAGetAdjY(Pointer ida_mem, double t, N_Vector yy, N_Vector yp);
+	int IDAGetAdjY(Pointer ida_mem, double t, Sundials_idasLibrary.N_Vector yy, Sundials_idasLibrary.N_Vector yp);
 	/**
 	 * Original signature : <code>int IDAGetAdjCheckPointsInfo(void*, IDAadjCheckPointRec*)</code><br>
 	 * <i>native declaration : include\idas\idas.h:559</i>
@@ -2279,7 +2282,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDASetJacTimesResFnB(void*, int, IDAResFn)</code><br>
 	 * <i>native declaration : include\idas\idas.h:563</i>
 	 */
-	int IDASetJacTimesResFnB(Pointer ida_mem, int which, IDAResFn jtimesResFn);
+	int IDASetJacTimesResFnB(Pointer ida_mem, int which, Sundials_idasLibrary.IDAResFn jtimesResFn);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * IDAGetAdjDataPointHermite<br>
@@ -2300,7 +2303,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int IDAGetAdjDataPointHermite(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:586</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetAdjDataPointHermite(Pointer, int, DoubleBuffer, N_Vector, N_Vector)} and {@link #IDAGetAdjDataPointHermite(Pointer, int, DoubleByReference, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetAdjDataPointHermite(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetAdjDataPointHermite(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetAdjDataPointHermite(Pointer ida_mem, int which, DoubleByReference t, Pointer yy, Pointer yd);
@@ -2325,11 +2328,11 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetAdjDataPointHermite(void*, int, sunrealtype*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:586</i>
 	 */
-	int IDAGetAdjDataPointHermite(Pointer ida_mem, int which, DoubleBuffer t, N_Vector yy, N_Vector yd);
+	int IDAGetAdjDataPointHermite(Pointer ida_mem, int which, DoubleBuffer t, Sundials_idasLibrary.N_Vector yy, Sundials_idasLibrary.N_Vector yd);
 	/**
 	 * Original signature : <code>int IDAGetAdjDataPointPolynomial(void*, int, sunrealtype*, int*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:590</i><br>
-	 * @deprecated use the safer methods {@link #IDAGetAdjDataPointPolynomial(Pointer, int, DoubleBuffer, IntBuffer, N_Vector)} and {@link #IDAGetAdjDataPointPolynomial(Pointer, int, DoubleByReference, IntByReference, Pointer)} instead
+	 * @deprecated use the safer methods {@link #IDAGetAdjDataPointPolynomial(com.sun.jna.Pointer, int, java.nio.DoubleBuffer, java.nio.IntBuffer, cn.catarc.jsundials.idas.Sundials_idasLibrary.N_Vector)} and {@link #IDAGetAdjDataPointPolynomial(com.sun.jna.Pointer, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int IDAGetAdjDataPointPolynomial(Pointer ida_mem, int which, DoubleByReference t, IntByReference order, Pointer y);
@@ -2337,7 +2340,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDAGetAdjDataPointPolynomial(void*, int, sunrealtype*, int*, N_Vector)</code><br>
 	 * <i>native declaration : include\idas\idas.h:590</i>
 	 */
-	int IDAGetAdjDataPointPolynomial(Pointer ida_mem, int which, DoubleBuffer t, IntBuffer order, N_Vector y);
+	int IDAGetAdjDataPointPolynomial(Pointer ida_mem, int which, DoubleBuffer t, IntBuffer order, Sundials_idasLibrary.N_Vector y);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * IDAGetAdjCurrentCheckPoint<br>
@@ -2352,7 +2355,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDABBDPrecInit(void*, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, IDABBDLocalFn, IDABBDCommFn)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:20</i>
 	 */
-	int IDABBDPrecInit(Pointer ida_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dq_rel_yy, IDABBDLocalFn Gres, IDABBDCommFn Gcomm);
+	int IDABBDPrecInit(Pointer ida_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dq_rel_yy, Sundials_idasLibrary.IDABBDLocalFn Gres, Sundials_idasLibrary.IDABBDCommFn Gcomm);
 	/**
 	 * Original signature : <code>int IDABBDPrecReInit(void*, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:26</i>
@@ -2362,7 +2365,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int IDABBDPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:31</i><br>
-	 * @deprecated use the safer methods {@link #IDABBDPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #IDABBDPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDABBDPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #IDABBDPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDABBDPrecGetWorkSpace(Pointer ida_mem, LongByReference lenrwBBDP, LongByReference leniwBBDP);
@@ -2375,7 +2378,7 @@ public interface Sundials_idasLibrary extends Library {
 	/**
 	 * Original signature : <code>int IDABBDPrecGetNumGfnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:34</i><br>
-	 * @deprecated use the safer methods {@link #IDABBDPrecGetNumGfnEvals(Pointer, LongBuffer)} and {@link #IDABBDPrecGetNumGfnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #IDABBDPrecGetNumGfnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #IDABBDPrecGetNumGfnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int IDABBDPrecGetNumGfnEvals(Pointer ida_mem, LongByReference ngevalsBBDP);
@@ -2389,7 +2392,7 @@ public interface Sundials_idasLibrary extends Library {
 	 * Original signature : <code>int IDABBDPrecInitB(void*, int, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, IDABBDLocalFnB, IDABBDCommFnB)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:53</i>
 	 */
-	int IDABBDPrecInitB(Pointer ida_mem, int which, long NlocalB, long mudqB, long mldqB, long mukeepB, long mlkeepB, double dq_rel_yyB, IDABBDLocalFnB GresB, IDABBDCommFnB GcommB);
+	int IDABBDPrecInitB(Pointer ida_mem, int which, long NlocalB, long mudqB, long mldqB, long mukeepB, long mlkeepB, double dq_rel_yyB, Sundials_idasLibrary.IDABBDLocalFnB GresB, Sundials_idasLibrary.IDABBDCommFnB GcommB);
 	/**
 	 * Original signature : <code>int IDABBDPrecReInitB(void*, int, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\idas\idas_bbdpre.h:59</i>

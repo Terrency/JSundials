@@ -1,13 +1,14 @@
 package cn.catarc.jsundials.cvode;
-
-import cn.catarc.jsundials.cvode._generic_N_Vector.ByReference;
-import com.sun.jna.*;
+import com.sun.jna.Callback;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
-
-import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -18,429 +19,9 @@ import java.nio.LongBuffer;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
 public interface Sundials_cvodeLibrary extends Library {
-	public static final String JNA_LIBRARY_NAME = "sundials_cvode";
+	public static final String JNA_LIBRARY_NAME = "lib/win64/sundials_cvode";
 	public static final NativeLibrary JNA_NATIVE_LIB = NativeLibrary.getInstance(Sundials_cvodeLibrary.JNA_LIBRARY_NAME);
 	public static final Sundials_cvodeLibrary INSTANCE = (Sundials_cvodeLibrary)Native.loadLibrary(Sundials_cvodeLibrary.JNA_LIBRARY_NAME, Sundials_cvodeLibrary.class);
-	/**
-	 * <i>native declaration : include\sundials\sundials_types.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNOutputFormat {
-		/** <i>native declaration : include\sundials\sundials_types.h:164</i> */
-		public static final int SUN_OUTPUTFORMAT_TABLE = 0;
-		/** <i>native declaration : include\sundials\sundials_types.h:165</i> */
-		public static final int SUN_OUTPUTFORMAT_CSV = 1;
-	};
-	public static final int SUN_ERR_MINIMUM = -10000;
-	public static final int SUN_ERR_ARG_CORRUPT = -9999;
-	public static final int SUN_ERR_ARG_INCOMPATIBLE = -9998;
-	public static final int SUN_ERR_ARG_OUTOFRANGE = -9997;
-	public static final int SUN_ERR_ARG_WRONGTYPE = -9996;
-	public static final int SUN_ERR_ARG_DIMSMISMATCH = -9995;
-	public static final int SUN_ERR_GENERIC = -9994;
-	public static final int SUN_ERR_CORRUPT = -9993;
-	public static final int SUN_ERR_OUTOFRANGE = -9992;
-	public static final int SUN_ERR_FILE_OPEN = -9991;
-	public static final int SUN_ERR_OP_FAIL = -9990;
-	public static final int SUN_ERR_MEM_FAIL = -9989;
-	public static final int SUN_ERR_MALLOC_FAIL = -9988;
-	public static final int SUN_ERR_EXT_FAIL = -9987;
-	public static final int SUN_ERR_DESTROY_FAIL = -9986;
-	public static final int SUN_ERR_NOT_IMPLEMENTED = -9985;
-	public static final int SUN_ERR_USER_FCN_FAIL = -9984;
-	public static final int SUN_ERR_PROFILER_MAPFULL = -9983;
-	public static final int SUN_ERR_PROFILER_MAPGET = -9982;
-	public static final int SUN_ERR_PROFILER_MAPINSERT = -9981;
-	public static final int SUN_ERR_PROFILER_MAPKEYNOTFOUND = -9980;
-	public static final int SUN_ERR_PROFILER_MAPSORT = -9979;
-	public static final int SUN_ERR_SUNCTX_CORRUPT = -9978;
-	public static final int SUN_ERR_MPI_FAIL = -9977;
-	public static final int SUN_ERR_UNREACHABLE = -9976;
-	public static final int SUN_ERR_UNKNOWN = -9975;
-	public static final int SUN_ERR_MAXIMUM = -1000;
-	public static final int SUN_SUCCESS = 0;
-	/**
-	 * <i>native declaration : include\sundials\sundials_nvector.h</i><br>
-	 * enum values
-	 */
-	public static interface N_Vector_ID {
-		/** <i>native declaration : include\sundials\sundials_nvector.h:12</i> */
-		public static final int SUNDIALS_NVEC_SERIAL = 0;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:13</i> */
-		public static final int SUNDIALS_NVEC_PARALLEL = 1;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:14</i> */
-		public static final int SUNDIALS_NVEC_OPENMP = 2;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:15</i> */
-		public static final int SUNDIALS_NVEC_PTHREADS = 3;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:16</i> */
-		public static final int SUNDIALS_NVEC_PARHYP = 4;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:17</i> */
-		public static final int SUNDIALS_NVEC_PETSC = 5;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:18</i> */
-		public static final int SUNDIALS_NVEC_CUDA = 6;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:19</i> */
-		public static final int SUNDIALS_NVEC_HIP = 7;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:20</i> */
-		public static final int SUNDIALS_NVEC_SYCL = 8;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:21</i> */
-		public static final int SUNDIALS_NVEC_RAJA = 9;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:22</i> */
-		public static final int SUNDIALS_NVEC_KOKKOS = 10;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:23</i> */
-		public static final int SUNDIALS_NVEC_OPENMPDEV = 11;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:24</i> */
-		public static final int SUNDIALS_NVEC_TRILINOS = 12;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:25</i> */
-		public static final int SUNDIALS_NVEC_MANYVECTOR = 13;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:26</i> */
-		public static final int SUNDIALS_NVEC_MPIMANYVECTOR = 14;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:27</i> */
-		public static final int SUNDIALS_NVEC_MPIPLUSX = 15;
-		/** <i>native declaration : include\sundials\sundials_nvector.h:28</i> */
-		public static final int SUNDIALS_NVEC_CUSTOM = 16;
-	};
-	public static final int SUN_PREC_NONE = 0;
-	public static final int SUN_PREC_LEFT = 1;
-	public static final int SUN_PREC_RIGHT = 2;
-	public static final int SUN_PREC_BOTH = 3;
-	public static final int SUN_MODIFIED_GS = 1;
-	public static final int SUN_CLASSICAL_GS = 2;
-	/**
-	 * <i>native declaration : include\sundials\sundials_matrix.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNMatrix_ID {
-		/** <i>native declaration : include\sundials\sundials_matrix.h:12</i> */
-		public static final int SUNMATRIX_DENSE = 0;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:13</i> */
-		public static final int SUNMATRIX_MAGMADENSE = 1;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:14</i> */
-		public static final int SUNMATRIX_ONEMKLDENSE = 2;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:15</i> */
-		public static final int SUNMATRIX_BAND = 3;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:16</i> */
-		public static final int SUNMATRIX_SPARSE = 4;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:17</i> */
-		public static final int SUNMATRIX_SLUNRLOC = 5;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:18</i> */
-		public static final int SUNMATRIX_CUSPARSE = 6;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:19</i> */
-		public static final int SUNMATRIX_GINKGO = 7;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:20</i> */
-		public static final int SUNMATRIX_KOKKOSDENSE = 8;
-		/** <i>native declaration : include\sundials\sundials_matrix.h:21</i> */
-		public static final int SUNMATRIX_CUSTOM = 9;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNLinearSolver_Type {
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:12</i> */
-		public static final int SUNLINEARSOLVER_DIRECT = 0;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:13</i> */
-		public static final int SUNLINEARSOLVER_ITERATIVE = 1;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:14</i> */
-		public static final int SUNLINEARSOLVER_MATRIX_ITERATIVE = 2;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:15</i> */
-		public static final int SUNLINEARSOLVER_MATRIX_EMBEDDED = 3;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNLinearSolver_ID {
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:20</i> */
-		public static final int SUNLINEARSOLVER_BAND = 0;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:21</i> */
-		public static final int SUNLINEARSOLVER_DENSE = 1;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:22</i> */
-		public static final int SUNLINEARSOLVER_KLU = 2;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:23</i> */
-		public static final int SUNLINEARSOLVER_LAPACKBAND = 3;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:24</i> */
-		public static final int SUNLINEARSOLVER_LAPACKDENSE = 4;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:25</i> */
-		public static final int SUNLINEARSOLVER_PCG = 5;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:26</i> */
-		public static final int SUNLINEARSOLVER_SPBCGS = 6;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:27</i> */
-		public static final int SUNLINEARSOLVER_SPFGMR = 7;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:28</i> */
-		public static final int SUNLINEARSOLVER_SPGMR = 8;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:29</i> */
-		public static final int SUNLINEARSOLVER_SPTFQMR = 9;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:30</i> */
-		public static final int SUNLINEARSOLVER_SUPERLUDIST = 10;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:31</i> */
-		public static final int SUNLINEARSOLVER_SUPERLUMT = 11;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:32</i> */
-		public static final int SUNLINEARSOLVER_CUSOLVERSP_BATCHQR = 12;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:33</i> */
-		public static final int SUNLINEARSOLVER_MAGMADENSE = 13;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:34</i> */
-		public static final int SUNLINEARSOLVER_ONEMKLDENSE = 14;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:35</i> */
-		public static final int SUNLINEARSOLVER_GINKGO = 15;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:36</i> */
-		public static final int SUNLINEARSOLVER_KOKKOSDENSE = 16;
-		/** <i>native declaration : include\sundials\sundials_linearsolver.h:37</i> */
-		public static final int SUNLINEARSOLVER_CUSTOM = 17;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNAdaptController_Type {
-		/** <i>native declaration : include\sundials\sundials_adaptcontroller.h:15</i> */
-		public static final int SUN_ADAPTCONTROLLER_NONE = 0;
-		/** <i>native declaration : include\sundials\sundials_adaptcontroller.h:16</i> */
-		public static final int SUN_ADAPTCONTROLLER_H = 1;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_logger.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNLogLevel {
-		/** <i>native declaration : include\sundials\sundials_logger.h:8</i> */
-		public static final int SUN_LOGLEVEL_ALL = -1;
-		/** <i>native declaration : include\sundials\sundials_logger.h:9</i> */
-		public static final int SUN_LOGLEVEL_NONE = 0;
-		/** <i>native declaration : include\sundials\sundials_logger.h:10</i> */
-		public static final int SUN_LOGLEVEL_ERROR = 1;
-		/** <i>native declaration : include\sundials\sundials_logger.h:11</i> */
-		public static final int SUN_LOGLEVEL_WARNING = 2;
-		/** <i>native declaration : include\sundials\sundials_logger.h:12</i> */
-		public static final int SUN_LOGLEVEL_INFO = 3;
-		/** <i>native declaration : include\sundials\sundials_logger.h:13</i> */
-		public static final int SUN_LOGLEVEL_DEBUG = 4;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_memory.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNMemoryType {
-		/**
-		 * pageable memory accessible on the host<br>
-		 * <i>native declaration : include\sundials\sundials_memory.h:8</i>
-		 */
-		public static final int SUNMEMTYPE_HOST = 0;
-		/**
-		 * page-locked memory accesible on the host<br>
-		 * <i>native declaration : include\sundials\sundials_memory.h:9</i>
-		 */
-		public static final int SUNMEMTYPE_PINNED = 1;
-		/**
-		 * memory accessible from the device<br>
-		 * <i>native declaration : include\sundials\sundials_memory.h:10</i>
-		 */
-		public static final int SUNMEMTYPE_DEVICE = 2;
-		/**
-		 * memory accessible from the host or device<br>
-		 * <i>native declaration : include\sundials\sundials_memory.h:11</i>
-		 */
-		public static final int SUNMEMTYPE_UVM = 3;
-	};
-	/**
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i><br>
-	 * enum values
-	 */
-	public static interface SUNNonlinearSolver_Type {
-		/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h:37</i> */
-		public static final int SUNNONLINEARSOLVER_ROOTFIND = 0;
-		/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h:38</i> */
-		public static final int SUNNONLINEARSOLVER_FIXEDPOINT = 1;
-	};
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUNDIALS_VERSION = (String)"7.0.0";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_VERSION_MAJOR = (int)7;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_VERSION_MINOR = (int)0;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_VERSION_PATCH = (int)0;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUNDIALS_VERSION_LABEL = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUNDIALS_GIT_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_DOUBLE_PRECISION = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_INT64_T = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_LOGGING_LEVEL = (int)2;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_C_COMPILER = (String)"MSVC";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_C_COMPILER_VERSION = (String)"19.39.33521.0";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_C_COMPILER_FLAGS = (String)"/DWIN32 /D_WINDOWS";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CXX_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CXX_COMPILER_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CXX_COMPILER_FLAGS = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_FORTRAN_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_FORTRAN_COMPILER_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_FORTRAN_COMPILER_FLAGS = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_BUILD_TYPE = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_JOB_ID = (String)"20240408093721";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_JOB_START_TIME = (String)"20240408093721";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_TPL_LIST = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_TPL_LIST_SIZE = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUNDIALS_SPACK_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_GINKGO_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_HYPRE_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_KLU_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_KOKKOS_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_KOKKOS_KERNELS_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_LAPACK_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MAGMA_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_C_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_C_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_CXX_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_CXX_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_FORTRAN_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_MPI_FORTRAN_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_ONEMKL_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_OPENMP_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_PETSC_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_PTHREADS_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_RAJA_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_SUPERLUDIST_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_SUPERLUMT_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_TRILLINOS_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_XBRAID_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_MPI_ENABLED = (int)0;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUNDIALS_SUPERLUMT_THREAD_TYPE = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CUDA_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CUDA_COMPILER = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_CUDA_ARCHITECTURES = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_HIP_VERSION = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final String SUN_AMDGPU_TARGETS = (String)"";
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_ARKODE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_CVODE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_CVODES = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_IDA = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_IDAS = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_KINSOL = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_NVECTOR_SERIAL = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_NVECTOR_MANYVECTOR = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNMATRIX_BAND = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNMATRIX_DENSE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNMATRIX_SPARSE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_BAND = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_DENSE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_PCG = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_SPBCGS = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_SPFGMR = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_SPGMR = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNLINSOL_SPTFQMR = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNNONLINSOL_NEWTON = (int)1;
-	/** <i>native declaration : include\sundials\sundials_config.h</i> */
-	public static final int SUNDIALS_SUNNONLINSOL_FIXEDPOINT = (int)1;
-	/** <i>native declaration : include\sundials\sundials_types.h</i> */
-	public static final int SUNFALSE = (int)0;
-	/** <i>native declaration : include\sundials\sundials_types.h</i> */
-	public static final int SUNTRUE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_types.h</i> */
-	public static final int SUN_COMM_NULL = (int)0;
-	/** <i>native declaration : include\sundials\sundials_direct.h</i> */
-	public static final int SUNDIALS_DENSE = (int)1;
-	/** <i>native declaration : include\sundials\sundials_direct.h</i> */
-	public static final int SUNDIALS_BAND = (int)2;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_ATIMES_NULL = (int)-804;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_ATIMES_FAIL_UNREC = (int)-805;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PSET_FAIL_UNREC = (int)-806;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PSOLVE_NULL = (int)-807;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PSOLVE_FAIL_UNREC = (int)-808;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_GS_FAIL = (int)-810;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_QRSOL_FAIL = (int)-811;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_RECOV_FAILURE = (int)800;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_RES_REDUCED = (int)801;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_CONV_FAIL = (int)802;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_ATIMES_FAIL_REC = (int)803;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PSET_FAIL_REC = (int)804;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PSOLVE_FAIL_REC = (int)805;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_PACKAGE_FAIL_REC = (int)806;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_QRFACT_FAIL = (int)807;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final int SUNLS_LUFACT_FAIL = (int)808;
-	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
-	public static final String SUNLS_MSG_RESIDUAL = (String)"\t\tlin. iteration %ld, lin. residual: %g\n";
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public static final int CVLS_SUCCESS = (int)0;
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
@@ -461,12 +42,6 @@ public interface Sundials_cvodeLibrary extends Library {
 	public static final int CVLS_SUNMAT_FAIL = (int)-8;
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public static final int CVLS_SUNLS_FAIL = (int)-9;
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public static final int SUN_NLS_CONTINUE = (int)+901;
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public static final int SUN_NLS_CONV_RECVR = (int)+902;
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public static final String SUN_NLS_MSG_RESIDUAL = (String)"\tnonlin. iteration %ld, nonlin. residual: %g\n";
 	/** <i>native declaration : include\cvode\cvode.h</i> */
 	public static final int CV_ADAMS = (int)1;
 	/** <i>native declaration : include\cvode\cvode.h</i> */
@@ -559,81 +134,45 @@ public interface Sundials_cvodeLibrary extends Library {
 	public static final int CVDIAG_RHSFUNC_UNRECVR = (int)-6;
 	/** <i>native declaration : include\cvode\cvode_diag.h</i> */
 	public static final int CVDIAG_RHSFUNC_RECVR = (int)-7;
-	/** <i>native declaration : include\sundials\sundials_types.h</i> */
-	public interface SUNErrHandlerFn extends Callback {
-		void apply(int line, Pointer func, Pointer file, Pointer msg, int err_code, Pointer err_user_data, Pointer sunctx);
-	};
-	/** <i>native declaration : include\sundials\sundials_iterative.h</i> */
-	public interface SUNATimesFn extends Callback {
-		int apply(Pointer A_data, _generic_N_Vector v, _generic_N_Vector z);
-	};
-	/** <i>native declaration : include\sundials\sundials_iterative.h</i> */
-	public interface SUNPSetupFn extends Callback {
-		int apply(Pointer P_data);
-	};
-	/** <i>native declaration : include\sundials\sundials_iterative.h</i> */
-	public interface SUNPSolveFn extends Callback {
-		int apply(Pointer P_data, _generic_N_Vector r, _generic_N_Vector z, double tol, int lr);
-	};
-	/** <i>native declaration : include\sundials\sundials_iterative.h</i> */
-	public interface SUNQRAddFn extends Callback {
-		int apply(PointerByReference Q, DoubleByReference R, _generic_N_Vector f, int m, int mMax, Pointer QR_data);
-	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsJacFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector fy, Pointer Jac, Pointer user_data, _generic_N_Vector tmp1, _generic_N_Vector tmp2, _generic_N_Vector tmp3);
+		int apply(double t, Pointer y, Pointer fy, Pointer Jac, Pointer user_data, Pointer tmp1, Pointer tmp2, Pointer tmp3);
 	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsPrecSetupFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector fy, int jok, IntByReference jcurPtr, double gamma, Pointer user_data);
+		int apply(double t, Pointer y, Pointer fy, int jok, IntByReference jcurPtr, double gamma, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsPrecSolveFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector fy, _generic_N_Vector r, _generic_N_Vector z, double gamma, double delta, int lr, Pointer user_data);
+		int apply(double t, Pointer y, Pointer fy, Pointer r, Pointer z, double gamma, double delta, int lr, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsJacTimesSetupFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector fy, Pointer user_data);
+		int apply(double t, Pointer y, Pointer fy, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsJacTimesVecFn extends Callback {
-		int apply(_generic_N_Vector v, _generic_N_Vector Jv, double t, _generic_N_Vector y, _generic_N_Vector fy, Pointer user_data, _generic_N_Vector tmp);
+		int apply(Pointer v, Pointer Jv, double t, Pointer y, Pointer fy, Pointer user_data, Pointer tmp);
 	};
 	/** <i>native declaration : include\cvode\cvode_ls.h</i> */
 	public interface CVLsLinSysFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector fy, Pointer A, int jok, IntByReference jcur, double gamma, Pointer user_data, _generic_N_Vector tmp1, _generic_N_Vector tmp2, _generic_N_Vector tmp3);
+		int apply(double t, Pointer y, Pointer fy, Pointer A, int jok, IntByReference jcur, double gamma, Pointer user_data, Pointer tmp1, Pointer tmp2, Pointer tmp3);
 	};
 	/** <i>native declaration : include\cvode\cvode_proj.h</i> */
 	public interface CVProjFn extends Callback {
-		int apply(double t, _generic_N_Vector ycur, _generic_N_Vector corr, double epsProj, _generic_N_Vector err, Pointer user_data);
-	};
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public interface SUNNonlinSolSysFn extends Callback {
-		int apply(_generic_N_Vector y, _generic_N_Vector F, Pointer mem);
-	};
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public interface SUNNonlinSolLSetupFn extends Callback {
-		int apply(int jbad, IntByReference jcur, Pointer mem);
-	};
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public interface SUNNonlinSolLSolveFn extends Callback {
-		int apply(_generic_N_Vector b, Pointer mem);
-	};
-	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
-	public interface SUNNonlinSolConvTestFn extends Callback {
-		int apply(_generic_SUNNonlinearSolver NLS, _generic_N_Vector y, _generic_N_Vector del, double tol, _generic_N_Vector ewt, Pointer mem);
+		int apply(double t, Pointer ycur, Pointer corr, double epsProj, Pointer err, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode.h</i> */
 	public interface CVRhsFn extends Callback {
-		int apply(double t, _generic_N_Vector y, _generic_N_Vector ydot, Pointer user_data);
+		int apply(double t, Pointer y, Pointer ydot, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode.h</i> */
 	public interface CVRootFn extends Callback {
-		int apply(double t, _generic_N_Vector y, DoubleByReference gout, Pointer user_data);
+		int apply(double t, Pointer y, DoubleByReference gout, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode.h</i> */
 	public interface CVEwtFn extends Callback {
-		int apply(_generic_N_Vector y, _generic_N_Vector ewt, Pointer user_data);
+		int apply(Pointer y, Pointer ewt, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode.h</i> */
 	public interface CVMonitorFn extends Callback {
@@ -641,1717 +180,22 @@ public interface Sundials_cvodeLibrary extends Library {
 	};
 	/** <i>native declaration : include\cvode\cvode_bbdpre.h</i> */
 	public interface CVLocalFn extends Callback {
-		int apply(long Nlocal, double t, _generic_N_Vector y, _generic_N_Vector g, Pointer user_data);
+		int apply(long Nlocal, double t, Pointer y, Pointer g, Pointer user_data);
 	};
 	/** <i>native declaration : include\cvode\cvode_bbdpre.h</i> */
 	public interface CVCommFn extends Callback {
-		int apply(long Nlocal, double t, _generic_N_Vector y, Pointer user_data);
+		int apply(long Nlocal, double t, Pointer y, Pointer user_data);
 	};
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_NewDenseMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_NewDenseMat allocates memory for an M-by-N dense matrix<br>
-	 * and returns the storage allocated (type SUNDlsMat).<br>
-	 * SUNDlsMat_NewDenseMat returns NULL if the request for matrix<br>
-	 * storage cannot be satisfied. See the above documentation for the<br>
-	 * type SUNDlsMat for matrix storage details.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNDlsMat SUNDlsMat_NewDenseMat(sunindextype, sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:199</i>
-	 */
-	_DlsMat SUNDlsMat_NewDenseMat(long M, long N);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_NewBandMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_NewBandMat allocates memory for an M-by-N band matrix<br>
-	 * with upper bandwidth mu, lower bandwidth ml, and storage upper<br>
-	 * bandwidth smu. Pass smu as follows depending on whether A will be<br>
-	 * LU factored:<br>
-	 * (1) Pass smu = mu if A will not be factored.<br>
-	 * (2) Pass smu = MIN(N-1,mu+ml) if A will be factored.<br>
-	 * SUNDlsMat_NewBandMat returns the storage allocated (type SUNDlsMat)<br>
-	 * or NULL if the request for matrix storage cannot be satisfied. See<br>
-	 * the documentation for the type SUNDlsMat for matrix storage<br>
-	 * details.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNDlsMat SUNDlsMat_NewBandMat(sunindextype, sunindextype, sunindextype, sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:222</i>
-	 */
-	_DlsMat SUNDlsMat_NewBandMat(long N, long mu, long ml, long smu);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions: SUNDlsMat_DestroyMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_DestroyMat frees the memory allocated by<br>
-	 * SUNDlsMat_NewDenseMat or SUNDlsMat_NewBandMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_DestroyMat(SUNDlsMat)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:235</i>
-	 */
-	void SUNDlsMat_DestroyMat(_DlsMat A);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_NewIntArray<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_NewIntArray allocates memory an array of N int's and<br>
-	 * returns the pointer to the memory it allocates. If the request for<br>
-	 * memory storage cannot be satisfied, it returns NULL.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int* SUNDlsMat_NewIntArray(int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:248</i>
-	 */
-	IntByReference SUNDlsMat_NewIntArray(int N);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_NewIndexArray<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_NewIndexArray allocates memory an array of N<br>
-	 * sunindextype's and returns the pointer to the memory it<br>
-	 * allocates. If the request for memory storage cannot be satisfied,<br>
-	 * it returns NULL.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunindextype* SUNDlsMat_NewIndexArray(sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:262</i>
-	 */
-	LongByReference SUNDlsMat_NewIndexArray(long N);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_NewRealArray<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_NewRealArray allocates memory an array of N sunrealtype and<br>
-	 * returns the pointer to the memory it allocates. If the request for<br>
-	 * memory storage cannot be satisfied, it returns NULL.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunrealtype* SUNDlsMat_NewRealArray(sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:275</i>
-	 */
-	DoubleByReference SUNDlsMat_NewRealArray(long N);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNDlsMat_DestroyArray<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_DestroyArray frees memory allocated by<br>
-	 * SUNDlsMat_NewIntArray, SUNDlsMat_NewIndexArray, or<br>
-	 * SUNDlsMat_NewRealArray.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_DestroyArray(void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:288</i>
-	 */
-	void SUNDlsMat_DestroyArray(Pointer p);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNDlsMat_AddIdentity<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_AddIdentity adds 1.0 to the main diagonal (A_ii,<br>
-	 * i=0,1,...,N-1) of the M-by-N matrix A (M>= N) and stores the result<br>
-	 * back in A.  SUNDlsMat_AddIdentity is typically used with square<br>
-	 * matrices.  SUNDlsMat_AddIdentity does not check for M >= N and<br>
-	 * therefore a segmentation fault will occur if M < N!<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_AddIdentity(SUNDlsMat)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:303</i>
-	 */
-	void SUNDlsMat_AddIdentity(_DlsMat A);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNDlsMat_SetToZero<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNDlsMat_SetToZero sets all the elements of the M-by-N matrix A<br>
-	 * to 0.0.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_SetToZero(SUNDlsMat)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:315</i>
-	 */
-	void SUNDlsMat_SetToZero(_DlsMat A);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions: SUNDlsMat_PrintMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * This function prints the M-by-N (dense or band) matrix A to<br>
-	 * outfile as it would normally appear on paper.<br>
-	 * It is intended as debugging tools with small values of M and N.<br>
-	 * The elements are printed using the %g/%lg/%Lg option.<br>
-	 * A blank line is printed before and after the matrix.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_PrintMat(SUNDlsMat, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:330</i><br>
-	 * @deprecated use the safer method {@link #SUNDlsMat_PrintMat(_DlsMat, PointerByReference)} instead
-	 */
-	@Deprecated 
-	void SUNDlsMat_PrintMat(_DlsMat A, Pointer outfile);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions: SUNDlsMat_PrintMat<br>
-	 * -----------------------------------------------------------------<br>
-	 * This function prints the M-by-N (dense or band) matrix A to<br>
-	 * outfile as it would normally appear on paper.<br>
-	 * It is intended as debugging tools with small values of M and N.<br>
-	 * The elements are printed using the %g/%lg/%Lg option.<br>
-	 * A blank line is printed before and after the matrix.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void SUNDlsMat_PrintMat(SUNDlsMat, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:330</i>
-	 */
-	void SUNDlsMat_PrintMat(_DlsMat A, PointerByReference outfile);
-	/**
-	 * ==================================================================<br>
-	 * Exported function prototypes (functions working on sunrealtype**)<br>
-	 * ==================================================================<br>
-	 * Original signature : <code>sunrealtype** SUNDlsMat_newDenseMat(sunindextype, sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:339</i>
-	 */
-	PointerByReference SUNDlsMat_newDenseMat(long m, long n);
-	/**
-	 * Original signature : <code>sunrealtype** SUNDlsMat_newBandMat(sunindextype, sunindextype, sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:342</i>
-	 */
-	PointerByReference SUNDlsMat_newBandMat(long n, long smu, long ml);
-	/**
-	 * Original signature : <code>void SUNDlsMat_destroyMat(sunrealtype**)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:346</i>
-	 */
-	void SUNDlsMat_destroyMat(PointerByReference a);
-	/**
-	 * Original signature : <code>int* SUNDlsMat_newIntArray(int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:349</i>
-	 */
-	IntByReference SUNDlsMat_newIntArray(int n);
-	/**
-	 * Original signature : <code>sunindextype* SUNDlsMat_newIndexArray(sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:352</i>
-	 */
-	LongByReference SUNDlsMat_newIndexArray(long n);
-	/**
-	 * Original signature : <code>sunrealtype* SUNDlsMat_newRealArray(sunindextype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:355</i>
-	 */
-	DoubleByReference SUNDlsMat_newRealArray(long m);
-	/**
-	 * Original signature : <code>void SUNDlsMat_destroyArray(void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_direct.h:358</i>
-	 */
-	void SUNDlsMat_destroyArray(Pointer v);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_Create(SUNComm, SUNContext*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:27</i><br>
-	 * @deprecated use the safer method {@link #SUNContext_Create(int, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNContext_Create(int comm, Pointer sunctx_out);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_Create(SUNComm, SUNContext*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:27</i>
-	 */
-	int SUNContext_Create(int comm, PointerByReference sunctx_out);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetLastError(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:30</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_GetLastError(SUNContext)} and {@link #SUNContext_GetLastError(Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_GetLastError(Pointer sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetLastError(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:30</i>
-	 */
-	int SUNContext_GetLastError(SUNContext sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PeekLastError(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:33</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_PeekLastError(SUNContext)} and {@link #SUNContext_PeekLastError(Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_PeekLastError(Pointer sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PeekLastError(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:33</i>
-	 */
-	int SUNContext_PeekLastError(SUNContext sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PushErrHandler(SUNContext, SUNErrHandlerFn, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:36</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_PushErrHandler(SUNContext, SUNErrHandlerFn, Pointer)} and {@link #SUNContext_PushErrHandler(Pointer, SUNErrHandlerFn, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_PushErrHandler(Pointer sunctx, SUNErrHandlerFn err_fn, Pointer err_user_data);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PushErrHandler(SUNContext, SUNErrHandlerFn, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:36</i>
-	 */
-	int SUNContext_PushErrHandler(SUNContext sunctx, SUNErrHandlerFn err_fn, Pointer err_user_data);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PopErrHandler(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:40</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_PopErrHandler(SUNContext)} and {@link #SUNContext_PopErrHandler(Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_PopErrHandler(Pointer sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_PopErrHandler(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:40</i>
-	 */
-	int SUNContext_PopErrHandler(SUNContext sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_ClearErrHandlers(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:43</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_ClearErrHandlers(SUNContext)} and {@link #SUNContext_ClearErrHandlers(Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_ClearErrHandlers(Pointer sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_ClearErrHandlers(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:43</i>
-	 */
-	int SUNContext_ClearErrHandlers(SUNContext sunctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetProfiler(SUNContext, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:46</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_GetProfiler(SUNContext, PointerByReference)} and {@link #SUNContext_GetProfiler(Pointer, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNContext_GetProfiler(Pointer sunctx, Pointer profiler);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetProfiler(SUNContext, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:46</i>
-	 */
-	int SUNContext_GetProfiler(SUNContext sunctx, PointerByReference profiler);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetProfiler(SUNContext, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:46</i>
-	 */
-	int SUNContext_GetProfiler(Pointer sunctx, PointerByReference profiler);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_SetProfiler(SUNContext, SUNProfiler)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:49</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_SetProfiler(SUNContext, SUNProfiler)} and {@link #SUNContext_SetProfiler(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_SetProfiler(Pointer sunctx, Pointer profiler);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_SetProfiler(SUNContext, SUNProfiler)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:49</i>
-	 */
-	int SUNContext_SetProfiler(SUNContext sunctx, SUNProfiler profiler);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetLogger(SUNContext, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:52</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_GetLogger(SUNContext, PointerByReference)} and {@link #SUNContext_GetLogger(Pointer, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNContext_GetLogger(Pointer sunctx, Pointer logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetLogger(SUNContext, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:52</i>
-	 */
-	int SUNContext_GetLogger(SUNContext sunctx, PointerByReference logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_GetLogger(SUNContext, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:52</i>
-	 */
-	int SUNContext_GetLogger(Pointer sunctx, PointerByReference logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_SetLogger(SUNContext, SUNLogger)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:55</i><br>
-	 * @deprecated use the safer methods {@link #SUNContext_SetLogger(SUNContext, SUNLogger)} and {@link #SUNContext_SetLogger(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNContext_SetLogger(Pointer sunctx, Pointer logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_SetLogger(SUNContext, SUNLogger)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:55</i>
-	 */
-	int SUNContext_SetLogger(SUNContext sunctx, SUNLogger logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_Free(SUNContext*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:58</i><br>
-	 * @deprecated use the safer method {@link #SUNContext_Free(PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNContext_Free(Pointer ctx);
-	/**
-	 * Original signature : <code>SUNErrCode SUNContext_Free(SUNContext*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_context.h:58</i>
-	 */
-	int SUNContext_Free(PointerByReference ctx);
-	/**
-	 * Original signature : <code>void SUNLogErrHandlerFn(int, const char*, const char*, const char*, SUNErrCode, void*, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_errors.h:71</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogErrHandlerFn(int, String, String, String, int, Pointer, SUNContext)} and {@link #SUNLogErrHandlerFn(int, Pointer, Pointer, Pointer, int, Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	void SUNLogErrHandlerFn(int line, Pointer func, Pointer file, Pointer msg, int err_code, Pointer err_user_data, Pointer sunctx);
-	/**
-	 * Original signature : <code>void SUNLogErrHandlerFn(int, const char*, const char*, const char*, SUNErrCode, void*, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_errors.h:71</i>
-	 */
-	void SUNLogErrHandlerFn(int line, String func, String file, String msg, int err_code, Pointer err_user_data, SUNContext sunctx);
-	/**
-	 * Original signature : <code>void SUNAbortErrHandlerFn(int, const char*, const char*, const char*, SUNErrCode, void*, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_errors.h:76</i><br>
-	 * @deprecated use the safer methods {@link #SUNAbortErrHandlerFn(int, String, String, String, int, Pointer, SUNContext)} and {@link #SUNAbortErrHandlerFn(int, Pointer, Pointer, Pointer, int, Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	void SUNAbortErrHandlerFn(int line, Pointer func, Pointer file, Pointer msg, int err_code, Pointer err_user_data, Pointer sunctx);
-	/**
-	 * Original signature : <code>void SUNAbortErrHandlerFn(int, const char*, const char*, const char*, SUNErrCode, void*, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_errors.h:76</i>
-	 */
-	void SUNAbortErrHandlerFn(int line, String func, String file, String msg, int err_code, Pointer err_user_data, SUNContext sunctx);
-	/**
-	 * Turn error code into error message<br>
-	 * Original signature : <code>char* SUNGetErrMsg(SUNErrCode)</code><br>
-	 * <i>native declaration : include\sundials\sundials_errors.h:86</i>
-	 */
-	Pointer SUNGetErrMsg(int code);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions exported by NVECTOR module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>N_Vector N_VNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:155</i><br>
-	 * @deprecated use the safer methods {@link #N_VNewEmpty(SUNContext)} and {@link #N_VNewEmpty(Pointer)} instead
-	 */
-	@Deprecated 
-	_generic_N_Vector N_VNewEmpty(Pointer sunctx);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions exported by NVECTOR module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>N_Vector N_VNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:155</i>
-	 */
-	_generic_N_Vector N_VNewEmpty(SUNContext sunctx);
-	/**
-	 * Original signature : <code>void N_VFreeEmpty(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:156</i>
-	 */
-	void N_VFreeEmpty(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>SUNErrCode N_VCopyOps(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:157</i>
-	 */
-	int N_VCopyOps(_generic_N_Vector w, _generic_N_Vector v);
-	/**
-	 * Required operations.<br>
-	 * Original signature : <code>N_Vector_ID N_VGetVectorID(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:163</i>
-	 */
-	int N_VGetVectorID(_generic_N_Vector w);
-	/**
-	 * Original signature : <code>N_Vector N_VClone(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:164</i>
-	 */
-	_generic_N_Vector N_VClone(_generic_N_Vector w);
-	/**
-	 * Original signature : <code>N_Vector N_VCloneEmpty(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:165</i>
-	 */
-	_generic_N_Vector N_VCloneEmpty(_generic_N_Vector w);
-	/**
-	 * Original signature : <code>void N_VDestroy(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:166</i>
-	 */
-	void N_VDestroy(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>void N_VSpace(N_Vector, sunindextype*, sunindextype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:167</i><br>
-	 * @deprecated use the safer methods {@link #N_VSpace(_generic_N_Vector, LongBuffer, LongBuffer)} and {@link #N_VSpace(_generic_N_Vector, LongByReference, LongByReference)} instead
-	 */
-	@Deprecated 
-	void N_VSpace(_generic_N_Vector v, LongByReference lrw, LongByReference liw);
-	/**
-	 * Original signature : <code>void N_VSpace(N_Vector, sunindextype*, sunindextype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:167</i>
-	 */
-	void N_VSpace(_generic_N_Vector v, LongBuffer lrw, LongBuffer liw);
-	/**
-	 * Original signature : <code>sunrealtype* N_VGetArrayPointer(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:168</i>
-	 */
-	DoubleByReference N_VGetArrayPointer(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>sunrealtype* N_VGetDeviceArrayPointer(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:169</i>
-	 */
-	DoubleByReference N_VGetDeviceArrayPointer(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>void N_VSetArrayPointer(sunrealtype*, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:170</i><br>
-	 * @deprecated use the safer methods {@link #N_VSetArrayPointer(DoubleBuffer, _generic_N_Vector)} and {@link #N_VSetArrayPointer(DoubleByReference, _generic_N_Vector)} instead
-	 */
-	@Deprecated 
-	void N_VSetArrayPointer(DoubleByReference v_data, _generic_N_Vector v);
-	/**
-	 * Original signature : <code>void N_VSetArrayPointer(sunrealtype*, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:170</i>
-	 */
-	void N_VSetArrayPointer(DoubleBuffer v_data, _generic_N_Vector v);
-	/**
-	 * Original signature : <code>SUNComm N_VGetCommunicator(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:171</i>
-	 */
-	int N_VGetCommunicator(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>sunindextype N_VGetLength(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:172</i>
-	 */
-	long N_VGetLength(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>sunindextype N_VGetLocalLength(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:173</i>
-	 */
-	long N_VGetLocalLength(_generic_N_Vector v);
-	/**
-	 * standard vector operations<br>
-	 * Original signature : <code>void N_VLinearSum(sunrealtype, N_Vector, sunrealtype, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:176</i>
-	 */
-	void N_VLinearSum(double a, _generic_N_Vector x, double b, _generic_N_Vector y, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VConst(sunrealtype, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:178</i>
-	 */
-	void N_VConst(double c, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VProd(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:179</i>
-	 */
-	void N_VProd(_generic_N_Vector x, _generic_N_Vector y, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VDiv(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:180</i>
-	 */
-	void N_VDiv(_generic_N_Vector x, _generic_N_Vector y, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VScale(sunrealtype, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:181</i>
-	 */
-	void N_VScale(double c, _generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VAbs(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:182</i>
-	 */
-	void N_VAbs(_generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VInv(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:183</i>
-	 */
-	void N_VInv(_generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>void N_VAddConst(N_Vector, sunrealtype, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:184</i>
-	 */
-	void N_VAddConst(_generic_N_Vector x, double b, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>sunrealtype N_VDotProd(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:185</i>
-	 */
-	double N_VDotProd(_generic_N_Vector x, _generic_N_Vector y);
-	/**
-	 * Original signature : <code>sunrealtype N_VMaxNorm(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:186</i>
-	 */
-	double N_VMaxNorm(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>sunrealtype N_VWrmsNorm(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:187</i>
-	 */
-	double N_VWrmsNorm(_generic_N_Vector x, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>sunrealtype N_VWrmsNormMask(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:188</i>
-	 */
-	double N_VWrmsNormMask(_generic_N_Vector x, _generic_N_Vector w, _generic_N_Vector id);
-	/**
-	 * Original signature : <code>sunrealtype N_VMin(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:189</i>
-	 */
-	double N_VMin(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>sunrealtype N_VWL2Norm(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:190</i>
-	 */
-	double N_VWL2Norm(_generic_N_Vector x, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>sunrealtype N_VL1Norm(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:191</i>
-	 */
-	double N_VL1Norm(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>void N_VCompare(sunrealtype, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:192</i>
-	 */
-	void N_VCompare(double c, _generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>int N_VInvTest(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:193</i>
-	 */
-	int N_VInvTest(_generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>int N_VConstrMask(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:194</i>
-	 */
-	int N_VConstrMask(_generic_N_Vector c, _generic_N_Vector x, _generic_N_Vector m);
-	/**
-	 * Original signature : <code>sunrealtype N_VMinQuotient(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:195</i>
-	 */
-	double N_VMinQuotient(_generic_N_Vector num, _generic_N_Vector denom);
-	/**
-	 * fused vector operations<br>
-	 * Original signature : <code>SUNErrCode N_VLinearCombination(int, sunrealtype*, N_Vector*, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:202</i><br>
-	 * @deprecated use the safer methods {@link #N_VLinearCombination(int, DoubleBuffer, ByReference[], _generic_N_Vector)} and {@link #N_VLinearCombination(int, DoubleByReference, ByReference[], _generic_N_Vector)} instead
-	 */
-	@Deprecated 
-	int N_VLinearCombination(int nvec, DoubleByReference c, PointerByReference X, _generic_N_Vector z);
-	/**
-	 * fused vector operations<br>
-	 * Original signature : <code>SUNErrCode N_VLinearCombination(int, sunrealtype*, N_Vector*, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:202</i>
-	 */
-	int N_VLinearCombination(int nvec, DoubleBuffer c, ByReference X[], _generic_N_Vector z);
-	/**
-	 * fused vector operations<br>
-	 * Original signature : <code>SUNErrCode N_VLinearCombination(int, sunrealtype*, N_Vector*, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:202</i>
-	 */
-	int N_VLinearCombination(int nvec, DoubleByReference c, ByReference X[], _generic_N_Vector z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMulti(int, sunrealtype*, N_Vector, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:206</i><br>
-	 * @deprecated use the safer methods {@link #N_VScaleAddMulti(int, DoubleBuffer, _generic_N_Vector, ByReference[], ByReference[])} and {@link #N_VScaleAddMulti(int, DoubleByReference, _generic_N_Vector, ByReference[], ByReference[])} instead
-	 */
-	@Deprecated 
-	int N_VScaleAddMulti(int nvec, DoubleByReference a, _generic_N_Vector x, PointerByReference Y, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMulti(int, sunrealtype*, N_Vector, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:206</i>
-	 */
-	int N_VScaleAddMulti(int nvec, DoubleBuffer a, _generic_N_Vector x, ByReference Y[], ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMulti(int, sunrealtype*, N_Vector, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:206</i>
-	 */
-	int N_VScaleAddMulti(int nvec, DoubleByReference a, _generic_N_Vector x, ByReference Y[], ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VDotProdMulti(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:210</i><br>
-	 * @deprecated use the safer methods {@link #N_VDotProdMulti(int, _generic_N_Vector, ByReference[], DoubleBuffer)} and {@link #N_VDotProdMulti(int, _generic_N_Vector, ByReference[], DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int N_VDotProdMulti(int nvec, _generic_N_Vector x, PointerByReference Y, DoubleByReference dotprods);
-	/**
-	 * Original signature : <code>SUNErrCode N_VDotProdMulti(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:210</i>
-	 */
-	int N_VDotProdMulti(int nvec, _generic_N_Vector x, ByReference Y[], DoubleBuffer dotprods);
-	/**
-	 * Original signature : <code>SUNErrCode N_VDotProdMulti(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:210</i>
-	 */
-	int N_VDotProdMulti(int nvec, _generic_N_Vector x, ByReference Y[], DoubleByReference dotprods);
-	/**
-	 * vector array operations<br>
-	 * Original signature : <code>SUNErrCode N_VLinearSumVectorArray(int, sunrealtype, N_Vector*, sunrealtype, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:215</i><br>
-	 * @deprecated use the safer method {@link #N_VLinearSumVectorArray(int, double, ByReference[], double, ByReference[], ByReference[])} instead
-	 */
-	@Deprecated 
-	int N_VLinearSumVectorArray(int nvec, double a, PointerByReference X, double b, PointerByReference Y, PointerByReference Z);
-	/**
-	 * vector array operations<br>
-	 * Original signature : <code>SUNErrCode N_VLinearSumVectorArray(int, sunrealtype, N_Vector*, sunrealtype, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:215</i>
-	 */
-	int N_VLinearSumVectorArray(int nvec, double a, ByReference X[], double b, ByReference Y[], ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleVectorArray(int, sunrealtype*, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:219</i><br>
-	 * @deprecated use the safer methods {@link #N_VScaleVectorArray(int, DoubleBuffer, ByReference[], ByReference[])} and {@link #N_VScaleVectorArray(int, DoubleByReference, ByReference[], ByReference[])} instead
-	 */
-	@Deprecated 
-	int N_VScaleVectorArray(int nvec, DoubleByReference c, PointerByReference X, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleVectorArray(int, sunrealtype*, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:219</i>
-	 */
-	int N_VScaleVectorArray(int nvec, DoubleBuffer c, ByReference X[], ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleVectorArray(int, sunrealtype*, N_Vector*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:219</i>
-	 */
-	int N_VScaleVectorArray(int nvec, DoubleByReference c, ByReference X[], ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VConstVectorArray(int, sunrealtype, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:223</i><br>
-	 * @deprecated use the safer method {@link #N_VConstVectorArray(int, double, ByReference[])} instead
-	 */
-	@Deprecated 
-	int N_VConstVectorArray(int nvec, double c, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VConstVectorArray(int, sunrealtype, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:223</i>
-	 */
-	int N_VConstVectorArray(int nvec, double c, ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormVectorArray(int, N_Vector*, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:226</i><br>
-	 * @deprecated use the safer methods {@link #N_VWrmsNormVectorArray(int, ByReference[], ByReference[], DoubleBuffer)} and {@link #N_VWrmsNormVectorArray(int, ByReference[], ByReference[], DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int N_VWrmsNormVectorArray(int nvec, PointerByReference X, PointerByReference W, DoubleByReference nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormVectorArray(int, N_Vector*, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:226</i>
-	 */
-	int N_VWrmsNormVectorArray(int nvec, ByReference X[], ByReference W[], DoubleBuffer nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormVectorArray(int, N_Vector*, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:226</i>
-	 */
-	int N_VWrmsNormVectorArray(int nvec, ByReference X[], ByReference W[], DoubleByReference nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormMaskVectorArray(int, N_Vector*, N_Vector*, N_Vector, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:230</i><br>
-	 * @deprecated use the safer methods {@link #N_VWrmsNormMaskVectorArray(int, ByReference[], ByReference[], _generic_N_Vector, DoubleBuffer)} and {@link #N_VWrmsNormMaskVectorArray(int, ByReference[], ByReference[], _generic_N_Vector, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int N_VWrmsNormMaskVectorArray(int nvec, PointerByReference X, PointerByReference W, _generic_N_Vector id, DoubleByReference nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormMaskVectorArray(int, N_Vector*, N_Vector*, N_Vector, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:230</i>
-	 */
-	int N_VWrmsNormMaskVectorArray(int nvec, ByReference X[], ByReference W[], _generic_N_Vector id, DoubleBuffer nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VWrmsNormMaskVectorArray(int, N_Vector*, N_Vector*, N_Vector, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:230</i>
-	 */
-	int N_VWrmsNormMaskVectorArray(int nvec, ByReference X[], ByReference W[], _generic_N_Vector id, DoubleByReference nrm);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMultiVectorArray(int, int, sunrealtype*, N_Vector*, N_Vector**, N_Vector**)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:234</i><br>
-	 * @deprecated use the safer methods {@link #N_VScaleAddMultiVectorArray(int, int, DoubleBuffer, ByReference[], PointerByReference, PointerByReference)} and {@link #N_VScaleAddMultiVectorArray(int, int, DoubleByReference, ByReference[], PointerByReference, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int N_VScaleAddMultiVectorArray(int nvec, int nsum, DoubleByReference a, PointerByReference X, PointerByReference Y, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMultiVectorArray(int, int, sunrealtype*, N_Vector*, N_Vector**, N_Vector**)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:234</i>
-	 */
-	int N_VScaleAddMultiVectorArray(int nvec, int nsum, DoubleBuffer a, ByReference X[], PointerByReference Y, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VScaleAddMultiVectorArray(int, int, sunrealtype*, N_Vector*, N_Vector**, N_Vector**)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:234</i>
-	 */
-	int N_VScaleAddMultiVectorArray(int nvec, int nsum, DoubleByReference a, ByReference X[], PointerByReference Y, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VLinearCombinationVectorArray(int, int, sunrealtype*, N_Vector**, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:238</i><br>
-	 * @deprecated use the safer methods {@link #N_VLinearCombinationVectorArray(int, int, DoubleBuffer, PointerByReference, ByReference[])} and {@link #N_VLinearCombinationVectorArray(int, int, DoubleByReference, PointerByReference, ByReference[])} instead
-	 */
-	@Deprecated 
-	int N_VLinearCombinationVectorArray(int nvec, int nsum, DoubleByReference c, PointerByReference X, PointerByReference Z);
-	/**
-	 * Original signature : <code>SUNErrCode N_VLinearCombinationVectorArray(int, int, sunrealtype*, N_Vector**, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:238</i>
-	 */
-	int N_VLinearCombinationVectorArray(int nvec, int nsum, DoubleBuffer c, PointerByReference X, ByReference Z[]);
-	/**
-	 * Original signature : <code>SUNErrCode N_VLinearCombinationVectorArray(int, int, sunrealtype*, N_Vector**, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:238</i>
-	 */
-	int N_VLinearCombinationVectorArray(int nvec, int nsum, DoubleByReference c, PointerByReference X, ByReference Z[]);
-	/**
-	 * local reduction kernels (no parallel communication)<br>
-	 * Original signature : <code>sunrealtype N_VDotProdLocal(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:247</i>
-	 */
-	double N_VDotProdLocal(_generic_N_Vector x, _generic_N_Vector y);
-	/**
-	 * Original signature : <code>sunrealtype N_VMaxNormLocal(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:248</i>
-	 */
-	double N_VMaxNormLocal(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>sunrealtype N_VMinLocal(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:249</i>
-	 */
-	double N_VMinLocal(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>sunrealtype N_VL1NormLocal(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:250</i>
-	 */
-	double N_VL1NormLocal(_generic_N_Vector x);
-	/**
-	 * Original signature : <code>sunrealtype N_VWSqrSumLocal(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:251</i>
-	 */
-	double N_VWSqrSumLocal(_generic_N_Vector x, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>sunrealtype N_VWSqrSumMaskLocal(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:252</i>
-	 */
-	double N_VWSqrSumMaskLocal(_generic_N_Vector x, _generic_N_Vector w, _generic_N_Vector id);
-	/**
-	 * Original signature : <code>int N_VInvTestLocal(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:254</i>
-	 */
-	int N_VInvTestLocal(_generic_N_Vector x, _generic_N_Vector z);
-	/**
-	 * Original signature : <code>int N_VConstrMaskLocal(N_Vector, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:255</i>
-	 */
-	int N_VConstrMaskLocal(_generic_N_Vector c, _generic_N_Vector x, _generic_N_Vector m);
-	/**
-	 * Original signature : <code>sunrealtype N_VMinQuotientLocal(N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:257</i>
-	 */
-	double N_VMinQuotientLocal(_generic_N_Vector num, _generic_N_Vector denom);
-	/**
-	 * single buffer reduction operations<br>
-	 * Original signature : <code>SUNErrCode N_VDotProdMultiLocal(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:260</i><br>
-	 * @deprecated use the safer methods {@link #N_VDotProdMultiLocal(int, _generic_N_Vector, ByReference[], DoubleBuffer)} and {@link #N_VDotProdMultiLocal(int, _generic_N_Vector, ByReference[], DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int N_VDotProdMultiLocal(int nvec, _generic_N_Vector x, PointerByReference Y, DoubleByReference dotprods);
-	/**
-	 * single buffer reduction operations<br>
-	 * Original signature : <code>SUNErrCode N_VDotProdMultiLocal(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:260</i>
-	 */
-	int N_VDotProdMultiLocal(int nvec, _generic_N_Vector x, ByReference Y[], DoubleBuffer dotprods);
-	/**
-	 * single buffer reduction operations<br>
-	 * Original signature : <code>SUNErrCode N_VDotProdMultiLocal(int, N_Vector, N_Vector*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:260</i>
-	 */
-	int N_VDotProdMultiLocal(int nvec, _generic_N_Vector x, ByReference Y[], DoubleByReference dotprods);
-	/**
-	 * Original signature : <code>SUNErrCode N_VDotProdMultiAllReduce(int, N_Vector, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:262</i><br>
-	 * @deprecated use the safer methods {@link #N_VDotProdMultiAllReduce(int, _generic_N_Vector, DoubleBuffer)} and {@link #N_VDotProdMultiAllReduce(int, _generic_N_Vector, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int N_VDotProdMultiAllReduce(int nvec_total, _generic_N_Vector x, DoubleByReference sum);
-	/**
-	 * Original signature : <code>SUNErrCode N_VDotProdMultiAllReduce(int, N_Vector, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:262</i>
-	 */
-	int N_VDotProdMultiAllReduce(int nvec_total, _generic_N_Vector x, DoubleBuffer sum);
-	/**
-	 * XBraid interface operations<br>
-	 * Original signature : <code>SUNErrCode N_VBufSize(N_Vector, sunindextype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:266</i><br>
-	 * @deprecated use the safer methods {@link #N_VBufSize(_generic_N_Vector, LongBuffer)} and {@link #N_VBufSize(_generic_N_Vector, LongByReference)} instead
-	 */
-	@Deprecated 
-	int N_VBufSize(_generic_N_Vector x, LongByReference size);
-	/**
-	 * XBraid interface operations<br>
-	 * Original signature : <code>SUNErrCode N_VBufSize(N_Vector, sunindextype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:266</i>
-	 */
-	int N_VBufSize(_generic_N_Vector x, LongBuffer size);
-	/**
-	 * Original signature : <code>SUNErrCode N_VBufPack(N_Vector, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:267</i>
-	 */
-	int N_VBufPack(_generic_N_Vector x, Pointer buf);
-	/**
-	 * Original signature : <code>SUNErrCode N_VBufUnpack(N_Vector, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:268</i>
-	 */
-	int N_VBufUnpack(_generic_N_Vector x, Pointer buf);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Additional functions exported by NVECTOR module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>N_Vector* N_VNewVectorArray(int, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:274</i><br>
-	 * @deprecated use the safer methods {@link #N_VNewVectorArray(int, SUNContext)} and {@link #N_VNewVectorArray(int, Pointer)} instead
-	 */
-	@Deprecated 
-	ByReference[] N_VNewVectorArray(int count, Pointer sunctx);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Additional functions exported by NVECTOR module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>N_Vector* N_VNewVectorArray(int, SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:274</i>
-	 */
-	ByReference[] N_VNewVectorArray(int count, SUNContext sunctx);
-	/**
-	 * Original signature : <code>N_Vector* N_VCloneEmptyVectorArray(int, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:275</i>
-	 */
-	ByReference[] N_VCloneEmptyVectorArray(int count, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>N_Vector* N_VCloneVectorArray(int, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:276</i>
-	 */
-	ByReference[] N_VCloneVectorArray(int count, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>void N_VDestroyVectorArray(N_Vector*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:277</i><br>
-	 * @deprecated use the safer method {@link #N_VDestroyVectorArray(ByReference[], int)} instead
-	 */
-	@Deprecated 
-	void N_VDestroyVectorArray(PointerByReference vs, int count);
-	/**
-	 * Original signature : <code>void N_VDestroyVectorArray(N_Vector*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:277</i>
-	 */
-	void N_VDestroyVectorArray(ByReference vs[], int count);
-	/**
-	 * These function are really only for users of the Fortran interface<br>
-	 * Original signature : <code>N_Vector N_VGetVecAtIndexVectorArray(N_Vector*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:280</i><br>
-	 * @deprecated use the safer method {@link #N_VGetVecAtIndexVectorArray(ByReference[], int)} instead
-	 */
-	@Deprecated 
-	_generic_N_Vector N_VGetVecAtIndexVectorArray(PointerByReference vs, int index);
-	/**
-	 * These function are really only for users of the Fortran interface<br>
-	 * Original signature : <code>N_Vector N_VGetVecAtIndexVectorArray(N_Vector*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:280</i>
-	 */
-	_generic_N_Vector N_VGetVecAtIndexVectorArray(ByReference vs[], int index);
-	/**
-	 * Original signature : <code>void N_VSetVecAtIndexVectorArray(N_Vector*, int, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:281</i><br>
-	 * @deprecated use the safer method {@link #N_VSetVecAtIndexVectorArray(ByReference[], int, _generic_N_Vector)} instead
-	 */
-	@Deprecated 
-	void N_VSetVecAtIndexVectorArray(PointerByReference vs, int index, _generic_N_Vector w);
-	/**
-	 * Original signature : <code>void N_VSetVecAtIndexVectorArray(N_Vector*, int, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:281</i>
-	 */
-	void N_VSetVecAtIndexVectorArray(ByReference vs[], int index, _generic_N_Vector w);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Debugging functions<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>void N_VPrint(N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:288</i>
-	 */
-	void N_VPrint(_generic_N_Vector v);
-	/**
-	 * Original signature : <code>void N_VPrintFile(N_Vector, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:289</i><br>
-	 * @deprecated use the safer method {@link #N_VPrintFile(_generic_N_Vector, PointerByReference)} instead
-	 */
-	@Deprecated 
-	void N_VPrintFile(_generic_N_Vector v, Pointer outfile);
-	/**
-	 * Original signature : <code>void N_VPrintFile(N_Vector, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nvector.h:289</i>
-	 */
-	void N_VPrintFile(_generic_N_Vector v, PointerByReference outfile);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNModifiedGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNModifiedGS performs a modified Gram-Schmidt orthogonalization<br>
-	 * of the N_Vector v[k] against the p unit N_Vectors at<br>
-	 * v[k-1], v[k-2], ..., v[k-p].<br>
-	 * v is an array of (k+1) N_Vectors v[i], i=0, 1, ..., k.<br>
-	 * v[k-1], v[k-2], ..., v[k-p] are assumed to have L2-norm<br>
-	 * equal to 1.<br>
-	 * h is the output k by k Hessenberg matrix of inner products.<br>
-	 * This matrix must be allocated row-wise so that the (i,j)th<br>
-	 * entry is h[i][j]. The inner products (v[i],v[k]),<br>
-	 * i=i0, i0+1, ..., k-1, are stored at h[i][k-1]. Here<br>
-	 * i0=SUNMAX(0,k-p).<br>
-	 * k is the index of the vector in the v array that needs to be<br>
-	 * orthogonalized against previous vectors in the v array.<br>
-	 * p is the number of previous vectors in the v array against<br>
-	 * which v[k] is to be orthogonalized.<br>
-	 * new_vk_norm is a pointer to memory allocated by the caller to<br>
-	 * hold the Euclidean norm of the orthogonalized vector v[k].<br>
-	 * If (k-p) < 0, then SUNModifiedGS uses p=k. The orthogonalized<br>
-	 * v[k] is NOT normalized and is stored over the old v[k]. Once<br>
-	 * the orthogonalization has been performed, the Euclidean norm<br>
-	 * of v[k] is stored in (*new_vk_norm).<br>
-	 * SUNModifiedGS returns 0 to indicate success. It cannot fail.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNModifiedGS(N_Vector*, sunrealtype**, int, int, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:171</i><br>
-	 * @deprecated use the safer methods {@link #SUNModifiedGS(ByReference[], PointerByReference, int, int, DoubleBuffer)} and {@link #SUNModifiedGS(ByReference[], PointerByReference, int, int, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int SUNModifiedGS(PointerByReference v, PointerByReference h, int k, int p, DoubleByReference new_vk_norm);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNModifiedGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNModifiedGS performs a modified Gram-Schmidt orthogonalization<br>
-	 * of the N_Vector v[k] against the p unit N_Vectors at<br>
-	 * v[k-1], v[k-2], ..., v[k-p].<br>
-	 * v is an array of (k+1) N_Vectors v[i], i=0, 1, ..., k.<br>
-	 * v[k-1], v[k-2], ..., v[k-p] are assumed to have L2-norm<br>
-	 * equal to 1.<br>
-	 * h is the output k by k Hessenberg matrix of inner products.<br>
-	 * This matrix must be allocated row-wise so that the (i,j)th<br>
-	 * entry is h[i][j]. The inner products (v[i],v[k]),<br>
-	 * i=i0, i0+1, ..., k-1, are stored at h[i][k-1]. Here<br>
-	 * i0=SUNMAX(0,k-p).<br>
-	 * k is the index of the vector in the v array that needs to be<br>
-	 * orthogonalized against previous vectors in the v array.<br>
-	 * p is the number of previous vectors in the v array against<br>
-	 * which v[k] is to be orthogonalized.<br>
-	 * new_vk_norm is a pointer to memory allocated by the caller to<br>
-	 * hold the Euclidean norm of the orthogonalized vector v[k].<br>
-	 * If (k-p) < 0, then SUNModifiedGS uses p=k. The orthogonalized<br>
-	 * v[k] is NOT normalized and is stored over the old v[k]. Once<br>
-	 * the orthogonalization has been performed, the Euclidean norm<br>
-	 * of v[k] is stored in (*new_vk_norm).<br>
-	 * SUNModifiedGS returns 0 to indicate success. It cannot fail.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNModifiedGS(N_Vector*, sunrealtype**, int, int, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:171</i>
-	 */
-	int SUNModifiedGS(ByReference v[], PointerByReference h, int k, int p, DoubleBuffer new_vk_norm);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNModifiedGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNModifiedGS performs a modified Gram-Schmidt orthogonalization<br>
-	 * of the N_Vector v[k] against the p unit N_Vectors at<br>
-	 * v[k-1], v[k-2], ..., v[k-p].<br>
-	 * v is an array of (k+1) N_Vectors v[i], i=0, 1, ..., k.<br>
-	 * v[k-1], v[k-2], ..., v[k-p] are assumed to have L2-norm<br>
-	 * equal to 1.<br>
-	 * h is the output k by k Hessenberg matrix of inner products.<br>
-	 * This matrix must be allocated row-wise so that the (i,j)th<br>
-	 * entry is h[i][j]. The inner products (v[i],v[k]),<br>
-	 * i=i0, i0+1, ..., k-1, are stored at h[i][k-1]. Here<br>
-	 * i0=SUNMAX(0,k-p).<br>
-	 * k is the index of the vector in the v array that needs to be<br>
-	 * orthogonalized against previous vectors in the v array.<br>
-	 * p is the number of previous vectors in the v array against<br>
-	 * which v[k] is to be orthogonalized.<br>
-	 * new_vk_norm is a pointer to memory allocated by the caller to<br>
-	 * hold the Euclidean norm of the orthogonalized vector v[k].<br>
-	 * If (k-p) < 0, then SUNModifiedGS uses p=k. The orthogonalized<br>
-	 * v[k] is NOT normalized and is stored over the old v[k]. Once<br>
-	 * the orthogonalization has been performed, the Euclidean norm<br>
-	 * of v[k] is stored in (*new_vk_norm).<br>
-	 * SUNModifiedGS returns 0 to indicate success. It cannot fail.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNModifiedGS(N_Vector*, sunrealtype**, int, int, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:171</i>
-	 */
-	int SUNModifiedGS(ByReference v[], PointerByReference h, int k, int p, DoubleByReference new_vk_norm);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNClassicalGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNClassicalGS performs a classical Gram-Schmidt<br>
-	 * orthogonalization of the N_Vector v[k] against the p unit<br>
-	 * N_Vectors at v[k-1], v[k-2], ..., v[k-p]. The parameters v, h,<br>
-	 * k, p, and new_vk_norm are as described in the documentation<br>
-	 * for SUNModifiedGS.<br>
-	 * stemp is a length k+1 array of sunrealtype which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * vtemp is an N_Vector array of k+1 vectors which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * SUNClassicalGS returns 0 to indicate success.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNClassicalGS(N_Vector*, sunrealtype**, int, int, sunrealtype*, sunrealtype*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:195</i><br>
-	 * @deprecated use the safer methods {@link #SUNClassicalGS(ByReference[], PointerByReference, int, int, DoubleBuffer, DoubleBuffer, ByReference[])} and {@link #SUNClassicalGS(ByReference[], PointerByReference, int, int, DoubleByReference, DoubleByReference, ByReference[])} instead
-	 */
-	@Deprecated 
-	int SUNClassicalGS(PointerByReference v, PointerByReference h, int k, int p, DoubleByReference new_vk_norm, DoubleByReference stemp, PointerByReference vtemp);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNClassicalGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNClassicalGS performs a classical Gram-Schmidt<br>
-	 * orthogonalization of the N_Vector v[k] against the p unit<br>
-	 * N_Vectors at v[k-1], v[k-2], ..., v[k-p]. The parameters v, h,<br>
-	 * k, p, and new_vk_norm are as described in the documentation<br>
-	 * for SUNModifiedGS.<br>
-	 * stemp is a length k+1 array of sunrealtype which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * vtemp is an N_Vector array of k+1 vectors which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * SUNClassicalGS returns 0 to indicate success.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNClassicalGS(N_Vector*, sunrealtype**, int, int, sunrealtype*, sunrealtype*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:195</i>
-	 */
-	int SUNClassicalGS(ByReference v[], PointerByReference h, int k, int p, DoubleBuffer new_vk_norm, DoubleBuffer stemp, ByReference vtemp[]);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNClassicalGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNClassicalGS performs a classical Gram-Schmidt<br>
-	 * orthogonalization of the N_Vector v[k] against the p unit<br>
-	 * N_Vectors at v[k-1], v[k-2], ..., v[k-p]. The parameters v, h,<br>
-	 * k, p, and new_vk_norm are as described in the documentation<br>
-	 * for SUNModifiedGS.<br>
-	 * stemp is a length k+1 array of sunrealtype which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * vtemp is an N_Vector array of k+1 vectors which can be used as<br>
-	 * workspace by the SUNClassicalGS routine.<br>
-	 * SUNClassicalGS returns 0 to indicate success.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNClassicalGS(N_Vector*, sunrealtype**, int, int, sunrealtype*, sunrealtype*, N_Vector*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:195</i>
-	 */
-	int SUNClassicalGS(ByReference v[], PointerByReference h, int k, int p, DoubleByReference new_vk_norm, DoubleByReference stemp, ByReference vtemp[]);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRfact<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRfact performs a QR factorization of the Hessenberg matrix H.<br>
-	 * n is the problem size; the matrix H is (n+1) by n.<br>
-	 * h is the (n+1) by n Hessenberg matrix H to be factored. It is<br>
-	 * stored row-wise.<br>
-	 * q is an array of length 2*n containing the Givens rotations<br>
-	 * computed by this function. A Givens rotation has the form:<br>
-	 * | c  -s |<br>
-	 * | s   c |.<br>
-	 * The components of the Givens rotations are stored in q as<br>
-	 * (c, s, c, s, ..., c, s).<br>
-	 * job is a control flag. If job==0, then a new QR factorization<br>
-	 * is performed. If job!=0, then it is assumed that the first<br>
-	 * n-1 columns of h have already been factored and only the last<br>
-	 * column needs to be updated.<br>
-	 * SUNQRfact returns 0 if successful. If a zero is encountered on<br>
-	 * the diagonal of the triangular factor R, then SUNQRfact returns<br>
-	 * the equation number of the zero entry, where the equations are<br>
-	 * numbered from 1, not 0. If SUNQRsol is subsequently called in<br>
-	 * this situation, it will return an error because it could not<br>
-	 * divide by the zero diagonal entry.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNQRfact(int, sunrealtype**, sunrealtype*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:232</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRfact(int, PointerByReference, DoubleBuffer, int)} and {@link #SUNQRfact(int, PointerByReference, DoubleByReference, int)} instead
-	 */
-	@Deprecated 
-	int SUNQRfact(int n, PointerByReference h, DoubleByReference q, int job);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRfact<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRfact performs a QR factorization of the Hessenberg matrix H.<br>
-	 * n is the problem size; the matrix H is (n+1) by n.<br>
-	 * h is the (n+1) by n Hessenberg matrix H to be factored. It is<br>
-	 * stored row-wise.<br>
-	 * q is an array of length 2*n containing the Givens rotations<br>
-	 * computed by this function. A Givens rotation has the form:<br>
-	 * | c  -s |<br>
-	 * | s   c |.<br>
-	 * The components of the Givens rotations are stored in q as<br>
-	 * (c, s, c, s, ..., c, s).<br>
-	 * job is a control flag. If job==0, then a new QR factorization<br>
-	 * is performed. If job!=0, then it is assumed that the first<br>
-	 * n-1 columns of h have already been factored and only the last<br>
-	 * column needs to be updated.<br>
-	 * SUNQRfact returns 0 if successful. If a zero is encountered on<br>
-	 * the diagonal of the triangular factor R, then SUNQRfact returns<br>
-	 * the equation number of the zero entry, where the equations are<br>
-	 * numbered from 1, not 0. If SUNQRsol is subsequently called in<br>
-	 * this situation, it will return an error because it could not<br>
-	 * divide by the zero diagonal entry.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNQRfact(int, sunrealtype**, sunrealtype*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:232</i>
-	 */
-	int SUNQRfact(int n, PointerByReference h, DoubleBuffer q, int job);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRsol<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRsol solves the linear least squares problem<br>
-	 * min (b - H*x, b - H*x), x in R^n,<br>
-	 * where H is a Hessenberg matrix, and b is in R^(n+1).<br>
-	 * It uses the QR factors of H computed by SUNQRfact.<br>
-	 * n is the problem size; the matrix H is (n+1) by n.<br>
-	 * h is a matrix (computed by SUNQRfact) containing the upper<br>
-	 * triangular factor R of the original Hessenberg matrix H.<br>
-	 * q is an array of length 2*n (computed by SUNQRfact) containing<br>
-	 * the Givens rotations used to factor H.<br>
-	 * b is the (n+1)-vector appearing in the least squares problem<br>
-	 * above.<br>
-	 * On return, b contains the solution x of the least squares<br>
-	 * problem, if SUNQRsol was successful.<br>
-	 * SUNQRsol returns a 0 if successful.  Otherwise, a zero was<br>
-	 * encountered on the diagonal of the triangular factor R.<br>
-	 * In this case, SUNQRsol returns the equation number (numbered<br>
-	 * from 1, not 0) of the zero entry.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNQRsol(int, sunrealtype**, sunrealtype*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:267</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRsol(int, PointerByReference, DoubleBuffer, DoubleBuffer)} and {@link #SUNQRsol(int, PointerByReference, DoubleByReference, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int SUNQRsol(int n, PointerByReference h, DoubleByReference q, DoubleByReference b);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRsol<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRsol solves the linear least squares problem<br>
-	 * min (b - H*x, b - H*x), x in R^n,<br>
-	 * where H is a Hessenberg matrix, and b is in R^(n+1).<br>
-	 * It uses the QR factors of H computed by SUNQRfact.<br>
-	 * n is the problem size; the matrix H is (n+1) by n.<br>
-	 * h is a matrix (computed by SUNQRfact) containing the upper<br>
-	 * triangular factor R of the original Hessenberg matrix H.<br>
-	 * q is an array of length 2*n (computed by SUNQRfact) containing<br>
-	 * the Givens rotations used to factor H.<br>
-	 * b is the (n+1)-vector appearing in the least squares problem<br>
-	 * above.<br>
-	 * On return, b contains the solution x of the least squares<br>
-	 * problem, if SUNQRsol was successful.<br>
-	 * SUNQRsol returns a 0 if successful.  Otherwise, a zero was<br>
-	 * encountered on the diagonal of the triangular factor R.<br>
-	 * In this case, SUNQRsol returns the equation number (numbered<br>
-	 * from 1, not 0) of the zero entry.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNQRsol(int, sunrealtype**, sunrealtype*, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:267</i>
-	 */
-	int SUNQRsol(int n, PointerByReference h, DoubleBuffer q, DoubleBuffer b);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_MGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_MGS uses Modified Gram Schmidt to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_MGS was successful.<br>
-	 * SUNQRAdd_MGS returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_MGS(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:298</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_MGS(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_MGS(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_MGS(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_MGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_MGS uses Modified Gram Schmidt to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_MGS was successful.<br>
-	 * SUNQRAdd_MGS returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_MGS(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:298</i>
-	 */
-	int SUNQRAdd_MGS(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_MGS<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_MGS uses Modified Gram Schmidt to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_MGS was successful.<br>
-	 * SUNQRAdd_MGS returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_MGS(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:298</i>
-	 */
-	int SUNQRAdd_MGS(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_ICWY uses the Inverse Compact WY Modified Gram Schmidt<br>
-	 * method to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 *   - sunrealtype *T (held within (void *) QRdata)<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * where the factorization to be updated is of the form<br>
-	 *   Q * T * R<br>
-	 * Additional input parameters include:<br>
-	 *     m :  (int) current number of vectors in QR factorization<br>
-	 *  mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *         factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, sunrealtype *temp_array (this will be used for T)<br>
-	 * On return, Q, R, and T contain the updated Q T R factors, if<br>
-	 * SUNQRAdd_ICWY was successful.<br>
-	 * SUNQRAdd_ICWY returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:336</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_ICWY(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_ICWY(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_ICWY(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_ICWY uses the Inverse Compact WY Modified Gram Schmidt<br>
-	 * method to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 *   - sunrealtype *T (held within (void *) QRdata)<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * where the factorization to be updated is of the form<br>
-	 *   Q * T * R<br>
-	 * Additional input parameters include:<br>
-	 *     m :  (int) current number of vectors in QR factorization<br>
-	 *  mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *         factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, sunrealtype *temp_array (this will be used for T)<br>
-	 * On return, Q, R, and T contain the updated Q T R factors, if<br>
-	 * SUNQRAdd_ICWY was successful.<br>
-	 * SUNQRAdd_ICWY returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:336</i>
-	 */
-	int SUNQRAdd_ICWY(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_ICWY uses the Inverse Compact WY Modified Gram Schmidt<br>
-	 * method to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 *   - sunrealtype *T (held within (void *) QRdata)<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * where the factorization to be updated is of the form<br>
-	 *   Q * T * R<br>
-	 * Additional input parameters include:<br>
-	 *     m :  (int) current number of vectors in QR factorization<br>
-	 *  mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *         factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, sunrealtype *temp_array (this will be used for T)<br>
-	 * On return, Q, R, and T contain the updated Q T R factors, if<br>
-	 * SUNQRAdd_ICWY was successful.<br>
-	 * SUNQRAdd_ICWY returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:336</i>
-	 */
-	int SUNQRAdd_ICWY(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_ICWY but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:349</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_ICWY_SB(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_ICWY_SB(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_ICWY_SB(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_ICWY but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:349</i>
-	 */
-	int SUNQRAdd_ICWY_SB(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_ICWY_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_ICWY but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_ICWY_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:349</i>
-	 */
-	int SUNQRAdd_ICWY_SB(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_CGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_CGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_CGS2 was successful.<br>
-	 * SUNQRAdd_CGS2 returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_CGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:384</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_CGS2(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_CGS2(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_CGS2(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_CGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_CGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_CGS2 was successful.<br>
-	 * SUNQRAdd_CGS2 returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_CGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:384</i>
-	 */
-	int SUNQRAdd_CGS2(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_CGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_CGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation to update the QR factorization stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_CGS2 was successful.<br>
-	 * SUNQRAdd_CGS2 returns a 0 if successful.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_CGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:384</i>
-	 */
-	int SUNQRAdd_CGS2(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_DCGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation that delays reorthogonlization (for the purpose of<br>
-	 * reducing number of inner products) to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_DCGS2 was successful.<br>
-	 * SUNQRAdd_DCGS2 returns a 0 if successful. Otherwise,....<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:421</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_DCGS2(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_DCGS2(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_DCGS2(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_DCGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation that delays reorthogonlization (for the purpose of<br>
-	 * reducing number of inner products) to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_DCGS2 was successful.<br>
-	 * SUNQRAdd_DCGS2 returns a 0 if successful. Otherwise,....<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:421</i>
-	 */
-	int SUNQRAdd_DCGS2(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNQRAdd_DCGS2 uses a Classical Gram Schmidt with Reorthogonalization<br>
-	 * formulation that delays reorthogonlization (for the purpose of<br>
-	 * reducing number of inner products) to update the QR factorization<br>
-	 * stored in user inputs<br>
-	 *   - N_Vector *Q<br>
-	 *   - sunrealtype *R<br>
-	 * to include the orthonormalized vector input by<br>
-	 *   - N_Vector df.<br>
-	 * Additional input parameters include:<br>
-	 *      m : (int) current number of vectors in QR factorization<br>
-	 *   mMax : (int) maximum number of vectors that will be in the QR<br>
-	 *          factorization (the allocated number of N_Vectors in Q)<br>
-	 * QRdata : (void *) a struct containing any additional temporary<br>
-	 *          vectors or arrays required for the QRAdd routine<br>
-	 * QRdata should contain :<br>
-	 *        N_Vector vtemp, N_Vector vtemp2, sunrealtype *temp_array<br>
-	 * On return, Q and R contain the updated Q R factors, if<br>
-	 * SUNQRAdd_DCGS2 was successful.<br>
-	 * SUNQRAdd_DCGS2 returns a 0 if successful. Otherwise,....<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:421</i>
-	 */
-	int SUNQRAdd_DCGS2(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_DCGS2 but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:434</i><br>
-	 * @deprecated use the safer methods {@link #SUNQRAdd_DCGS2_SB(ByReference[], DoubleBuffer, _generic_N_Vector, int, int, Pointer)} and {@link #SUNQRAdd_DCGS2_SB(ByReference[], DoubleByReference, _generic_N_Vector, int, int, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNQRAdd_DCGS2_SB(PointerByReference Q, DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_DCGS2 but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:434</i>
-	 */
-	int SUNQRAdd_DCGS2_SB(ByReference Q[], DoubleBuffer R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function: SUNQRAdd_DCGS2_SB<br>
-	 * -----------------------------------------------------------------<br>
-	 *  The same function as SUNQRAdd_DCGS2 but using a single buffer<br>
-	 *  for global reductions.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNErrCode SUNQRAdd_DCGS2_SB(N_Vector*, sunrealtype*, N_Vector, int, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_iterative.h:434</i>
-	 */
-	int SUNQRAdd_DCGS2_SB(ByReference Q[], DoubleByReference R, _generic_N_Vector df, int m, int mMax, Pointer QRdata);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions exported by SUNLinearSolver module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNLinearSolver SUNLinSolNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:85</i><br>
-	 * @deprecated use the safer methods {@link #SUNLinSolNewEmpty(SUNContext)} and {@link #SUNLinSolNewEmpty(Pointer)} instead
-	 */
-	@Deprecated 
-	_generic_SUNLinearSolver SUNLinSolNewEmpty(Pointer sunctx);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Functions exported by SUNLinearSolver module<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>SUNLinearSolver SUNLinSolNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:85</i>
-	 */
-	_generic_SUNLinearSolver SUNLinSolNewEmpty(SUNContext sunctx);
-	/**
-	 * Original signature : <code>void SUNLinSolFreeEmpty(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:88</i>
-	 */
-	void SUNLinSolFreeEmpty(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>SUNLinearSolver_Type SUNLinSolGetType(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:91</i>
-	 */
-	int SUNLinSolGetType(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>SUNLinearSolver_ID SUNLinSolGetID(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:94</i>
-	 */
-	int SUNLinSolGetID(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSetATimes(SUNLinearSolver, void*, SUNATimesFn)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:97</i>
-	 */
-	int SUNLinSolSetATimes(_generic_SUNLinearSolver S, Pointer A_data, SUNATimesFn ATimes);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSetPreconditioner(SUNLinearSolver, void*, SUNPSetupFn, SUNPSolveFn)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:101</i>
-	 */
-	int SUNLinSolSetPreconditioner(_generic_SUNLinearSolver S, Pointer P_data, SUNPSetupFn Pset, SUNPSolveFn Psol);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSetScalingVectors(SUNLinearSolver, N_Vector, N_Vector)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:105</i>
-	 */
-	int SUNLinSolSetScalingVectors(_generic_SUNLinearSolver S, _generic_N_Vector s1, _generic_N_Vector s2);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSetZeroGuess(SUNLinearSolver, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:109</i>
-	 */
-	int SUNLinSolSetZeroGuess(_generic_SUNLinearSolver S, int onoff);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolInitialize(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:112</i>
-	 */
-	int SUNLinSolInitialize(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>int SUNLinSolSetup(SUNLinearSolver, SUNMatrix)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:115</i><br>
-	 * @deprecated use the safer methods {@link #SUNLinSolSetup(_generic_SUNLinearSolver, SUNMatrix)} and {@link #SUNLinSolSetup(_generic_SUNLinearSolver, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNLinSolSetup(_generic_SUNLinearSolver S, Pointer A);
-	/**
-	 * Original signature : <code>int SUNLinSolSetup(SUNLinearSolver, SUNMatrix)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:115</i>
-	 */
-	int SUNLinSolSetup(_generic_SUNLinearSolver S, SUNMatrix A);
-	/**
-	 * Original signature : <code>int SUNLinSolSolve(SUNLinearSolver, SUNMatrix, N_Vector, N_Vector, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:118</i><br>
-	 * @deprecated use the safer methods {@link #SUNLinSolSolve(_generic_SUNLinearSolver, SUNMatrix, _generic_N_Vector, _generic_N_Vector, double)} and {@link #SUNLinSolSolve(_generic_SUNLinearSolver, Pointer, _generic_N_Vector, _generic_N_Vector, double)} instead
-	 */
-	@Deprecated 
-	int SUNLinSolSolve(_generic_SUNLinearSolver S, Pointer A, _generic_N_Vector x, _generic_N_Vector b, double tol);
-	/**
-	 * Original signature : <code>int SUNLinSolSolve(SUNLinearSolver, SUNMatrix, N_Vector, N_Vector, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:118</i>
-	 */
-	int SUNLinSolSolve(_generic_SUNLinearSolver S, SUNMatrix A, _generic_N_Vector x, _generic_N_Vector b, double tol);
-	/**
-	 * TODO(CJB): We should consider changing the return type to long int since<br>
-	 * batched solvers could in theory return a very large number here.<br>
-	 * Original signature : <code>int SUNLinSolNumIters(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:124</i>
-	 */
-	int SUNLinSolNumIters(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>sunrealtype SUNLinSolResNorm(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:127</i>
-	 */
-	double SUNLinSolResNorm(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>N_Vector SUNLinSolResid(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:130</i>
-	 */
-	_generic_N_Vector SUNLinSolResid(_generic_SUNLinearSolver S);
-	/**
-	 * TODO(CJB): sunindextype being the return type here could cause a problem if<br>
-	 * sunindextype happened to be smaller than an int.<br>
-	 * Original signature : <code>sunindextype SUNLinSolLastFlag(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:135</i>
-	 */
-	long SUNLinSolLastFlag(_generic_SUNLinearSolver S);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSpace(SUNLinearSolver, long long*, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:138</i><br>
-	 * @deprecated use the safer methods {@link #SUNLinSolSpace(_generic_SUNLinearSolver, LongBuffer, LongBuffer)} and {@link #SUNLinSolSpace(_generic_SUNLinearSolver, LongByReference, LongByReference)} instead
-	 */
-	@Deprecated 
-	int SUNLinSolSpace(_generic_SUNLinearSolver S, LongByReference lenrwLS, LongByReference leniwLS);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolSpace(SUNLinearSolver, long long*, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:138</i>
-	 */
-	int SUNLinSolSpace(_generic_SUNLinearSolver S, LongBuffer lenrwLS, LongBuffer leniwLS);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLinSolFree(SUNLinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_linearsolver.h:142</i>
-	 */
-	int SUNLinSolFree(_generic_SUNLinearSolver S);
 	/**
 	 * =================================================================<br>
 	 * CVLS Exported functions<br>
 	 * =================================================================<br>
 	 * Original signature : <code>int CVodeSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:53</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetLinearSolver(Pointer, _generic_SUNLinearSolver, SUNMatrix)} and {@link #CVodeSetLinearSolver(Pointer, _generic_SUNLinearSolver, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNLinearSolver, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNMatrix)} and {@link #CVodeSetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int CVodeSetLinearSolver(Pointer cvode_mem, _generic_SUNLinearSolver LS, Pointer A);
+	int CVodeSetLinearSolver(Pointer cvode_mem, Pointer LS, Pointer A);
 	/**
 	 * =================================================================<br>
 	 * CVLS Exported functions<br>
@@ -2359,7 +203,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:53</i>
 	 */
-	int CVodeSetLinearSolver(Pointer cvode_mem, _generic_SUNLinearSolver LS, SUNMatrix A);
+	int CVodeSetLinearSolver(Pointer cvode_mem, Sundials_cvodeLibrary.SUNLinearSolver LS, Sundials_cvodeLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional inputs to the CVLS linear solver interface<br>
@@ -2367,7 +211,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacFn(void*, CVLsJacFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:60</i>
 	 */
-	int CVodeSetJacFn(Pointer cvode_mem, CVLsJacFn jac);
+	int CVodeSetJacFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVLsJacFn jac);
 	/**
 	 * Original signature : <code>int CVodeSetJacEvalFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:61</i>
@@ -2397,24 +241,24 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetPreconditioner(void*, CVLsPrecSetupFn, CVLsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:68</i>
 	 */
-	int CVodeSetPreconditioner(Pointer cvode_mem, CVLsPrecSetupFn pset, CVLsPrecSolveFn psolve);
+	int CVodeSetPreconditioner(Pointer cvode_mem, Sundials_cvodeLibrary.CVLsPrecSetupFn pset, Sundials_cvodeLibrary.CVLsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int CVodeSetJacTimes(void*, CVLsJacTimesSetupFn, CVLsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:70</i>
 	 */
-	int CVodeSetJacTimes(Pointer cvode_mem, CVLsJacTimesSetupFn jtsetup, CVLsJacTimesVecFn jtimes);
+	int CVodeSetJacTimes(Pointer cvode_mem, Sundials_cvodeLibrary.CVLsJacTimesSetupFn jtsetup, Sundials_cvodeLibrary.CVLsJacTimesVecFn jtimes);
 	/**
 	 * Original signature : <code>int CVodeSetLinSysFn(void*, CVLsLinSysFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:72</i>
 	 */
-	int CVodeSetLinSysFn(Pointer cvode_mem, CVLsLinSysFn linsys);
+	int CVodeSetLinSysFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVLsLinSysFn linsys);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional outputs from the CVLS linear solver interface<br>
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int CVodeGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:78</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #CVodeGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJac(Pointer cvode_mem, Pointer J);
@@ -2429,7 +273,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetJacTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:79</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetJacTime(Pointer, DoubleBuffer)} and {@link #CVodeGetJacTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetJacTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetJacTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJacTime(Pointer cvode_mem, DoubleByReference t_J);
@@ -2441,7 +285,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetJacNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:80</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetJacNumSteps(Pointer, LongBuffer)} and {@link #CVodeGetJacNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetJacNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetJacNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetJacNumSteps(Pointer cvode_mem, LongByReference nst_J);
@@ -2453,7 +297,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:81</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLinWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -2465,7 +309,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:83</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJacEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJacEvals(Pointer cvode_mem, LongByReference njevals);
@@ -2477,7 +321,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:84</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumPrecEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumPrecEvals(Pointer cvode_mem, LongByReference npevals);
@@ -2489,7 +333,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:85</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumPrecSolves(Pointer, LongBuffer)} and {@link #CVodeGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumPrecSolves(Pointer cvode_mem, LongByReference npsolves);
@@ -2501,7 +345,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:86</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinIters(Pointer, LongBuffer)} and {@link #CVodeGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinIters(Pointer cvode_mem, LongByReference nliters);
@@ -2513,7 +357,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:87</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinConvFails(Pointer, LongBuffer)} and {@link #CVodeGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinConvFails(Pointer cvode_mem, LongByReference nlcfails);
@@ -2525,7 +369,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJTSetupEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:88</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJTSetupEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJTSetupEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJTSetupEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJTSetupEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJTSetupEvals(Pointer cvode_mem, LongByReference njtsetups);
@@ -2537,7 +381,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:89</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumJtimesEvals(Pointer cvode_mem, LongByReference njvevals);
@@ -2549,7 +393,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:90</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumLinRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinRhsEvals(Pointer cvode_mem, LongByReference nfevalsLS);
@@ -2561,7 +405,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLinSolveStats(void*, long long*, long long*, long long*, long long*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:91</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLinSolveStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #CVodeGetLinSolveStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLinSolveStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetLinSolveStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLinSolveStats(Pointer cvode_mem, LongByReference njevals, LongByReference nfevalsLS, LongByReference nliters, LongByReference nlcfails, LongByReference npevals, LongByReference npsolves, LongByReference njtsetups, LongByReference njtimes);
@@ -2573,7 +417,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_ls.h:96</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastLinFlag(Pointer, LongBuffer)} and {@link #CVodeGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastLinFlag(Pointer cvode_mem, LongByReference flag);
@@ -2592,7 +436,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetProjFn(void*, CVProjFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_proj.h:18</i>
 	 */
-	int CVodeSetProjFn(Pointer cvode_mem, CVProjFn pfun);
+	int CVodeSetProjFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVProjFn pfun);
 	/**
 	 * Optional input functions<br>
 	 * Original signature : <code>int CVodeSetProjErrEst(void*, int)</code><br>
@@ -2623,7 +467,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVodeGetNumProjEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_proj.h:28</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumProjEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumProjEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumProjEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumProjEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumProjEvals(Pointer cvode_mem, LongByReference nproj);
@@ -2636,7 +480,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumProjFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_proj.h:29</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumProjFails(Pointer, LongBuffer)} and {@link #CVodeGetNumProjFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumProjFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumProjFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumProjFails(Pointer cvode_mem, LongByReference nprf);
@@ -2646,593 +490,10 @@ public interface Sundials_cvodeLibrary extends Library {
 	 */
 	int CVodeGetNumProjFails(Pointer cvode_mem, LongBuffer nprf);
 	/**
-	 * Function to create an empty SUNAdaptController data structure.<br>
-	 * Original signature : <code>SUNAdaptController SUNAdaptController_NewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:64</i><br>
-	 * @deprecated use the safer methods {@link #SUNAdaptController_NewEmpty(SUNContext)} and {@link #SUNAdaptController_NewEmpty(Pointer)} instead
-	 */
-	@Deprecated 
-	_generic_SUNAdaptController SUNAdaptController_NewEmpty(Pointer sunctx);
-	/**
-	 * Function to create an empty SUNAdaptController data structure.<br>
-	 * Original signature : <code>SUNAdaptController SUNAdaptController_NewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:64</i>
-	 */
-	_generic_SUNAdaptController SUNAdaptController_NewEmpty(SUNContext sunctx);
-	/**
-	 * Function to report the type of a SUNAdaptController object.<br>
-	 * Original signature : <code>SUNAdaptController_Type SUNAdaptController_GetType(SUNAdaptController)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:68</i>
-	 */
-	int SUNAdaptController_GetType(_generic_SUNAdaptController C);
-	/**
-	 * Function to deallocate a SUNAdaptController object.<br>
-	 * Any return value other than SUN_SUCCESS will be treated as<br>
-	 * an unrecoverable failure.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Destroy(SUNAdaptController)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:75</i>
-	 */
-	int SUNAdaptController_Destroy(_generic_SUNAdaptController C);
-	/**
-	 * Main step size controller function.  This is called following<br>
-	 * a time step with size 'h' and local error factor 'dsm', and the<br>
-	 * controller should estimate 'hnew' so that the ensuing step<br>
-	 * will have 'dsm' value JUST BELOW 1.<br>
-	 * Any return value other than SUN_SUCCESS will be treated as<br>
-	 * an unrecoverable failure.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_EstimateStep(SUNAdaptController, sunrealtype, int, sunrealtype, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:85</i><br>
-	 * @deprecated use the safer methods {@link #SUNAdaptController_EstimateStep(_generic_SUNAdaptController, double, int, double, DoubleBuffer)} and {@link #SUNAdaptController_EstimateStep(_generic_SUNAdaptController, double, int, double, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int SUNAdaptController_EstimateStep(_generic_SUNAdaptController C, double h, int p, double dsm, DoubleByReference hnew);
-	/**
-	 * Main step size controller function.  This is called following<br>
-	 * a time step with size 'h' and local error factor 'dsm', and the<br>
-	 * controller should estimate 'hnew' so that the ensuing step<br>
-	 * will have 'dsm' value JUST BELOW 1.<br>
-	 * Any return value other than SUN_SUCCESS will be treated as<br>
-	 * an unrecoverable failure.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_EstimateStep(SUNAdaptController, sunrealtype, int, sunrealtype, sunrealtype*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:85</i>
-	 */
-	int SUNAdaptController_EstimateStep(_generic_SUNAdaptController C, double h, int p, double dsm, DoubleBuffer hnew);
-	/**
-	 * Function to reset the controller to its initial state, e.g., if<br>
-	 * it stores a small number of previous dsm or step size values.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Reset(SUNAdaptController)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:92</i>
-	 */
-	int SUNAdaptController_Reset(_generic_SUNAdaptController C);
-	/**
-	 * Function to set the controller parameters to their default values.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_SetDefaults(SUNAdaptController)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:96</i>
-	 */
-	int SUNAdaptController_SetDefaults(_generic_SUNAdaptController C);
-	/**
-	 * Function to write all controller parameters to the indicated file<br>
-	 * pointer.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Write(SUNAdaptController, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:101</i><br>
-	 * @deprecated use the safer method {@link #SUNAdaptController_Write(_generic_SUNAdaptController, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNAdaptController_Write(_generic_SUNAdaptController C, Pointer fptr);
-	/**
-	 * Function to write all controller parameters to the indicated file<br>
-	 * pointer.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Write(SUNAdaptController, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:101</i>
-	 */
-	int SUNAdaptController_Write(_generic_SUNAdaptController C, PointerByReference fptr);
-	/**
-	 * Function to set an error bias factor to use for scaling the local error<br>
-	 * 'dsm' factors above.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_SetErrorBias(SUNAdaptController, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:106</i>
-	 */
-	int SUNAdaptController_SetErrorBias(_generic_SUNAdaptController C, double bias);
-	/**
-	 * Function to notify a controller of type SUN_ADAPTCONTROLLER_H that<br>
-	 * a successful time step was taken with stepsize h and local error factor<br>
-	 * dsm, indicating that these can be saved for subsequent controller functions.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_UpdateH(SUNAdaptController, sunrealtype, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:113</i>
-	 */
-	int SUNAdaptController_UpdateH(_generic_SUNAdaptController C, double h, double dsm);
-	/**
-	 * Function to return the memory requirements of the controller object.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Space(SUNAdaptController, long long*, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:118</i><br>
-	 * @deprecated use the safer methods {@link #SUNAdaptController_Space(_generic_SUNAdaptController, LongBuffer, LongBuffer)} and {@link #SUNAdaptController_Space(_generic_SUNAdaptController, LongByReference, LongByReference)} instead
-	 */
-	@Deprecated 
-	int SUNAdaptController_Space(_generic_SUNAdaptController C, LongByReference lenrw, LongByReference leniw);
-	/**
-	 * Function to return the memory requirements of the controller object.<br>
-	 * Original signature : <code>SUNErrCode SUNAdaptController_Space(SUNAdaptController, long long*, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_adaptcontroller.h:118</i>
-	 */
-	int SUNAdaptController_Space(_generic_SUNAdaptController C, LongBuffer lenrw, LongBuffer leniw);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Create(SUNComm, int, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:16</i><br>
-	 * @deprecated use the safer method {@link #SUNLogger_Create(int, int, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_Create(int comm, int output_rank, Pointer logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Create(SUNComm, int, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:16</i>
-	 */
-	int SUNLogger_Create(int comm, int output_rank, PointerByReference logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_CreateFromEnv(SUNComm, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:19</i><br>
-	 * @deprecated use the safer method {@link #SUNLogger_CreateFromEnv(int, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_CreateFromEnv(int comm, Pointer logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_CreateFromEnv(SUNComm, SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:19</i>
-	 */
-	int SUNLogger_CreateFromEnv(int comm, PointerByReference logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetErrorFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:22</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_SetErrorFilename(SUNLogger, String)} and {@link #SUNLogger_SetErrorFilename(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_SetErrorFilename(Pointer logger, Pointer error_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetErrorFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:22</i>
-	 */
-	int SUNLogger_SetErrorFilename(SUNLogger logger, String error_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetWarningFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:26</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_SetWarningFilename(SUNLogger, String)} and {@link #SUNLogger_SetWarningFilename(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_SetWarningFilename(Pointer logger, Pointer warning_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetWarningFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:26</i>
-	 */
-	int SUNLogger_SetWarningFilename(SUNLogger logger, String warning_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetDebugFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:30</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_SetDebugFilename(SUNLogger, String)} and {@link #SUNLogger_SetDebugFilename(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_SetDebugFilename(Pointer logger, Pointer debug_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetDebugFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:30</i>
-	 */
-	int SUNLogger_SetDebugFilename(SUNLogger logger, String debug_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetInfoFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:34</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_SetInfoFilename(SUNLogger, String)} and {@link #SUNLogger_SetInfoFilename(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_SetInfoFilename(Pointer logger, Pointer info_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_SetInfoFilename(SUNLogger, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:34</i>
-	 */
-	int SUNLogger_SetInfoFilename(SUNLogger logger, String info_filename);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_QueueMsg(SUNLogger, SUNLogLevel, const char*, const char*, const char*, null)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:37</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_QueueMsg(SUNLogger, int, String, String, String, Object)} and {@link #SUNLogger_QueueMsg(Pointer, int, Pointer, Pointer, Pointer, Object)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_QueueMsg(Pointer logger, int lvl, Pointer scope, Pointer label, Pointer msg_txt, Object... varArgs1);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_QueueMsg(SUNLogger, SUNLogLevel, const char*, const char*, const char*, null)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:37</i>
-	 */
-	int SUNLogger_QueueMsg(SUNLogger logger, int lvl, String scope, String label, String msg_txt, Object... varArgs1);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Flush(SUNLogger, SUNLogLevel)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:42</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_Flush(SUNLogger, int)} and {@link #SUNLogger_Flush(Pointer, int)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_Flush(Pointer logger, int lvl);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Flush(SUNLogger, SUNLogLevel)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:42</i>
-	 */
-	int SUNLogger_Flush(SUNLogger logger, int lvl);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_GetOutputRank(SUNLogger, int*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:45</i><br>
-	 * @deprecated use the safer methods {@link #SUNLogger_GetOutputRank(SUNLogger, IntBuffer)} and {@link #SUNLogger_GetOutputRank(Pointer, IntByReference)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_GetOutputRank(Pointer logger, IntByReference output_rank);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_GetOutputRank(SUNLogger, int*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:45</i>
-	 */
-	int SUNLogger_GetOutputRank(SUNLogger logger, IntBuffer output_rank);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Destroy(SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:48</i><br>
-	 * @deprecated use the safer method {@link #SUNLogger_Destroy(PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNLogger_Destroy(Pointer logger);
-	/**
-	 * Original signature : <code>SUNErrCode SUNLogger_Destroy(SUNLogger*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_logger.h:48</i>
-	 */
-	int SUNLogger_Destroy(PointerByReference logger);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNRpowerI<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : int exponent;<br>
-	 *         sunrealtype base, ans;<br>
-	 *         ans = SUNRpowerI(base,exponent);<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNRpowerI returns the value of base^exponent, where base is of type<br>
-	 * sunrealtype and exponent is of type int.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunrealtype SUNRpowerI(sunrealtype, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:148</i>
-	 */
-	double SUNRpowerI(double base, int exponent);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNRpowerR<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : sunrealtype base, exponent, ans;<br>
-	 *         ans = SUNRpowerR(base,exponent);<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNRpowerR returns the value of base^exponent, where both base and<br>
-	 * exponent are of type sunrealtype. If base < ZERO, then SUNRpowerR<br>
-	 * returns ZERO.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunrealtype SUNRpowerR(sunrealtype, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:163</i>
-	 */
-	double SUNRpowerR(double base, double exponent);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNRCompare<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : int isNotEqual;<br>
-	 *         sunrealtype a, b;<br>
-	 *         isNotEqual = SUNRCompare(a, b);<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNRCompareTol returns 0 if the relative difference of a and b is<br>
-	 * less than or equal to 10*machine epsilon. If the relative<br>
-	 * difference is greater than 10*machine epsilon, it returns 1. The<br>
-	 * function handles the case where a or b are near zero as well as<br>
-	 * the case where a or b are inf/nan.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNRCompare(sunrealtype, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:181</i>
-	 */
-	int SUNRCompare(double a, double b);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNRCompareTol<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : int isNotEqual;<br>
-	 *         sunrealtype a, b, tol;<br>
-	 *         isNotEqual = SUNRCompareTol(a, b, tol);<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNRCompareTol returns 0 if the relative difference of a and b is<br>
-	 * less than or equal to the provided tolerance. If the relative<br>
-	 * difference is greater than the tolerance, it returns 1. The<br>
-	 * function handles the case where a or b are near zero as well as<br>
-	 * the case where a or b are inf/nan.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>int SUNRCompareTol(sunrealtype, sunrealtype, sunrealtype)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:199</i>
-	 */
-	int SUNRCompareTol(double a, double b, double tol);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNStrToReal<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : sunrealtype a = SUNStrToReal(const char* str)<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNStrToReal parses str into the sunrealtype variable. Uses standard<br>
-	 * strtod variants when they are available.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunrealtype SUNStrToReal(const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:213</i><br>
-	 * @deprecated use the safer methods {@link #SUNStrToReal(String)} and {@link #SUNStrToReal(Pointer)} instead
-	 */
-	@Deprecated 
-	double SUNStrToReal(Pointer str);
-	/**
-	 * -----------------------------------------------------------------<br>
-	 * Function : SUNStrToReal<br>
-	 * -----------------------------------------------------------------<br>
-	 * Usage : sunrealtype a = SUNStrToReal(const char* str)<br>
-	 * -----------------------------------------------------------------<br>
-	 * SUNStrToReal parses str into the sunrealtype variable. Uses standard<br>
-	 * strtod variants when they are available.<br>
-	 * -----------------------------------------------------------------<br>
-	 * Original signature : <code>sunrealtype SUNStrToReal(const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_math.h:213</i>
-	 */
-	double SUNStrToReal(String str);
-	/**
-	 * Creates a new SUNMemory object with a NULL ptr<br>
-	 * Original signature : <code>SUNMemory SUNMemoryNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_memory.h:31</i><br>
-	 * @deprecated use the safer methods {@link #SUNMemoryNewEmpty(SUNContext)} and {@link #SUNMemoryNewEmpty(Pointer)} instead
-	 */
-	@Deprecated 
-	SUNMemory_ SUNMemoryNewEmpty(Pointer sunctx);
-	/**
-	 * Creates a new SUNMemory object with a NULL ptr<br>
-	 * Original signature : <code>SUNMemory SUNMemoryNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_memory.h:31</i>
-	 */
-	SUNMemory_ SUNMemoryNewEmpty(SUNContext sunctx);
-	/**
-	 * empty constructor/destructor<br>
-	 * Original signature : <code>SUNNonlinearSolver SUNNonlinSolNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:79</i><br>
-	 * @deprecated use the safer methods {@link #SUNNonlinSolNewEmpty(SUNContext)} and {@link #SUNNonlinSolNewEmpty(Pointer)} instead
-	 */
-	@Deprecated 
-	_generic_SUNNonlinearSolver SUNNonlinSolNewEmpty(Pointer sunctx);
-	/**
-	 * empty constructor/destructor<br>
-	 * Original signature : <code>SUNNonlinearSolver SUNNonlinSolNewEmpty(SUNContext)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:79</i>
-	 */
-	_generic_SUNNonlinearSolver SUNNonlinSolNewEmpty(SUNContext sunctx);
-	/**
-	 * Original signature : <code>void SUNNonlinSolFreeEmpty(SUNNonlinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:82</i>
-	 */
-	void SUNNonlinSolFreeEmpty(_generic_SUNNonlinearSolver NLS);
-	/**
-	 * core functions<br>
-	 * Original signature : <code>SUNNonlinearSolver_Type SUNNonlinSolGetType(SUNNonlinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:86</i>
-	 */
-	int SUNNonlinSolGetType(_generic_SUNNonlinearSolver NLS);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolInitialize(SUNNonlinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:89</i>
-	 */
-	int SUNNonlinSolInitialize(_generic_SUNNonlinearSolver NLS);
-	/**
-	 * Original signature : <code>int SUNNonlinSolSetup(SUNNonlinearSolver, N_Vector, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:92</i>
-	 */
-	int SUNNonlinSolSetup(_generic_SUNNonlinearSolver NLS, _generic_N_Vector y, Pointer mem);
-	/**
-	 * Original signature : <code>int SUNNonlinSolSolve(SUNNonlinearSolver, N_Vector, N_Vector, N_Vector, sunrealtype, int, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:95</i>
-	 */
-	int SUNNonlinSolSolve(_generic_SUNNonlinearSolver NLS, _generic_N_Vector y0, _generic_N_Vector y, _generic_N_Vector w, double tol, int callLSetup, Pointer mem);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolFree(SUNNonlinearSolver)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:99</i>
-	 */
-	int SUNNonlinSolFree(_generic_SUNNonlinearSolver NLS);
-	/**
-	 * set functions<br>
-	 * Original signature : <code>SUNErrCode SUNNonlinSolSetSysFn(SUNNonlinearSolver, SUNNonlinSolSysFn)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:103</i>
-	 */
-	int SUNNonlinSolSetSysFn(_generic_SUNNonlinearSolver NLS, SUNNonlinSolSysFn SysFn);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolSetLSetupFn(SUNNonlinearSolver, SUNNonlinSolLSetupFn)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:106</i>
-	 */
-	int SUNNonlinSolSetLSetupFn(_generic_SUNNonlinearSolver NLS, SUNNonlinSolLSetupFn SetupFn);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolSetLSolveFn(SUNNonlinearSolver, SUNNonlinSolLSolveFn)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:110</i>
-	 */
-	int SUNNonlinSolSetLSolveFn(_generic_SUNNonlinearSolver NLS, SUNNonlinSolLSolveFn SolveFn);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolSetConvTestFn(SUNNonlinearSolver, SUNNonlinSolConvTestFn, void*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:114</i>
-	 */
-	int SUNNonlinSolSetConvTestFn(_generic_SUNNonlinearSolver NLS, SUNNonlinSolConvTestFn CTestFn, Pointer ctest_data);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolSetMaxIters(SUNNonlinearSolver, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:119</i>
-	 */
-	int SUNNonlinSolSetMaxIters(_generic_SUNNonlinearSolver NLS, int maxiters);
-	/**
-	 * get functions<br>
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetNumIters(SUNNonlinearSolver, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:123</i><br>
-	 * @deprecated use the safer methods {@link #SUNNonlinSolGetNumIters(_generic_SUNNonlinearSolver, LongBuffer)} and {@link #SUNNonlinSolGetNumIters(_generic_SUNNonlinearSolver, LongByReference)} instead
-	 */
-	@Deprecated 
-	int SUNNonlinSolGetNumIters(_generic_SUNNonlinearSolver NLS, LongByReference niters);
-	/**
-	 * get functions<br>
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetNumIters(SUNNonlinearSolver, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:123</i>
-	 */
-	int SUNNonlinSolGetNumIters(_generic_SUNNonlinearSolver NLS, LongBuffer niters);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetCurIter(SUNNonlinearSolver, int*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:126</i><br>
-	 * @deprecated use the safer methods {@link #SUNNonlinSolGetCurIter(_generic_SUNNonlinearSolver, IntBuffer)} and {@link #SUNNonlinSolGetCurIter(_generic_SUNNonlinearSolver, IntByReference)} instead
-	 */
-	@Deprecated 
-	int SUNNonlinSolGetCurIter(_generic_SUNNonlinearSolver NLS, IntByReference iter);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetCurIter(SUNNonlinearSolver, int*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:126</i>
-	 */
-	int SUNNonlinSolGetCurIter(_generic_SUNNonlinearSolver NLS, IntBuffer iter);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetNumConvFails(SUNNonlinearSolver, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:129</i><br>
-	 * @deprecated use the safer methods {@link #SUNNonlinSolGetNumConvFails(_generic_SUNNonlinearSolver, LongBuffer)} and {@link #SUNNonlinSolGetNumConvFails(_generic_SUNNonlinearSolver, LongByReference)} instead
-	 */
-	@Deprecated 
-	int SUNNonlinSolGetNumConvFails(_generic_SUNNonlinearSolver NLS, LongByReference nconvfails);
-	/**
-	 * Original signature : <code>SUNErrCode SUNNonlinSolGetNumConvFails(SUNNonlinearSolver, long long*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_nonlinearsolver.h:129</i>
-	 */
-	int SUNNonlinSolGetNumConvFails(_generic_SUNNonlinearSolver NLS, LongBuffer nconvfails);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Create(SUNComm, const char*, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:10</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_Create(int, String, PointerByReference)} and {@link #SUNProfiler_Create(int, Pointer, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_Create(int comm, Pointer title, Pointer p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Create(SUNComm, const char*, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:10</i>
-	 */
-	int SUNProfiler_Create(int comm, String title, PointerByReference p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Create(SUNComm, const char*, SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:10</i>
-	 */
-	int SUNProfiler_Create(int comm, Pointer title, PointerByReference p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Free(SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:12</i><br>
-	 * @deprecated use the safer method {@link #SUNProfiler_Free(PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_Free(Pointer p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Free(SUNProfiler*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:12</i>
-	 */
-	int SUNProfiler_Free(PointerByReference p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Begin(SUNProfiler, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:15</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_Begin(SUNProfiler, String)} and {@link #SUNProfiler_Begin(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_Begin(Pointer p, Pointer name);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Begin(SUNProfiler, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:15</i>
-	 */
-	int SUNProfiler_Begin(SUNProfiler p, String name);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_End(SUNProfiler, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:18</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_End(SUNProfiler, String)} and {@link #SUNProfiler_End(Pointer, Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_End(Pointer p, Pointer name);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_End(SUNProfiler, const char*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:18</i>
-	 */
-	int SUNProfiler_End(SUNProfiler p, String name);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_GetTimerResolution(SUNProfiler, double*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:21</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_GetTimerResolution(SUNProfiler, DoubleBuffer)} and {@link #SUNProfiler_GetTimerResolution(Pointer, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_GetTimerResolution(Pointer p, DoubleByReference resolution);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_GetTimerResolution(SUNProfiler, double*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:21</i>
-	 */
-	int SUNProfiler_GetTimerResolution(SUNProfiler p, DoubleBuffer resolution);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_GetElapsedTime(SUNProfiler, const char*, double*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:24</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_GetElapsedTime(SUNProfiler, String, DoubleBuffer)} and {@link #SUNProfiler_GetElapsedTime(Pointer, Pointer, DoubleByReference)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_GetElapsedTime(Pointer p, Pointer name, DoubleByReference time);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_GetElapsedTime(SUNProfiler, const char*, double*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:24</i>
-	 */
-	int SUNProfiler_GetElapsedTime(SUNProfiler p, String name, DoubleBuffer time);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Print(SUNProfiler, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:28</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_Print(SUNProfiler, PointerByReference)} and {@link #SUNProfiler_Print(Pointer, PointerByReference)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_Print(Pointer p, Pointer fp);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Print(SUNProfiler, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:28</i>
-	 */
-	int SUNProfiler_Print(SUNProfiler p, PointerByReference fp);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Print(SUNProfiler, FILE*)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:28</i>
-	 */
-	int SUNProfiler_Print(Pointer p, PointerByReference fp);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Reset(SUNProfiler)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:31</i><br>
-	 * @deprecated use the safer methods {@link #SUNProfiler_Reset(SUNProfiler)} and {@link #SUNProfiler_Reset(Pointer)} instead
-	 */
-	@Deprecated 
-	int SUNProfiler_Reset(Pointer p);
-	/**
-	 * Original signature : <code>SUNErrCode SUNProfiler_Reset(SUNProfiler)</code><br>
-	 * <i>native declaration : include\sundials\sundials_profiler.h:31</i>
-	 */
-	int SUNProfiler_Reset(SUNProfiler p);
-	/**
-	 * Fill a string with SUNDIALS version information<br>
-	 * Original signature : <code>SUNErrCode SUNDIALSGetVersion(char*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_version.h:7</i><br>
-	 * @deprecated use the safer methods {@link #SUNDIALSGetVersion(ByteBuffer, int)} and {@link #SUNDIALSGetVersion(Pointer, int)} instead
-	 */
-	@Deprecated 
-	int SUNDIALSGetVersion(Pointer version, int len);
-	/**
-	 * Fill a string with SUNDIALS version information<br>
-	 * Original signature : <code>SUNErrCode SUNDIALSGetVersion(char*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_version.h:7</i>
-	 */
-	int SUNDIALSGetVersion(ByteBuffer version, int len);
-	/**
-	 * Fills integers with the major, minor, and patch release version numbers and a<br>
-	 * string with the release label.<br>
-	 * Original signature : <code>SUNErrCode SUNDIALSGetVersionNumber(int*, int*, int*, char*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_version.h:12</i><br>
-	 * @deprecated use the safer methods {@link #SUNDIALSGetVersionNumber(IntBuffer, IntBuffer, IntBuffer, ByteBuffer, int)} and {@link #SUNDIALSGetVersionNumber(IntByReference, IntByReference, IntByReference, Pointer, int)} instead
-	 */
-	@Deprecated 
-	int SUNDIALSGetVersionNumber(IntByReference major, IntByReference minor, IntByReference patch, Pointer label, int len);
-	/**
-	 * Fills integers with the major, minor, and patch release version numbers and a<br>
-	 * string with the release label.<br>
-	 * Original signature : <code>SUNErrCode SUNDIALSGetVersionNumber(int*, int*, int*, char*, int)</code><br>
-	 * <i>native declaration : include\sundials\sundials_version.h:12</i>
-	 */
-	int SUNDIALSGetVersionNumber(IntBuffer major, IntBuffer minor, IntBuffer patch, ByteBuffer label, int len);
-	/**
 	 * Initialization functions<br>
 	 * Original signature : <code>void* CVodeCreate(int, SUNContext)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:103</i><br>
-	 * @deprecated use the safer methods {@link #CVodeCreate(int, SUNContext)} and {@link #CVodeCreate(int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #CVodeCreate(int, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNContext)} and {@link #CVodeCreate(int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	Pointer CVodeCreate(int lmm, Pointer sunctx);
@@ -3241,17 +502,31 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>void* CVodeCreate(int, SUNContext)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:103</i>
 	 */
-	Pointer CVodeCreate(int lmm, SUNContext sunctx);
+	Pointer CVodeCreate(int lmm, Sundials_cvodeLibrary.SUNContext sunctx);
+	/**
+	 * Original signature : <code>int CVodeInit(void*, CVRhsFn, sunrealtype, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:105</i><br>
+	 * @deprecated use the safer methods {@link #CVodeInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.CVRhsFn, double, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeInit(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.CVRhsFn, double, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeInit(Pointer cvode_mem, Sundials_cvodeLibrary.CVRhsFn f, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int CVodeInit(void*, CVRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:105</i>
 	 */
-	int CVodeInit(Pointer cvode_mem, CVRhsFn f, double t0, _generic_N_Vector y0);
+	int CVodeInit(Pointer cvode_mem, Sundials_cvodeLibrary.CVRhsFn f, double t0, Sundials_cvodeLibrary.N_Vector y0);
+	/**
+	 * Original signature : <code>int CVodeReInit(void*, sunrealtype, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:107</i><br>
+	 * @deprecated use the safer methods {@link #CVodeReInit(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeReInit(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeReInit(Pointer cvode_mem, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int CVodeReInit(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:107</i>
 	 */
-	int CVodeReInit(Pointer cvode_mem, double t0, _generic_N_Vector y0);
+	int CVodeReInit(Pointer cvode_mem, double t0, Sundials_cvodeLibrary.N_Vector y0);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int CVodeSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -3260,20 +535,35 @@ public interface Sundials_cvodeLibrary extends Library {
 	int CVodeSStolerances(Pointer cvode_mem, double reltol, double abstol);
 	/**
 	 * Original signature : <code>int CVodeSVtolerances(void*, sunrealtype, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:112</i><br>
+	 * @deprecated use the safer methods {@link #CVodeSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeSVtolerances(Pointer cvode_mem, double reltol, Pointer abstol);
+	/**
+	 * Original signature : <code>int CVodeSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:112</i>
 	 */
-	int CVodeSVtolerances(Pointer cvode_mem, double reltol, _generic_N_Vector abstol);
+	int CVodeSVtolerances(Pointer cvode_mem, double reltol, Sundials_cvodeLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int CVodeWFtolerances(void*, CVEwtFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:114</i>
 	 */
-	int CVodeWFtolerances(Pointer cvode_mem, CVEwtFn efun);
+	int CVodeWFtolerances(Pointer cvode_mem, Sundials_cvodeLibrary.CVEwtFn efun);
+	/**
+	 * Optional input functions<br>
+	 * Original signature : <code>int CVodeSetConstraints(void*, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:118</i><br>
+	 * @deprecated use the safer methods {@link #CVodeSetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeSetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeSetConstraints(Pointer cvode_mem, Pointer constraints);
 	/**
 	 * Optional input functions<br>
 	 * Original signature : <code>int CVodeSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:118</i>
 	 */
-	int CVodeSetConstraints(Pointer cvode_mem, _generic_N_Vector constraints);
+	int CVodeSetConstraints(Pointer cvode_mem, Sundials_cvodeLibrary.N_Vector constraints);
 	/**
 	 * Original signature : <code>int CVodeSetDeltaGammaMaxLSetup(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:119</i>
@@ -3333,7 +623,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetMonitorFn(void*, CVMonitorFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:131</i>
 	 */
-	int CVodeSetMonitorFn(Pointer cvode_mem, CVMonitorFn fn);
+	int CVodeSetMonitorFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVMonitorFn fn);
 	/**
 	 * Original signature : <code>int CVodeSetMonitorFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:132</i>
@@ -3343,7 +633,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetNlsRhsFn(void*, CVRhsFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:133</i>
 	 */
-	int CVodeSetNlsRhsFn(Pointer cvode_mem, CVRhsFn f);
+	int CVodeSetNlsRhsFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVRhsFn f);
 	/**
 	 * Original signature : <code>int CVodeSetNonlinConvCoef(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:134</i>
@@ -3351,9 +641,16 @@ public interface Sundials_cvodeLibrary extends Library {
 	int CVodeSetNonlinConvCoef(Pointer cvode_mem, double nlscoef);
 	/**
 	 * Original signature : <code>int CVodeSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:135</i><br>
+	 * @deprecated use the safer methods {@link #CVodeSetNonlinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNNonlinearSolver)} and {@link #CVodeSetNonlinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeSetNonlinearSolver(Pointer cvode_mem, Pointer NLS);
+	/**
+	 * Original signature : <code>int CVodeSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:135</i>
 	 */
-	int CVodeSetNonlinearSolver(Pointer cvode_mem, _generic_SUNNonlinearSolver NLS);
+	int CVodeSetNonlinearSolver(Pointer cvode_mem, Sundials_cvodeLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int CVodeSetStabLimDet(void*, int)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:137</i>
@@ -3440,12 +737,12 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeRootInit(void*, int, CVRootFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:170</i>
 	 */
-	int CVodeRootInit(Pointer cvode_mem, int nrtfn, CVRootFn g);
+	int CVodeRootInit(Pointer cvode_mem, int nrtfn, Sundials_cvodeLibrary.CVRootFn g);
 	/**
 	 * Rootfinding optional input functions<br>
 	 * Original signature : <code>int CVodeSetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:173</i><br>
-	 * @deprecated use the safer methods {@link #CVodeSetRootDirection(Pointer, IntBuffer)} and {@link #CVodeSetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeSetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeSetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeSetRootDirection(Pointer cvode_mem, IntByReference rootdir);
@@ -3464,33 +761,49 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Solver function<br>
 	 * Original signature : <code>int CVode(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:177</i><br>
-	 * @deprecated use the safer methods {@link #CVode(Pointer, double, _generic_N_Vector, DoubleBuffer, int)} and {@link #CVode(Pointer, double, _generic_N_Vector, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #CVode(com.sun.jna.Pointer, double, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #CVode(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
-	int CVode(Pointer cvode_mem, double tout, _generic_N_Vector yout, DoubleByReference tret, int itask);
+	int CVode(Pointer cvode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
 	/**
 	 * Solver function<br>
 	 * Original signature : <code>int CVode(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:177</i>
 	 */
-	int CVode(Pointer cvode_mem, double tout, _generic_N_Vector yout, DoubleBuffer tret, int itask);
+	int CVode(Pointer cvode_mem, double tout, Sundials_cvodeLibrary.N_Vector yout, DoubleBuffer tret, int itask);
+	/**
+	 * Utility functions to update/compute y based on ycor<br>
+	 * Original signature : <code>int CVodeComputeState(void*, N_Vector, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:181</i><br>
+	 * @deprecated use the safer methods {@link #CVodeComputeState(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeComputeState(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeComputeState(Pointer cvode_mem, Pointer ycor, Pointer y);
 	/**
 	 * Utility functions to update/compute y based on ycor<br>
 	 * Original signature : <code>int CVodeComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:181</i>
 	 */
-	int CVodeComputeState(Pointer cvode_mem, _generic_N_Vector ycor, _generic_N_Vector y);
+	int CVodeComputeState(Pointer cvode_mem, Sundials_cvodeLibrary.N_Vector ycor, Sundials_cvodeLibrary.N_Vector y);
+	/**
+	 * Dense output function<br>
+	 * Original signature : <code>int CVodeGetDky(void*, sunrealtype, int, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:184</i><br>
+	 * @deprecated use the safer methods {@link #CVodeGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeGetDky(Pointer cvode_mem, double t, int k, Pointer dky);
 	/**
 	 * Dense output function<br>
 	 * Original signature : <code>int CVodeGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:184</i>
 	 */
-	int CVodeGetDky(Pointer cvode_mem, double t, int k, _generic_N_Vector dky);
+	int CVodeGetDky(Pointer cvode_mem, double t, int k, Sundials_cvodeLibrary.N_Vector dky);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVodeGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:188</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetWorkSpace(Pointer cvode_mem, LongByReference lenrw, LongByReference leniw);
@@ -3503,7 +816,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:190</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumSteps(Pointer, LongBuffer)} and {@link #CVodeGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumSteps(Pointer cvode_mem, LongByReference nsteps);
@@ -3515,7 +828,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:191</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevals);
@@ -3527,7 +840,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:192</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumLinSolvSetups(Pointer, LongBuffer)} and {@link #CVodeGetNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumLinSolvSetups(Pointer cvode_mem, LongByReference nlinsetups);
@@ -3539,7 +852,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:194</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumErrTestFails(Pointer, LongBuffer)} and {@link #CVodeGetNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumErrTestFails(Pointer cvode_mem, LongByReference netfails);
@@ -3551,7 +864,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:195</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastOrder(Pointer, IntBuffer)} and {@link #CVodeGetLastOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetLastOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastOrder(Pointer cvode_mem, IntByReference qlast);
@@ -3563,7 +876,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentOrder(void*, int*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:196</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentOrder(Pointer, IntBuffer)} and {@link #CVodeGetCurrentOrder(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentOrder(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetCurrentOrder(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentOrder(Pointer cvode_mem, IntByReference qcur);
@@ -3575,7 +888,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentGamma(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:197</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentGamma(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentGamma(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentGamma(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentGamma(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentGamma(Pointer cvode_mem, DoubleByReference gamma);
@@ -3587,7 +900,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStabLimOrderReds(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:198</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStabLimOrderReds(Pointer, LongBuffer)} and {@link #CVodeGetNumStabLimOrderReds(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStabLimOrderReds(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStabLimOrderReds(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStabLimOrderReds(Pointer cvode_mem, LongByReference nslred);
@@ -3599,7 +912,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetActualInitStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:200</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetActualInitStep(Pointer, DoubleBuffer)} and {@link #CVodeGetActualInitStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetActualInitStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetActualInitStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetActualInitStep(Pointer cvode_mem, DoubleByReference hinused);
@@ -3611,7 +924,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:201</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetLastStep(Pointer, DoubleBuffer)} and {@link #CVodeGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetLastStep(Pointer cvode_mem, DoubleByReference hlast);
@@ -3623,7 +936,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:202</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentStep(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentStep(Pointer cvode_mem, DoubleByReference hcur);
@@ -3635,19 +948,19 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:203</i><br>
-	 * @deprecated use the safer method {@link #CVodeGetCurrentState(Pointer, ByReference[])} instead
+	 * @deprecated use the safer method {@link #CVodeGetCurrentState(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
-	int CVodeGetCurrentState(Pointer cvode_mem, PointerByReference y);
+	int CVodeGetCurrentState(Pointer cvode_mem, Pointer y);
 	/**
 	 * Original signature : <code>int CVodeGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:203</i>
 	 */
-	int CVodeGetCurrentState(Pointer cvode_mem, ByReference y[]);
+	int CVodeGetCurrentState(Pointer cvode_mem, PointerByReference y);
 	/**
 	 * Original signature : <code>int CVodeGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:204</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetCurrentTime(Pointer, DoubleBuffer)} and {@link #CVodeGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetCurrentTime(Pointer cvode_mem, DoubleByReference tcur);
@@ -3659,7 +972,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:205</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #CVodeGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #CVodeGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetTolScaleFactor(Pointer cvode_mem, DoubleByReference tolsfac);
@@ -3670,18 +983,32 @@ public interface Sundials_cvodeLibrary extends Library {
 	int CVodeGetTolScaleFactor(Pointer cvode_mem, DoubleBuffer tolsfac);
 	/**
 	 * Original signature : <code>int CVodeGetErrWeights(void*, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:206</i><br>
+	 * @deprecated use the safer methods {@link #CVodeGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeGetErrWeights(Pointer cvode_mem, Pointer eweight);
+	/**
+	 * Original signature : <code>int CVodeGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:206</i>
 	 */
-	int CVodeGetErrWeights(Pointer cvode_mem, _generic_N_Vector eweight);
+	int CVodeGetErrWeights(Pointer cvode_mem, Sundials_cvodeLibrary.N_Vector eweight);
+	/**
+	 * Original signature : <code>int CVodeGetEstLocalErrors(void*, N_Vector)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:207</i><br>
+	 * @deprecated use the safer methods {@link #CVodeGetEstLocalErrors(com.sun.jna.Pointer, cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.N_Vector)} and {@link #CVodeGetEstLocalErrors(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 */
+	@Deprecated 
+	int CVodeGetEstLocalErrors(Pointer cvode_mem, Pointer ele);
 	/**
 	 * Original signature : <code>int CVodeGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:207</i>
 	 */
-	int CVodeGetEstLocalErrors(Pointer cvode_mem, _generic_N_Vector ele);
+	int CVodeGetEstLocalErrors(Pointer cvode_mem, Sundials_cvodeLibrary.N_Vector ele);
 	/**
 	 * Original signature : <code>int CVodeGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:208</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumGEvals(Pointer, LongBuffer)} and {@link #CVodeGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumGEvals(Pointer cvode_mem, LongByReference ngevals);
@@ -3693,7 +1020,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:209</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetRootInfo(Pointer, IntBuffer)} and {@link #CVodeGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #CVodeGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetRootInfo(Pointer cvode_mem, IntByReference rootsfound);
@@ -3705,7 +1032,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetIntegratorStats(void*, long long*, long long*, long long*, long long*, int*, int*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:210</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetIntegratorStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, IntBuffer, IntBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #CVodeGetIntegratorStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, IntByReference, IntByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetIntegratorStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.IntBuffer, java.nio.IntBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #CVodeGetIntegratorStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetIntegratorStats(Pointer cvode_mem, LongByReference nsteps, LongByReference nfevals, LongByReference nlinsetups, LongByReference netfails, IntByReference qlast, IntByReference qcur, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);
@@ -3717,24 +1044,24 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:214</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemData(Pointer, DoubleBuffer, ByReference[], ByReference[], ByReference[], DoubleBuffer, DoubleBuffer, ByReference[], PointerByReference)} and {@link #CVodeGetNonlinearSystemData(Pointer, DoubleByReference, ByReference[], ByReference[], ByReference[], DoubleByReference, DoubleByReference, ByReference[], PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNonlinearSystemData(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #CVodeGetNonlinearSystemData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
+	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleByReference tcur, Pointer ypred, Pointer yn, Pointer fn, DoubleByReference gamma, DoubleByReference rl1, Pointer zn1, PointerByReference user_data);
+	/**
+	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:214</i>
+	 */
+	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleBuffer tcur, PointerByReference ypred, PointerByReference yn, PointerByReference fn, DoubleBuffer gamma, DoubleBuffer rl1, PointerByReference zn1, PointerByReference user_data);
+	/**
+	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
+	 * <i>native declaration : include\cvode\cvode.h:214</i>
+	 */
 	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleByReference tcur, PointerByReference ypred, PointerByReference yn, PointerByReference fn, DoubleByReference gamma, DoubleByReference rl1, PointerByReference zn1, PointerByReference user_data);
-	/**
-	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
-	 * <i>native declaration : include\cvode\cvode.h:214</i>
-	 */
-	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleBuffer tcur, ByReference ypred[], ByReference yn[], ByReference fn[], DoubleBuffer gamma, DoubleBuffer rl1, ByReference zn1[], PointerByReference user_data);
-	/**
-	 * Original signature : <code>int CVodeGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, sunrealtype*, N_Vector*, void**)</code><br>
-	 * <i>native declaration : include\cvode\cvode.h:214</i>
-	 */
-	int CVodeGetNonlinearSystemData(Pointer cvode_mem, DoubleByReference tcur, ByReference ypred[], ByReference yn[], ByReference fn[], DoubleByReference gamma, DoubleByReference rl1, ByReference zn1[], PointerByReference user_data);
 	/**
 	 * Original signature : <code>int CVodeGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:220</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #CVodeGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumNonlinSolvIters(Pointer cvode_mem, LongByReference nniters);
@@ -3746,7 +1073,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:222</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #CVodeGetNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumNonlinSolvConvFails(Pointer cvode_mem, LongByReference nnfails);
@@ -3758,7 +1085,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:224</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #CVodeGetNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVodeGetNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNonlinSolvStats(Pointer cvode_mem, LongByReference nniters, LongByReference nnfails);
@@ -3770,7 +1097,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodeGetNumStepSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:226</i><br>
-	 * @deprecated use the safer methods {@link #CVodeGetNumStepSolveFails(Pointer, LongBuffer)} and {@link #CVodeGetNumStepSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVodeGetNumStepSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVodeGetNumStepSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVodeGetNumStepSolveFails(Pointer cvode_mem, LongByReference nncfails);
@@ -3787,7 +1114,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVodePrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:229</i><br>
-	 * @deprecated use the safer method {@link #CVodePrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #CVodePrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int CVodePrintAllStats(Pointer cvode_mem, Pointer outfile, int fmt);
@@ -3812,7 +1139,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVodeSetJacTimesRhsFn(void*, CVRhsFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode.h:237</i>
 	 */
-	int CVodeSetJacTimesRhsFn(Pointer cvode_mem, CVRhsFn jtimesRhsFn);
+	int CVodeSetJacTimesRhsFn(Pointer cvode_mem, Sundials_cvodeLibrary.CVRhsFn jtimesRhsFn);
 	/**
 	 * BandPrec inititialization function<br>
 	 * Original signature : <code>int CVBandPrecInit(void*, sunindextype, sunindextype, sunindextype)</code><br>
@@ -3823,7 +1150,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVBandPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bandpre.h:13</i><br>
-	 * @deprecated use the safer methods {@link #CVBandPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVBandPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBandPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVBandPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBandPrecGetWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -3836,7 +1163,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVBandPrecGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bandpre.h:15</i><br>
-	 * @deprecated use the safer methods {@link #CVBandPrecGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVBandPrecGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBandPrecGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVBandPrecGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBandPrecGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevalsBP);
@@ -3850,7 +1177,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Original signature : <code>int CVBBDPrecInit(void*, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, CVLocalFn, CVCommFn)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bbdpre.h:16</i>
 	 */
-	int CVBBDPrecInit(Pointer cvode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, CVLocalFn gloc, CVCommFn cfn);
+	int CVBBDPrecInit(Pointer cvode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, Sundials_cvodeLibrary.CVLocalFn gloc, Sundials_cvodeLibrary.CVCommFn cfn);
 	/**
 	 * Original signature : <code>int CVBBDPrecReInit(void*, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bbdpre.h:22</i>
@@ -3860,7 +1187,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVBBDPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bbdpre.h:27</i><br>
-	 * @deprecated use the safer methods {@link #CVBBDPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVBBDPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBBDPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVBBDPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBBDPrecGetWorkSpace(Pointer cvode_mem, LongByReference lenrwBBDP, LongByReference leniwBBDP);
@@ -3873,7 +1200,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVBBDPrecGetNumGfnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_bbdpre.h:30</i><br>
-	 * @deprecated use the safer methods {@link #CVBBDPrecGetNumGfnEvals(Pointer, LongBuffer)} and {@link #CVBBDPrecGetNumGfnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVBBDPrecGetNumGfnEvals(Pointer cvode_mem, LongByReference ngevalsBBDP);
@@ -3892,7 +1219,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int CVDiagGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_diag.h:28</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #CVDiagGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #CVDiagGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetWorkSpace(Pointer cvode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -3905,7 +1232,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVDiagGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_diag.h:30</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetNumRhsEvals(Pointer, LongBuffer)} and {@link #CVDiagGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVDiagGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetNumRhsEvals(Pointer cvode_mem, LongByReference nfevalsLS);
@@ -3917,7 +1244,7 @@ public interface Sundials_cvodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int CVDiagGetLastFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\cvode\cvode_diag.h:31</i><br>
-	 * @deprecated use the safer methods {@link #CVDiagGetLastFlag(Pointer, LongBuffer)} and {@link #CVDiagGetLastFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #CVDiagGetLastFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #CVDiagGetLastFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int CVDiagGetLastFlag(Pointer cvode_mem, LongByReference flag);
@@ -3931,19 +1258,27 @@ public interface Sundials_cvodeLibrary extends Library {
 	 * <i>native declaration : include\cvode\cvode_diag.h:32</i>
 	 */
 	Pointer CVDiagGetReturnFlagName(long flag);
-	public static class SUNMemoryHelper_Ops extends PointerType {
-		public SUNMemoryHelper_Ops(Pointer address) {
-			super(address);
-		}
-		public SUNMemoryHelper_Ops() {
-			super();
-		}
-	};
 	public static class SUNMatrix extends PointerType {
 		public SUNMatrix(Pointer address) {
 			super(address);
 		}
 		public SUNMatrix() {
+			super();
+		}
+	};
+	public static class SUNLinearSolver extends PointerType {
+		public SUNLinearSolver(Pointer address) {
+			super(address);
+		}
+		public SUNLinearSolver() {
+			super();
+		}
+	};
+	public static class SUNNonlinearSolver extends PointerType {
+		public SUNNonlinearSolver(Pointer address) {
+			super(address);
+		}
+		public SUNNonlinearSolver() {
 			super();
 		}
 	};
@@ -3955,27 +1290,19 @@ public interface Sundials_cvodeLibrary extends Library {
 			super();
 		}
 	};
-	public static class SUNProfiler extends PointerType {
-		public SUNProfiler(Pointer address) {
-			super(address);
-		}
-		public SUNProfiler() {
-			super();
-		}
-	};
-	public static class SUNLogger extends PointerType {
-		public SUNLogger(Pointer address) {
-			super(address);
-		}
-		public SUNLogger() {
-			super();
-		}
-	};
 	public static class FILE extends PointerType {
 		public FILE(Pointer address) {
 			super(address);
 		}
 		public FILE() {
+			super();
+		}
+	};
+	public static class N_Vector extends PointerType {
+		public N_Vector(Pointer address) {
+			super(address);
+		}
+		public N_Vector() {
 			super();
 		}
 	};

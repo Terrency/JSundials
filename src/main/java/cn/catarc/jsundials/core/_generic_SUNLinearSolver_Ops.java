@@ -1,10 +1,8 @@
-package cn.catarc.jsundials.cvode;
-
+package cn.catarc.jsundials.core;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.LongByReference;
-
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -16,15 +14,15 @@ import java.util.List;
  */
 public class _generic_SUNLinearSolver_Ops extends Structure {
 	/** C type : gettype_callback* */
-	public _generic_SUNNonlinearSolver_Ops.gettype_callback gettype;
+	public cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.gettype_callback gettype;
 	/** C type : getid_callback* */
-	public getid_callback getid;
+	public _generic_SUNLinearSolver_Ops.getid_callback getid;
 	/** C type : setup_callback* */
-	public _generic_SUNNonlinearSolver_Ops.setup_callback setup;
+	public cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.setup_callback setup;
 	/** C type : solve_callback* */
-	public _generic_SUNNonlinearSolver_Ops.solve_callback solve;
+	public cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.solve_callback solve;
 	/** C type : numiters_callback* */
-	public numiters_callback numiters;
+	public _generic_SUNLinearSolver_Ops.numiters_callback numiters;
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface gettype_callback extends Callback {
 		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
@@ -98,7 +96,7 @@ public class _generic_SUNLinearSolver_Ops extends Structure {
 	 * @param solve C type : solve_callback*<br>
 	 * @param numiters C type : numiters_callback*
 	 */
-	public _generic_SUNLinearSolver_Ops(_generic_SUNNonlinearSolver_Ops.gettype_callback gettype, getid_callback getid, _generic_SUNNonlinearSolver_Ops.setup_callback setup, _generic_SUNNonlinearSolver_Ops.solve_callback solve, numiters_callback numiters) {
+	public _generic_SUNLinearSolver_Ops(cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.gettype_callback gettype, _generic_SUNLinearSolver_Ops.getid_callback getid, cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.setup_callback setup, cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.solve_callback solve, _generic_SUNLinearSolver_Ops.numiters_callback numiters) {
 		super();
 		this.gettype = gettype;
 		this.getid = getid;

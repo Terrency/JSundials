@@ -1,10 +1,8 @@
-package cn.catarc.jsundials.cvode;
-
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNContext;
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNMemoryHelper_Ops;
+package cn.catarc.jsundials.core;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNContext;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNMemoryHelper_Ops;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 /**

@@ -1,12 +1,10 @@
-package cn.catarc.jsundials.cvode;
-
+package cn.catarc.jsundials.core;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -18,85 +16,85 @@ import java.util.List;
  */
 public class _generic_N_Vector_Ops extends Structure {
 	/** C type : nvgetvectorid_callback* */
-	public nvgetvectorid_callback nvgetvectorid;
+	public _generic_N_Vector_Ops.nvgetvectorid_callback nvgetvectorid;
 	/** C type : nvclone_callback* */
-	public nvclone_callback nvclone;
+	public _generic_N_Vector_Ops.nvclone_callback nvclone;
 	/** C type : nvcloneempty_callback* */
-	public nvcloneempty_callback nvcloneempty;
+	public _generic_N_Vector_Ops.nvcloneempty_callback nvcloneempty;
 	/** C type : nvdestroy_callback* */
-	public nvdestroy_callback nvdestroy;
+	public _generic_N_Vector_Ops.nvdestroy_callback nvdestroy;
 	/** C type : nvspace_callback* */
-	public nvspace_callback nvspace;
+	public _generic_N_Vector_Ops.nvspace_callback nvspace;
 	/** C type : nvgetarraypointer_callback* */
-	public nvgetarraypointer_callback nvgetarraypointer;
+	public _generic_N_Vector_Ops.nvgetarraypointer_callback nvgetarraypointer;
 	/** C type : nvgetdevicearraypointer_callback* */
-	public nvgetdevicearraypointer_callback nvgetdevicearraypointer;
+	public _generic_N_Vector_Ops.nvgetdevicearraypointer_callback nvgetdevicearraypointer;
 	/** C type : nvsetarraypointer_callback* */
-	public nvsetarraypointer_callback nvsetarraypointer;
+	public _generic_N_Vector_Ops.nvsetarraypointer_callback nvsetarraypointer;
 	/** C type : nvgetlength_callback* */
-	public nvgetlength_callback nvgetlength;
+	public _generic_N_Vector_Ops.nvgetlength_callback nvgetlength;
 	/** C type : nvgetlocallength_callback* */
-	public nvgetlocallength_callback nvgetlocallength;
+	public _generic_N_Vector_Ops.nvgetlocallength_callback nvgetlocallength;
 	/** C type : nvlinearsum_callback* */
-	public nvlinearsum_callback nvlinearsum;
+	public _generic_N_Vector_Ops.nvlinearsum_callback nvlinearsum;
 	/** C type : nvconst_callback* */
-	public nvconst_callback nvconst;
+	public _generic_N_Vector_Ops.nvconst_callback nvconst;
 	/** C type : nvprod_callback* */
-	public nvprod_callback nvprod;
+	public _generic_N_Vector_Ops.nvprod_callback nvprod;
 	/** C type : nvdiv_callback* */
-	public nvdiv_callback nvdiv;
+	public _generic_N_Vector_Ops.nvdiv_callback nvdiv;
 	/** C type : nvscale_callback* */
-	public nvscale_callback nvscale;
+	public _generic_N_Vector_Ops.nvscale_callback nvscale;
 	/** C type : nvabs_callback* */
-	public nvabs_callback nvabs;
+	public _generic_N_Vector_Ops.nvabs_callback nvabs;
 	/** C type : nvinv_callback* */
-	public nvinv_callback nvinv;
+	public _generic_N_Vector_Ops.nvinv_callback nvinv;
 	/** C type : nvaddconst_callback* */
-	public nvaddconst_callback nvaddconst;
+	public _generic_N_Vector_Ops.nvaddconst_callback nvaddconst;
 	/** C type : nvdotprod_callback* */
-	public nvdotprod_callback nvdotprod;
+	public _generic_N_Vector_Ops.nvdotprod_callback nvdotprod;
 	/** C type : nvmaxnorm_callback* */
-	public nvmaxnorm_callback nvmaxnorm;
+	public _generic_N_Vector_Ops.nvmaxnorm_callback nvmaxnorm;
 	/** C type : nvwrmsnorm_callback* */
-	public nvwrmsnorm_callback nvwrmsnorm;
+	public _generic_N_Vector_Ops.nvwrmsnorm_callback nvwrmsnorm;
 	/** C type : nvwrmsnormmask_callback* */
-	public nvwrmsnormmask_callback nvwrmsnormmask;
+	public _generic_N_Vector_Ops.nvwrmsnormmask_callback nvwrmsnormmask;
 	/** C type : nvmin_callback* */
-	public nvmin_callback nvmin;
+	public _generic_N_Vector_Ops.nvmin_callback nvmin;
 	/** C type : nvwl2norm_callback* */
-	public nvwl2norm_callback nvwl2norm;
+	public _generic_N_Vector_Ops.nvwl2norm_callback nvwl2norm;
 	/** C type : nvl1norm_callback* */
-	public nvl1norm_callback nvl1norm;
+	public _generic_N_Vector_Ops.nvl1norm_callback nvl1norm;
 	/** C type : nvcompare_callback* */
-	public nvcompare_callback nvcompare;
+	public _generic_N_Vector_Ops.nvcompare_callback nvcompare;
 	/** C type : nvinvtest_callback* */
-	public nvinvtest_callback nvinvtest;
+	public _generic_N_Vector_Ops.nvinvtest_callback nvinvtest;
 	/** C type : nvconstrmask_callback* */
-	public nvconstrmask_callback nvconstrmask;
+	public _generic_N_Vector_Ops.nvconstrmask_callback nvconstrmask;
 	/** C type : nvminquotient_callback* */
-	public nvminquotient_callback nvminquotient;
+	public _generic_N_Vector_Ops.nvminquotient_callback nvminquotient;
 	/** C type : nvdotprodlocal_callback* */
-	public nvdotprodlocal_callback nvdotprodlocal;
+	public _generic_N_Vector_Ops.nvdotprodlocal_callback nvdotprodlocal;
 	/** C type : nvmaxnormlocal_callback* */
-	public nvmaxnormlocal_callback nvmaxnormlocal;
+	public _generic_N_Vector_Ops.nvmaxnormlocal_callback nvmaxnormlocal;
 	/** C type : nvminlocal_callback* */
-	public nvminlocal_callback nvminlocal;
+	public _generic_N_Vector_Ops.nvminlocal_callback nvminlocal;
 	/** C type : nvl1normlocal_callback* */
-	public nvl1normlocal_callback nvl1normlocal;
+	public _generic_N_Vector_Ops.nvl1normlocal_callback nvl1normlocal;
 	/** C type : nvinvtestlocal_callback* */
-	public nvinvtestlocal_callback nvinvtestlocal;
+	public _generic_N_Vector_Ops.nvinvtestlocal_callback nvinvtestlocal;
 	/** C type : nvconstrmasklocal_callback* */
-	public nvconstrmasklocal_callback nvconstrmasklocal;
+	public _generic_N_Vector_Ops.nvconstrmasklocal_callback nvconstrmasklocal;
 	/** C type : nvminquotientlocal_callback* */
-	public nvminquotientlocal_callback nvminquotientlocal;
+	public _generic_N_Vector_Ops.nvminquotientlocal_callback nvminquotientlocal;
 	/** C type : nvwsqrsumlocal_callback* */
-	public nvwsqrsumlocal_callback nvwsqrsumlocal;
+	public _generic_N_Vector_Ops.nvwsqrsumlocal_callback nvwsqrsumlocal;
 	/** C type : nvwsqrsummasklocal_callback* */
-	public nvwsqrsummasklocal_callback nvwsqrsummasklocal;
+	public _generic_N_Vector_Ops.nvwsqrsummasklocal_callback nvwsqrsummasklocal;
 	/** C type : nvprint_callback* */
-	public nvprint_callback nvprint;
+	public _generic_N_Vector_Ops.nvprint_callback nvprint;
 	/** C type : nvprintfile_callback* */
-	public nvprintfile_callback nvprintfile;
+	public _generic_N_Vector_Ops.nvprintfile_callback nvprintfile;
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetvectorid_callback extends Callback {
 		int apply(_generic_N_Vector N_Vector1);

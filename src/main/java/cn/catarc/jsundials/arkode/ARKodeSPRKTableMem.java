@@ -1,9 +1,7 @@
 package cn.catarc.jsundials.arkode;
-
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.DoubleByReference;
-
 import java.util.Arrays;
 import java.util.List;
 /**

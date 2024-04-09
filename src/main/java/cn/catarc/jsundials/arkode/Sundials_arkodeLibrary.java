@@ -1,8 +1,15 @@
 package cn.catarc.jsundials.arkode;
-
-import com.sun.jna.*;
-import com.sun.jna.ptr.*;
-
+import com.sun.jna.Callback;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
+import com.sun.jna.ptr.DoubleByReference;
+import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
+import com.sun.jna.ptr.NativeLongByReference;
+import com.sun.jna.ptr.PointerByReference;
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -39,55 +46,55 @@ public interface Sundials_arkodeLibrary extends Library {
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:9</i> */
 		public static final int ARKODE_MIN_DIRK_NUM = 100;
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:10</i> */
-		public static final int ARKODE_SDIRK_2_1_2 = (int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM;
+		public static final int ARKODE_SDIRK_2_1_2 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM;
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:11</i> */
-		public static final int ARKODE_BILLINGTON_3_3_2 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 1);
+		public static final int ARKODE_BILLINGTON_3_3_2 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 1);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:12</i> */
-		public static final int ARKODE_TRBDF2_3_3_2 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 2);
+		public static final int ARKODE_TRBDF2_3_3_2 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 2);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:13</i> */
-		public static final int ARKODE_KVAERNO_4_2_3 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 3);
+		public static final int ARKODE_KVAERNO_4_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 3);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:14</i> */
-		public static final int ARKODE_ARK324L2SA_DIRK_4_2_3 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 4);
+		public static final int ARKODE_ARK324L2SA_DIRK_4_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 4);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:15</i> */
-		public static final int ARKODE_CASH_5_2_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 5);
+		public static final int ARKODE_CASH_5_2_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 5);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:16</i> */
-		public static final int ARKODE_CASH_5_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 6);
+		public static final int ARKODE_CASH_5_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 6);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:17</i> */
-		public static final int ARKODE_SDIRK_5_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 7);
+		public static final int ARKODE_SDIRK_5_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 7);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:18</i> */
-		public static final int ARKODE_KVAERNO_5_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 8);
+		public static final int ARKODE_KVAERNO_5_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 8);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:19</i> */
-		public static final int ARKODE_ARK436L2SA_DIRK_6_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 9);
+		public static final int ARKODE_ARK436L2SA_DIRK_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 9);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:20</i> */
-		public static final int ARKODE_KVAERNO_7_4_5 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 10);
+		public static final int ARKODE_KVAERNO_7_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 10);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:21</i> */
-		public static final int ARKODE_ARK548L2SA_DIRK_8_4_5 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 11);
+		public static final int ARKODE_ARK548L2SA_DIRK_8_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 11);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:22</i> */
-		public static final int ARKODE_ARK437L2SA_DIRK_7_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 12);
+		public static final int ARKODE_ARK437L2SA_DIRK_7_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 12);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:23</i> */
-		public static final int ARKODE_ARK548L2SAb_DIRK_8_4_5 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 13);
+		public static final int ARKODE_ARK548L2SAb_DIRK_8_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 13);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:24</i> */
-		public static final int ARKODE_ESDIRK324L2SA_4_2_3 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 14);
+		public static final int ARKODE_ESDIRK324L2SA_4_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 14);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:25</i> */
-		public static final int ARKODE_ESDIRK325L2SA_5_2_3 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 15);
+		public static final int ARKODE_ESDIRK325L2SA_5_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 15);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:26</i> */
-		public static final int ARKODE_ESDIRK32I5L2SA_5_2_3 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 16);
+		public static final int ARKODE_ESDIRK32I5L2SA_5_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 16);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:27</i> */
-		public static final int ARKODE_ESDIRK436L2SA_6_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 17);
+		public static final int ARKODE_ESDIRK436L2SA_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 17);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:28</i> */
-		public static final int ARKODE_ESDIRK43I6L2SA_6_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 18);
+		public static final int ARKODE_ESDIRK43I6L2SA_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 18);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:29</i> */
-		public static final int ARKODE_QESDIRK436L2SA_6_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 19);
+		public static final int ARKODE_QESDIRK436L2SA_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 19);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:30</i> */
-		public static final int ARKODE_ESDIRK437L2SA_7_3_4 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 20);
+		public static final int ARKODE_ESDIRK437L2SA_7_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 20);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:31</i> */
-		public static final int ARKODE_ESDIRK547L2SA_7_4_5 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 21);
+		public static final int ARKODE_ESDIRK547L2SA_7_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 21);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:32</i> */
-		public static final int ARKODE_ESDIRK547L2SA2_7_4_5 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 22);
+		public static final int ARKODE_ESDIRK547L2SA2_7_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 22);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:33</i> */
-		public static final int ARKODE_ARK2_DIRK_3_1_2 = ((int) ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 23);
+		public static final int ARKODE_ARK2_DIRK_3_1_2 = ((int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_MIN_DIRK_NUM + 23);
 		/** <i>native declaration : include\arkode\arkode_butcher_dirk.h:34</i> */
-		public static final int ARKODE_MAX_DIRK_NUM = (int) ARKODE_DIRKTableID.ARKODE_ARK2_DIRK_3_1_2;
+		public static final int ARKODE_MAX_DIRK_NUM = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK2_DIRK_3_1_2;
 	};
 	/**
 	 * <i>native declaration : include\arkode\arkode_butcher_erk.h</i><br>
@@ -102,51 +109,51 @@ public interface Sundials_arkodeLibrary extends Library {
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:9</i> */
 		public static final int ARKODE_MIN_ERK_NUM = 0;
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:10</i> */
-		public static final int ARKODE_HEUN_EULER_2_1_2 = (int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM;
+		public static final int ARKODE_HEUN_EULER_2_1_2 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM;
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:11</i> */
-		public static final int ARKODE_BOGACKI_SHAMPINE_4_2_3 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 1);
+		public static final int ARKODE_BOGACKI_SHAMPINE_4_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 1);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:12</i> */
-		public static final int ARKODE_ARK324L2SA_ERK_4_2_3 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 2);
+		public static final int ARKODE_ARK324L2SA_ERK_4_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 2);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:13</i> */
-		public static final int ARKODE_ZONNEVELD_5_3_4 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 3);
+		public static final int ARKODE_ZONNEVELD_5_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 3);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:14</i> */
-		public static final int ARKODE_ARK436L2SA_ERK_6_3_4 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 4);
+		public static final int ARKODE_ARK436L2SA_ERK_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 4);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:15</i> */
-		public static final int ARKODE_SAYFY_ABURUB_6_3_4 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 5);
+		public static final int ARKODE_SAYFY_ABURUB_6_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 5);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:16</i> */
-		public static final int ARKODE_CASH_KARP_6_4_5 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 6);
+		public static final int ARKODE_CASH_KARP_6_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 6);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:17</i> */
-		public static final int ARKODE_FEHLBERG_6_4_5 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 7);
+		public static final int ARKODE_FEHLBERG_6_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 7);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:18</i> */
-		public static final int ARKODE_DORMAND_PRINCE_7_4_5 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 8);
+		public static final int ARKODE_DORMAND_PRINCE_7_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 8);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:19</i> */
-		public static final int ARKODE_ARK548L2SA_ERK_8_4_5 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 9);
+		public static final int ARKODE_ARK548L2SA_ERK_8_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 9);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:20</i> */
-		public static final int ARKODE_VERNER_8_5_6 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 10);
+		public static final int ARKODE_VERNER_8_5_6 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 10);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:21</i> */
-		public static final int ARKODE_FEHLBERG_13_7_8 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 11);
+		public static final int ARKODE_FEHLBERG_13_7_8 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 11);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:22</i> */
-		public static final int ARKODE_KNOTH_WOLKE_3_3 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 12);
+		public static final int ARKODE_KNOTH_WOLKE_3_3 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 12);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:23</i> */
-		public static final int ARKODE_ARK437L2SA_ERK_7_3_4 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 13);
+		public static final int ARKODE_ARK437L2SA_ERK_7_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 13);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:24</i> */
-		public static final int ARKODE_ARK548L2SAb_ERK_8_4_5 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 14);
+		public static final int ARKODE_ARK548L2SAb_ERK_8_4_5 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 14);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:25</i> */
-		public static final int ARKODE_ARK2_ERK_3_1_2 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 15);
+		public static final int ARKODE_ARK2_ERK_3_1_2 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 15);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:26</i> */
-		public static final int ARKODE_SOFRONIOU_SPALETTA_5_3_4 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 16);
+		public static final int ARKODE_SOFRONIOU_SPALETTA_5_3_4 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 16);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:27</i> */
-		public static final int ARKODE_SHU_OSHER_3_2_3 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 17);
+		public static final int ARKODE_SHU_OSHER_3_2_3 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 17);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:28</i> */
-		public static final int ARKODE_VERNER_9_5_6 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 18);
+		public static final int ARKODE_VERNER_9_5_6 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 18);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:29</i> */
-		public static final int ARKODE_VERNER_10_6_7 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 19);
+		public static final int ARKODE_VERNER_10_6_7 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 19);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:30</i> */
-		public static final int ARKODE_VERNER_13_7_8 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 20);
+		public static final int ARKODE_VERNER_13_7_8 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 20);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:31</i> */
-		public static final int ARKODE_VERNER_16_8_9 = ((int) ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 21);
+		public static final int ARKODE_VERNER_16_8_9 = ((int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_MIN_ERK_NUM + 21);
 		/** <i>native declaration : include\arkode\arkode_butcher_erk.h:32</i> */
-		public static final int ARKODE_MAX_ERK_NUM = (int) ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
+		public static final int ARKODE_MAX_ERK_NUM = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
 	};
 	/**
 	 * <i>native declaration : include\arkode\arkode_mristep.h</i><br>
@@ -173,25 +180,25 @@ public interface Sundials_arkodeLibrary extends Library {
 		/** <i>native declaration : include\arkode\arkode_mristep.h:21</i> */
 		public static final int ARKODE_MIN_MRI_NUM = 200;
 		/** <i>native declaration : include\arkode\arkode_mristep.h:22</i> */
-		public static final int ARKODE_MIS_KW3 = (int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM;
+		public static final int ARKODE_MIS_KW3 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM;
 		/** <i>native declaration : include\arkode\arkode_mristep.h:23</i> */
-		public static final int ARKODE_MRI_GARK_ERK33a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 1);
+		public static final int ARKODE_MRI_GARK_ERK33a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 1);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:24</i> */
-		public static final int ARKODE_MRI_GARK_ERK45a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 2);
+		public static final int ARKODE_MRI_GARK_ERK45a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 2);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:25</i> */
-		public static final int ARKODE_MRI_GARK_IRK21a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 3);
+		public static final int ARKODE_MRI_GARK_IRK21a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 3);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:26</i> */
-		public static final int ARKODE_MRI_GARK_ESDIRK34a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 4);
+		public static final int ARKODE_MRI_GARK_ESDIRK34a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 4);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:27</i> */
-		public static final int ARKODE_MRI_GARK_ESDIRK46a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 5);
+		public static final int ARKODE_MRI_GARK_ESDIRK46a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 5);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:28</i> */
-		public static final int ARKODE_IMEX_MRI_GARK3a = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 6);
+		public static final int ARKODE_IMEX_MRI_GARK3a = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 6);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:29</i> */
-		public static final int ARKODE_IMEX_MRI_GARK3b = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 7);
+		public static final int ARKODE_IMEX_MRI_GARK3b = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 7);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:30</i> */
-		public static final int ARKODE_IMEX_MRI_GARK4 = ((int) ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 8);
+		public static final int ARKODE_IMEX_MRI_GARK4 = ((int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIN_MRI_NUM + 8);
 		/** <i>native declaration : include\arkode\arkode_mristep.h:31</i> */
-		public static final int ARKODE_MAX_MRI_NUM = (int) ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK4;
+		public static final int ARKODE_MAX_MRI_NUM = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK4;
 	};
 	/**
 	 * <i>native declaration : include\arkode\arkode_sprk.h</i><br>
@@ -206,86 +213,86 @@ public interface Sundials_arkodeLibrary extends Library {
 		/** <i>native declaration : include\arkode\arkode_sprk.h:9</i> */
 		public static final int ARKODE_MIN_SPRK_NUM = 0;
 		/** <i>native declaration : include\arkode\arkode_sprk.h:10</i> */
-		public static final int ARKODE_SPRK_EULER_1_1 = (int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM;
+		public static final int ARKODE_SPRK_EULER_1_1 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM;
 		/** <i>native declaration : include\arkode\arkode_sprk.h:11</i> */
-		public static final int ARKODE_SPRK_LEAPFROG_2_2 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 1);
+		public static final int ARKODE_SPRK_LEAPFROG_2_2 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 1);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:12</i> */
-		public static final int ARKODE_SPRK_PSEUDO_LEAPFROG_2_2 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 2);
+		public static final int ARKODE_SPRK_PSEUDO_LEAPFROG_2_2 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 2);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:13</i> */
-		public static final int ARKODE_SPRK_RUTH_3_3 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 3);
+		public static final int ARKODE_SPRK_RUTH_3_3 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 3);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:14</i> */
-		public static final int ARKODE_SPRK_MCLACHLAN_2_2 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 4);
+		public static final int ARKODE_SPRK_MCLACHLAN_2_2 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 4);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:15</i> */
-		public static final int ARKODE_SPRK_MCLACHLAN_3_3 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 5);
+		public static final int ARKODE_SPRK_MCLACHLAN_3_3 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 5);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:16</i> */
-		public static final int ARKODE_SPRK_CANDY_ROZMUS_4_4 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 6);
+		public static final int ARKODE_SPRK_CANDY_ROZMUS_4_4 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 6);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:17</i> */
-		public static final int ARKODE_SPRK_MCLACHLAN_4_4 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 7);
+		public static final int ARKODE_SPRK_MCLACHLAN_4_4 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 7);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:18</i> */
-		public static final int ARKODE_SPRK_MCLACHLAN_5_6 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 8);
+		public static final int ARKODE_SPRK_MCLACHLAN_5_6 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 8);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:19</i> */
-		public static final int ARKODE_SPRK_YOSHIDA_6_8 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 9);
+		public static final int ARKODE_SPRK_YOSHIDA_6_8 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 9);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:20</i> */
-		public static final int ARKODE_SPRK_SUZUKI_UMENO_8_16 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 10);
+		public static final int ARKODE_SPRK_SUZUKI_UMENO_8_16 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 10);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:21</i> */
-		public static final int ARKODE_SPRK_SOFRONIOU_10_36 = ((int) ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 11);
+		public static final int ARKODE_SPRK_SOFRONIOU_10_36 = ((int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_MIN_SPRK_NUM + 11);
 		/** <i>native declaration : include\arkode\arkode_sprk.h:22</i> */
-		public static final int ARKODE_MAX_SPRK_NUM = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_SOFRONIOU_10_36;
+		public static final int ARKODE_MAX_SPRK_NUM = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_SOFRONIOU_10_36;
 	};
 	/** explicit */
-	public static final int ARKSTEP_DEFAULT_ERK_2 = (int) ARKODE_ERKTableID.ARKODE_HEUN_EULER_2_1_2;
-	public static final int ARKSTEP_DEFAULT_ERK_3 = (int) ARKODE_ERKTableID.ARKODE_BOGACKI_SHAMPINE_4_2_3;
-	public static final int ARKSTEP_DEFAULT_ERK_4 = (int) ARKODE_ERKTableID.ARKODE_ZONNEVELD_5_3_4;
-	public static final int ARKSTEP_DEFAULT_ERK_5 = (int) ARKODE_ERKTableID.ARKODE_CASH_KARP_6_4_5;
-	public static final int ARKSTEP_DEFAULT_ERK_6 = (int) ARKODE_ERKTableID.ARKODE_VERNER_8_5_6;
-	public static final int ARKSTEP_DEFAULT_ERK_7 = (int) ARKODE_ERKTableID.ARKODE_VERNER_10_6_7;
-	public static final int ARKSTEP_DEFAULT_ERK_8 = (int) ARKODE_ERKTableID.ARKODE_FEHLBERG_13_7_8;
-	public static final int ARKSTEP_DEFAULT_ERK_9 = (int) ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
+	public static final int ARKSTEP_DEFAULT_ERK_2 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_HEUN_EULER_2_1_2;
+	public static final int ARKSTEP_DEFAULT_ERK_3 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_BOGACKI_SHAMPINE_4_2_3;
+	public static final int ARKSTEP_DEFAULT_ERK_4 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ZONNEVELD_5_3_4;
+	public static final int ARKSTEP_DEFAULT_ERK_5 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_CASH_KARP_6_4_5;
+	public static final int ARKSTEP_DEFAULT_ERK_6 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_8_5_6;
+	public static final int ARKSTEP_DEFAULT_ERK_7 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_10_6_7;
+	public static final int ARKSTEP_DEFAULT_ERK_8 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_FEHLBERG_13_7_8;
+	public static final int ARKSTEP_DEFAULT_ERK_9 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
 	/** implicit */
-	public static final int ARKSTEP_DEFAULT_DIRK_2 = (int) ARKODE_DIRKTableID.ARKODE_SDIRK_2_1_2;
-	public static final int ARKSTEP_DEFAULT_DIRK_3 = (int) ARKODE_DIRKTableID.ARKODE_ARK324L2SA_DIRK_4_2_3;
-	public static final int ARKSTEP_DEFAULT_DIRK_4 = (int) ARKODE_DIRKTableID.ARKODE_SDIRK_5_3_4;
-	public static final int ARKSTEP_DEFAULT_DIRK_5 = (int) ARKODE_DIRKTableID.ARKODE_ARK548L2SA_DIRK_8_4_5;
+	public static final int ARKSTEP_DEFAULT_DIRK_2 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_SDIRK_2_1_2;
+	public static final int ARKSTEP_DEFAULT_DIRK_3 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK324L2SA_DIRK_4_2_3;
+	public static final int ARKSTEP_DEFAULT_DIRK_4 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_SDIRK_5_3_4;
+	public static final int ARKSTEP_DEFAULT_DIRK_5 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK548L2SA_DIRK_8_4_5;
 	/** ImEx */
-	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_2 = (int) ARKODE_ERKTableID.ARKODE_ARK2_ERK_3_1_2;
-	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_3 = (int) ARKODE_ERKTableID.ARKODE_ARK324L2SA_ERK_4_2_3;
-	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_4 = (int) ARKODE_ERKTableID.ARKODE_ARK436L2SA_ERK_6_3_4;
-	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_5 = (int) ARKODE_ERKTableID.ARKODE_ARK548L2SA_ERK_8_4_5;
-	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_2 = (int) ARKODE_DIRKTableID.ARKODE_ARK2_DIRK_3_1_2;
-	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_3 = (int) ARKODE_DIRKTableID.ARKODE_ARK324L2SA_DIRK_4_2_3;
-	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_4 = (int) ARKODE_DIRKTableID.ARKODE_ARK436L2SA_DIRK_6_3_4;
-	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_5 = (int) ARKODE_DIRKTableID.ARKODE_ARK548L2SA_DIRK_8_4_5;
+	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_2 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ARK2_ERK_3_1_2;
+	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_3 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ARK324L2SA_ERK_4_2_3;
+	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_4 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ARK436L2SA_ERK_6_3_4;
+	public static final int ARKSTEP_DEFAULT_ARK_ETABLE_5 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ARK548L2SA_ERK_8_4_5;
+	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_2 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK2_DIRK_3_1_2;
+	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_3 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK324L2SA_DIRK_4_2_3;
+	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_4 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK436L2SA_DIRK_6_3_4;
+	public static final int ARKSTEP_DEFAULT_ARK_ITABLE_5 = (int)Sundials_arkodeLibrary.ARKODE_DIRKTableID.ARKODE_ARK548L2SA_DIRK_8_4_5;
 	/** Default Butcher tables for each order */
-	public static final int ERKSTEP_DEFAULT_2 = (int) ARKODE_ERKTableID.ARKODE_HEUN_EULER_2_1_2;
-	public static final int ERKSTEP_DEFAULT_3 = (int) ARKODE_ERKTableID.ARKODE_BOGACKI_SHAMPINE_4_2_3;
-	public static final int ERKSTEP_DEFAULT_4 = (int) ARKODE_ERKTableID.ARKODE_ZONNEVELD_5_3_4;
-	public static final int ERKSTEP_DEFAULT_5 = (int) ARKODE_ERKTableID.ARKODE_CASH_KARP_6_4_5;
-	public static final int ERKSTEP_DEFAULT_6 = (int) ARKODE_ERKTableID.ARKODE_VERNER_8_5_6;
-	public static final int ERKSTEP_DEFAULT_7 = (int) ARKODE_ERKTableID.ARKODE_VERNER_10_6_7;
-	public static final int ERKSTEP_DEFAULT_8 = (int) ARKODE_ERKTableID.ARKODE_FEHLBERG_13_7_8;
-	public static final int ERKSTEP_DEFAULT_9 = (int) ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
+	public static final int ERKSTEP_DEFAULT_2 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_HEUN_EULER_2_1_2;
+	public static final int ERKSTEP_DEFAULT_3 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_BOGACKI_SHAMPINE_4_2_3;
+	public static final int ERKSTEP_DEFAULT_4 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_ZONNEVELD_5_3_4;
+	public static final int ERKSTEP_DEFAULT_5 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_CASH_KARP_6_4_5;
+	public static final int ERKSTEP_DEFAULT_6 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_8_5_6;
+	public static final int ERKSTEP_DEFAULT_7 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_10_6_7;
+	public static final int ERKSTEP_DEFAULT_8 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_FEHLBERG_13_7_8;
+	public static final int ERKSTEP_DEFAULT_9 = (int)Sundials_arkodeLibrary.ARKODE_ERKTableID.ARKODE_VERNER_16_8_9;
 	/** Default MRI coupling tables for each order */
-	public static final int MRISTEP_DEFAULT_3 = (int) ARKODE_MRITableID.ARKODE_MIS_KW3;
-	public static final int MRISTEP_DEFAULT_EXPL_3 = (int) ARKODE_MRITableID.ARKODE_MIS_KW3;
-	public static final int MRISTEP_DEFAULT_EXPL_4 = (int) ARKODE_MRITableID.ARKODE_MRI_GARK_ERK45a;
-	public static final int MRISTEP_DEFAULT_IMPL_SD_2 = (int) ARKODE_MRITableID.ARKODE_MRI_GARK_IRK21a;
-	public static final int MRISTEP_DEFAULT_IMPL_SD_3 = (int) ARKODE_MRITableID.ARKODE_MRI_GARK_ESDIRK34a;
-	public static final int MRISTEP_DEFAULT_IMPL_SD_4 = (int) ARKODE_MRITableID.ARKODE_MRI_GARK_ESDIRK46a;
-	public static final int MRISTEP_DEFAULT_IMEX_SD_3 = (int) ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK3b;
-	public static final int MRISTEP_DEFAULT_IMEX_SD_4 = (int) ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK4;
+	public static final int MRISTEP_DEFAULT_3 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIS_KW3;
+	public static final int MRISTEP_DEFAULT_EXPL_3 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MIS_KW3;
+	public static final int MRISTEP_DEFAULT_EXPL_4 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MRI_GARK_ERK45a;
+	public static final int MRISTEP_DEFAULT_IMPL_SD_2 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MRI_GARK_IRK21a;
+	public static final int MRISTEP_DEFAULT_IMPL_SD_3 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MRI_GARK_ESDIRK34a;
+	public static final int MRISTEP_DEFAULT_IMPL_SD_4 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_MRI_GARK_ESDIRK46a;
+	public static final int MRISTEP_DEFAULT_IMEX_SD_3 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK3b;
+	public static final int MRISTEP_DEFAULT_IMEX_SD_4 = (int)Sundials_arkodeLibrary.ARKODE_MRITableID.ARKODE_IMEX_MRI_GARK4;
 	/**
 	 * -----------------<br>
 	 * SPRKStep Constants<br>
 	 * -----------------
 	 */
-	public static final int SPRKSTEP_DEFAULT_1 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_EULER_1_1;
-	public static final int SPRKSTEP_DEFAULT_2 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_LEAPFROG_2_2;
-	public static final int SPRKSTEP_DEFAULT_3 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_3_3;
-	public static final int SPRKSTEP_DEFAULT_4 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_4_4;
-	public static final int SPRKSTEP_DEFAULT_5 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_5_6;
-	public static final int SPRKSTEP_DEFAULT_6 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_YOSHIDA_6_8;
-	public static final int SPRKSTEP_DEFAULT_8 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_SUZUKI_UMENO_8_16;
-	public static final int SPRKSTEP_DEFAULT_10 = (int) ARKODE_SPRKMethodID.ARKODE_SPRK_SOFRONIOU_10_36;
+	public static final int SPRKSTEP_DEFAULT_1 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_EULER_1_1;
+	public static final int SPRKSTEP_DEFAULT_2 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_LEAPFROG_2_2;
+	public static final int SPRKSTEP_DEFAULT_3 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_3_3;
+	public static final int SPRKSTEP_DEFAULT_4 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_4_4;
+	public static final int SPRKSTEP_DEFAULT_5 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_MCLACHLAN_5_6;
+	public static final int SPRKSTEP_DEFAULT_6 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_YOSHIDA_6_8;
+	public static final int SPRKSTEP_DEFAULT_8 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_SUZUKI_UMENO_8_16;
+	public static final int SPRKSTEP_DEFAULT_10 = (int)Sundials_arkodeLibrary.ARKODE_SPRKMethodID.ARKODE_SPRK_SOFRONIOU_10_36;
 	/** <i>native declaration : include\arkode\arkode.h</i> */
 	public static final int ARK_NORMAL = (int)1;
 	/** <i>native declaration : include\arkode\arkode.h</i> */
@@ -573,7 +580,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>ARKodeButcherTable ARKodeButcherTable_Create(int, int, int, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher.h:45</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_Create(int, int, int, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #ARKodeButcherTable_Create(int, int, int, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_Create(int, int, int, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #ARKodeButcherTable_Create(int, int, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	ARKodeButcherTableMem ARKodeButcherTable_Create(int s, int q, int p, DoubleByReference c, DoubleByReference A, DoubleByReference b, DoubleByReference d);
@@ -590,7 +597,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void ARKodeButcherTable_Space(ARKodeButcherTable, sunindextype*, sunindextype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher.h:51</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_Space(ARKodeButcherTableMem, LongBuffer, LongBuffer)} and {@link #ARKodeButcherTable_Space(ARKodeButcherTableMem, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_Space(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKodeButcherTable_Space(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	void ARKodeButcherTable_Space(ARKodeButcherTableMem B, LongByReference liw, LongByReference lrw);
@@ -607,7 +614,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void ARKodeButcherTable_Write(ARKodeButcherTable, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher.h:55</i><br>
-	 * @deprecated use the safer method {@link #ARKodeButcherTable_Write(ARKodeButcherTableMem, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKodeButcherTable_Write(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void ARKodeButcherTable_Write(ARKodeButcherTableMem B, Pointer outfile);
@@ -624,7 +631,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKodeButcherTable_CheckOrder(ARKodeButcherTable, int*, int*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher.h:59</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_CheckOrder(ARKodeButcherTableMem, IntBuffer, IntBuffer, PointerByReference)} and {@link #ARKodeButcherTable_CheckOrder(ARKodeButcherTableMem, IntByReference, IntByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_CheckOrder(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, java.nio.IntBuffer, java.nio.IntBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #ARKodeButcherTable_CheckOrder(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKodeButcherTable_CheckOrder(ARKodeButcherTableMem B, IntByReference q, IntByReference p, Pointer outfile);
@@ -641,7 +648,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKodeButcherTable_CheckARKOrder(ARKodeButcherTable, ARKodeButcherTable, int*, int*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher.h:61</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_CheckARKOrder(ARKodeButcherTableMem, ARKodeButcherTableMem, IntBuffer, IntBuffer, PointerByReference)} and {@link #ARKodeButcherTable_CheckARKOrder(ARKodeButcherTableMem, ARKodeButcherTableMem, IntByReference, IntByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_CheckARKOrder(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, cn.catarc.jsundials.arkode.ARKodeButcherTableMem, java.nio.IntBuffer, java.nio.IntBuffer, com.sun.jna.ptr.PointerByReference)} and {@link #ARKodeButcherTable_CheckARKOrder(cn.catarc.jsundials.arkode.ARKodeButcherTableMem, cn.catarc.jsundials.arkode.ARKodeButcherTableMem, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKodeButcherTable_CheckARKOrder(ARKodeButcherTableMem B1, ARKodeButcherTableMem B2, IntByReference q, IntByReference p, Pointer outfile);
@@ -665,7 +672,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Accessor routine to load built-in DIRK table<br>
 	 * Original signature : <code>ARKodeButcherTable ARKodeButcherTable_LoadDIRKByName(const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher_dirk.h:42</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_LoadDIRKByName(String)} and {@link #ARKodeButcherTable_LoadDIRKByName(Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_LoadDIRKByName(java.lang.String)} and {@link #ARKodeButcherTable_LoadDIRKByName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	ARKodeButcherTableMem ARKodeButcherTable_LoadDIRKByName(Pointer imethod);
@@ -684,7 +691,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>ARKodeButcherTable ARKodeButcherTable_LoadERKByName(const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_butcher_erk.h:39</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeButcherTable_LoadERKByName(String)} and {@link #ARKodeButcherTable_LoadERKByName(Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKodeButcherTable_LoadERKByName(java.lang.String)} and {@link #ARKodeButcherTable_LoadERKByName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	ARKodeButcherTableMem ARKodeButcherTable_LoadERKByName(Pointer emethod);
@@ -697,44 +704,44 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* ARKStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:67</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepCreate(ARKRhsFn, ARKRhsFn, double, N_Vector, SUNContext)} and {@link #ARKStepCreate(ARKRhsFn, ARKRhsFn, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNContext)} and {@link #ARKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	Pointer ARKStepCreate(ARKRhsFn fe, ARKRhsFn fi, double t0, Pointer y0, Pointer sunctx);
+	Pointer ARKStepCreate(Sundials_arkodeLibrary.ARKRhsFn fe, Sundials_arkodeLibrary.ARKRhsFn fi, double t0, Pointer y0, Pointer sunctx);
 	/**
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* ARKStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:67</i>
 	 */
-	Pointer ARKStepCreate(ARKRhsFn fe, ARKRhsFn fi, double t0, N_Vector y0, SUNContext sunctx);
+	Pointer ARKStepCreate(Sundials_arkodeLibrary.ARKRhsFn fe, Sundials_arkodeLibrary.ARKRhsFn fi, double t0, Sundials_arkodeLibrary.N_Vector y0, Sundials_arkodeLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int ARKStepResize(void*, N_Vector, sunrealtype, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:70</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepResize(Pointer, N_Vector, double, double, ARKVecResizeFn, Pointer)} and {@link #ARKStepResize(Pointer, Pointer, double, double, ARKVecResizeFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepResize(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, double, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} and {@link #ARKStepResize(com.sun.jna.Pointer, com.sun.jna.Pointer, double, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int ARKStepResize(Pointer arkode_mem, Pointer ynew, double hscale, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int ARKStepResize(Pointer arkode_mem, Pointer ynew, double hscale, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int ARKStepResize(void*, N_Vector, sunrealtype, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:70</i>
 	 */
-	int ARKStepResize(Pointer arkode_mem, N_Vector ynew, double hscale, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int ARKStepResize(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector ynew, double hscale, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int ARKStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:74</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, N_Vector)} and {@link #ARKStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int ARKStepReInit(Pointer arkode_mem, ARKRhsFn fe, ARKRhsFn fi, double t0, Pointer y0);
+	int ARKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn fe, Sundials_arkodeLibrary.ARKRhsFn fi, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int ARKStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:74</i>
 	 */
-	int ARKStepReInit(Pointer arkode_mem, ARKRhsFn fe, ARKRhsFn fi, double t0, N_Vector y0);
+	int ARKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn fe, Sundials_arkodeLibrary.ARKRhsFn fi, double t0, Sundials_arkodeLibrary.N_Vector y0);
 	/**
 	 * Original signature : <code>int ARKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:77</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepReset(Pointer, double, N_Vector)} and {@link #ARKStepReset(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepReset(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepReset(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepReset(Pointer arkode_mem, double tR, Pointer yR);
@@ -742,7 +749,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:77</i>
 	 */
-	int ARKStepReset(Pointer arkode_mem, double tR, N_Vector yR);
+	int ARKStepReset(Pointer arkode_mem, double tR, Sundials_arkodeLibrary.N_Vector yR);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int ARKStepSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -752,7 +759,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:82</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSVtolerances(Pointer, double, N_Vector)} and {@link #ARKStepSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSVtolerances(Pointer arkode_mem, double reltol, Pointer abstol);
@@ -760,12 +767,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:82</i>
 	 */
-	int ARKStepSVtolerances(Pointer arkode_mem, double reltol, N_Vector abstol);
+	int ARKStepSVtolerances(Pointer arkode_mem, double reltol, Sundials_arkodeLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int ARKStepWFtolerances(void*, ARKEwtFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:84</i>
 	 */
-	int ARKStepWFtolerances(Pointer arkode_mem, ARKEwtFn efun);
+	int ARKStepWFtolerances(Pointer arkode_mem, Sundials_arkodeLibrary.ARKEwtFn efun);
 	/**
 	 * Residual tolerance input functions<br>
 	 * Original signature : <code>int ARKStepResStolerance(void*, sunrealtype)</code><br>
@@ -775,7 +782,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepResVtolerance(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:88</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepResVtolerance(Pointer, N_Vector)} and {@link #ARKStepResVtolerance(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepResVtolerance(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepResVtolerance(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepResVtolerance(Pointer arkode_mem, Pointer rabstol);
@@ -783,17 +790,17 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepResVtolerance(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:88</i>
 	 */
-	int ARKStepResVtolerance(Pointer arkode_mem, N_Vector rabstol);
+	int ARKStepResVtolerance(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector rabstol);
 	/**
 	 * Original signature : <code>int ARKStepResFtolerance(void*, ARKRwtFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:89</i>
 	 */
-	int ARKStepResFtolerance(Pointer arkode_mem, ARKRwtFn rfun);
+	int ARKStepResFtolerance(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRwtFn rfun);
 	/**
 	 * Linear solver set functions<br>
 	 * Original signature : <code>int ARKStepSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:92</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetLinearSolver(Pointer, SUNLinearSolver, SUNMatrix)} and {@link #ARKStepSetLinearSolver(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNLinearSolver, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNMatrix)} and {@link #ARKStepSetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetLinearSolver(Pointer arkode_mem, Pointer LS, Pointer A);
@@ -802,11 +809,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:92</i>
 	 */
-	int ARKStepSetLinearSolver(Pointer arkode_mem, SUNLinearSolver LS, SUNMatrix A);
+	int ARKStepSetLinearSolver(Pointer arkode_mem, Sundials_arkodeLibrary.SUNLinearSolver LS, Sundials_arkodeLibrary.SUNMatrix A);
 	/**
 	 * Original signature : <code>int ARKStepSetMassLinearSolver(void*, SUNLinearSolver, SUNMatrix, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:94</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetMassLinearSolver(Pointer, SUNLinearSolver, SUNMatrix, int)} and {@link #ARKStepSetMassLinearSolver(Pointer, Pointer, Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetMassLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNLinearSolver, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNMatrix, int)} and {@link #ARKStepSetMassLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetMassLinearSolver(Pointer arkode_mem, Pointer LS, Pointer M, int time_dep);
@@ -814,13 +821,13 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetMassLinearSolver(void*, SUNLinearSolver, SUNMatrix, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:94</i>
 	 */
-	int ARKStepSetMassLinearSolver(Pointer arkode_mem, SUNLinearSolver LS, SUNMatrix M, int time_dep);
+	int ARKStepSetMassLinearSolver(Pointer arkode_mem, Sundials_arkodeLibrary.SUNLinearSolver LS, Sundials_arkodeLibrary.SUNMatrix M, int time_dep);
 	/**
 	 * Rootfinding initialization<br>
 	 * Original signature : <code>int ARKStepRootInit(void*, int, ARKRootFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:99</i>
 	 */
-	int ARKStepRootInit(Pointer arkode_mem, int nrtfn, ARKRootFn g);
+	int ARKStepRootInit(Pointer arkode_mem, int nrtfn, Sundials_arkodeLibrary.ARKRootFn g);
 	/**
 	 * Optional input functions -- must be called AFTER ARKStepCreate<br>
 	 * Original signature : <code>int ARKStepSetDefaults(void*)</code><br>
@@ -855,7 +862,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:108</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetNonlinearSolver(Pointer, SUNNonlinearSolver)} and {@link #ARKStepSetNonlinearSolver(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetNonlinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNNonlinearSolver)} and {@link #ARKStepSetNonlinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetNonlinearSolver(Pointer arkode_mem, Pointer NLS);
@@ -863,12 +870,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:108</i>
 	 */
-	int ARKStepSetNonlinearSolver(Pointer arkode_mem, SUNNonlinearSolver NLS);
+	int ARKStepSetNonlinearSolver(Pointer arkode_mem, Sundials_arkodeLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int ARKStepSetNlsRhsFn(void*, ARKRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:110</i>
 	 */
-	int ARKStepSetNlsRhsFn(Pointer arkode_mem, ARKRhsFn nls_fi);
+	int ARKStepSetNlsRhsFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn nls_fi);
 	/**
 	 * Original signature : <code>int ARKStepSetLinear(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:111</i>
@@ -912,7 +919,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetTableName(void*, const char*, const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:124</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetTableName(Pointer, String, String)} and {@link #ARKStepSetTableName(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetTableName(com.sun.jna.Pointer, java.lang.String, java.lang.String)} and {@link #ARKStepSetTableName(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetTableName(Pointer arkode_mem, Pointer itable, Pointer etable);
@@ -924,7 +931,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetAdaptController(void*, SUNAdaptController)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:126</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetAdaptController(Pointer, SUNAdaptController)} and {@link #ARKStepSetAdaptController(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetAdaptController(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNAdaptController)} and {@link #ARKStepSetAdaptController(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetAdaptController(Pointer arkode_mem, Pointer C);
@@ -932,7 +939,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetAdaptController(void*, SUNAdaptController)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:126</i>
 	 */
-	int ARKStepSetAdaptController(Pointer arkode_mem, SUNAdaptController C);
+	int ARKStepSetAdaptController(Pointer arkode_mem, Sundials_arkodeLibrary.SUNAdaptController C);
 	/**
 	 * Original signature : <code>int ARKStepSetAdaptivityAdjustment(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:128</i>
@@ -971,7 +978,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetAdaptivityMethod(void*, int, int, int, sunrealtype[3])</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:137</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetAdaptivityMethod(Pointer, int, int, int, DoubleBuffer)} and {@link #ARKStepSetAdaptivityMethod(Pointer, int, int, int, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetAdaptivityMethod(com.sun.jna.Pointer, int, int, int, java.nio.DoubleBuffer)} and {@link #ARKStepSetAdaptivityMethod(com.sun.jna.Pointer, int, int, int, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetAdaptivityMethod(Pointer arkode_mem, int imethod, int idefault, int pq, DoubleByReference adapt_params);
@@ -984,7 +991,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetAdaptivityFn(void*, ARKAdaptFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:140</i>
 	 */
-	int ARKStepSetAdaptivityFn(Pointer arkode_mem, ARKAdaptFn hfun, Pointer h_data);
+	int ARKStepSetAdaptivityFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKAdaptFn hfun, Pointer h_data);
 	/**
 	 * Original signature : <code>int ARKStepSetMaxFirstGrowth(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:142</i>
@@ -1034,7 +1041,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetStabilityFn(void*, ARKExpStabFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:153</i>
 	 */
-	int ARKStepSetStabilityFn(Pointer arkode_mem, ARKExpStabFn EStab, Pointer estab_data);
+	int ARKStepSetStabilityFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKExpStabFn EStab, Pointer estab_data);
 	/**
 	 * Original signature : <code>int ARKStepSetMaxErrTestFails(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:155</i>
@@ -1058,7 +1065,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:160</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetConstraints(Pointer, N_Vector)} and {@link #ARKStepSetConstraints(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepSetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetConstraints(Pointer arkode_mem, Pointer constraints);
@@ -1066,7 +1073,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:160</i>
 	 */
-	int ARKStepSetConstraints(Pointer arkode_mem, N_Vector constraints);
+	int ARKStepSetConstraints(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector constraints);
 	/**
 	 * Original signature : <code>int ARKStepSetMaxNumSteps(void*, long long)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:161</i>
@@ -1120,7 +1127,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepSetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:173</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepSetRootDirection(Pointer, IntBuffer)} and {@link #ARKStepSetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepSetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #ARKStepSetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepSetRootDirection(Pointer arkode_mem, IntByReference rootdir);
@@ -1143,29 +1150,29 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetPostprocessStepFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:178</i>
 	 */
-	int ARKStepSetPostprocessStepFn(Pointer arkode_mem, ARKPostProcessFn ProcessStep);
+	int ARKStepSetPostprocessStepFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStep);
 	/**
 	 * Original signature : <code>int ARKStepSetPostprocessStageFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:180</i>
 	 */
-	int ARKStepSetPostprocessStageFn(Pointer arkode_mem, ARKPostProcessFn ProcessStage);
+	int ARKStepSetPostprocessStageFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStage);
 	/**
 	 * Original signature : <code>int ARKStepSetStagePredictFn(void*, ARKStagePredictFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:182</i>
 	 */
-	int ARKStepSetStagePredictFn(Pointer arkode_mem, ARKStagePredictFn PredictStage);
+	int ARKStepSetStagePredictFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKStagePredictFn PredictStage);
 	/**
 	 * Linear solver interface optional input functions -- must be called<br>
 	 * AFTER ARKStepSetLinearSolver and/or ARKStepSetMassLinearSolver<br>
 	 * Original signature : <code>int ARKStepSetJacFn(void*, ARKLsJacFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:187</i>
 	 */
-	int ARKStepSetJacFn(Pointer arkode_mem, ARKLsJacFn jac);
+	int ARKStepSetJacFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsJacFn jac);
 	/**
 	 * Original signature : <code>int ARKStepSetMassFn(void*, ARKLsMassFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:188</i>
 	 */
-	int ARKStepSetMassFn(Pointer arkode_mem, ARKLsMassFn mass);
+	int ARKStepSetMassFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsMassFn mass);
 	/**
 	 * Original signature : <code>int ARKStepSetJacEvalFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:189</i>
@@ -1200,37 +1207,37 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetPreconditioner(void*, ARKLsPrecSetupFn, ARKLsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:197</i>
 	 */
-	int ARKStepSetPreconditioner(Pointer arkode_mem, ARKLsPrecSetupFn psetup, ARKLsPrecSolveFn psolve);
+	int ARKStepSetPreconditioner(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsPrecSetupFn psetup, Sundials_arkodeLibrary.ARKLsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int ARKStepSetMassPreconditioner(void*, ARKLsMassPrecSetupFn, ARKLsMassPrecSolveFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:200</i>
 	 */
-	int ARKStepSetMassPreconditioner(Pointer arkode_mem, ARKLsMassPrecSetupFn psetup, ARKLsMassPrecSolveFn psolve);
+	int ARKStepSetMassPreconditioner(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsMassPrecSetupFn psetup, Sundials_arkodeLibrary.ARKLsMassPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int ARKStepSetJacTimes(void*, ARKLsJacTimesSetupFn, ARKLsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:203</i>
 	 */
-	int ARKStepSetJacTimes(Pointer arkode_mem, ARKLsJacTimesSetupFn jtsetup, ARKLsJacTimesVecFn jtimes);
+	int ARKStepSetJacTimes(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsJacTimesSetupFn jtsetup, Sundials_arkodeLibrary.ARKLsJacTimesVecFn jtimes);
 	/**
 	 * Original signature : <code>int ARKStepSetJacTimesRhsFn(void*, ARKRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:206</i>
 	 */
-	int ARKStepSetJacTimesRhsFn(Pointer arkode_mem, ARKRhsFn jtimesRhsFn);
+	int ARKStepSetJacTimesRhsFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn jtimesRhsFn);
 	/**
 	 * Original signature : <code>int ARKStepSetMassTimes(void*, ARKLsMassTimesSetupFn, ARKLsMassTimesVecFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:208</i>
 	 */
-	int ARKStepSetMassTimes(Pointer arkode_mem, ARKLsMassTimesSetupFn msetup, ARKLsMassTimesVecFn mtimes, Pointer mtimes_data);
+	int ARKStepSetMassTimes(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsMassTimesSetupFn msetup, Sundials_arkodeLibrary.ARKLsMassTimesVecFn mtimes, Pointer mtimes_data);
 	/**
 	 * Original signature : <code>int ARKStepSetLinSysFn(void*, ARKLsLinSysFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:212</i>
 	 */
-	int ARKStepSetLinSysFn(Pointer arkode_mem, ARKLsLinSysFn linsys);
+	int ARKStepSetLinSysFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsLinSysFn linsys);
 	/**
 	 * Integrate the ODE over an interval in t<br>
 	 * Original signature : <code>int ARKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:215</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepEvolve(Pointer, double, N_Vector, DoubleBuffer, int)} and {@link #ARKStepEvolve(Pointer, double, Pointer, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #ARKStepEvolve(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #ARKStepEvolve(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
 	int ARKStepEvolve(Pointer arkode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
@@ -1239,12 +1246,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:215</i>
 	 */
-	int ARKStepEvolve(Pointer arkode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask);
+	int ARKStepEvolve(Pointer arkode_mem, double tout, Sundials_arkodeLibrary.N_Vector yout, DoubleBuffer tret, int itask);
 	/**
 	 * Computes the kth derivative of the y function at time t<br>
 	 * Original signature : <code>int ARKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:219</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetDky(Pointer, double, int, N_Vector)} and {@link #ARKStepGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetDky(Pointer arkode_mem, double t, int k, Pointer dky);
@@ -1253,12 +1260,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:219</i>
 	 */
-	int ARKStepGetDky(Pointer arkode_mem, double t, int k, N_Vector dky);
+	int ARKStepGetDky(Pointer arkode_mem, double t, int k, Sundials_arkodeLibrary.N_Vector dky);
 	/**
 	 * Utility function to update/compute y based on zcor<br>
 	 * Original signature : <code>int ARKStepComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:223</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepComputeState(Pointer, N_Vector, N_Vector)} and {@link #ARKStepComputeState(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepComputeState(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepComputeState(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepComputeState(Pointer arkode_mem, Pointer zcor, Pointer z);
@@ -1267,12 +1274,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:223</i>
 	 */
-	int ARKStepComputeState(Pointer arkode_mem, N_Vector zcor, N_Vector z);
+	int ARKStepComputeState(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector zcor, Sundials_arkodeLibrary.N_Vector z);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int ARKStepGetNumExpSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:227</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumExpSteps(Pointer, LongBuffer)} and {@link #ARKStepGetNumExpSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumExpSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumExpSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumExpSteps(Pointer arkode_mem, LongByReference expsteps);
@@ -1285,7 +1292,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumAccSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:228</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumAccSteps(Pointer, LongBuffer)} and {@link #ARKStepGetNumAccSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumAccSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumAccSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumAccSteps(Pointer arkode_mem, LongByReference accsteps);
@@ -1297,7 +1304,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumStepAttempts(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:229</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumStepAttempts(Pointer, LongBuffer)} and {@link #ARKStepGetNumStepAttempts(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumStepAttempts(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumStepAttempts(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumStepAttempts(Pointer arkode_mem, LongByReference step_attempts);
@@ -1309,7 +1316,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRhsEvals(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:231</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRhsEvals(Pointer, LongBuffer, LongBuffer)} and {@link #ARKStepGetNumRhsEvals(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRhsEvals(Pointer arkode_mem, LongByReference nfe_evals, LongByReference nfi_evals);
@@ -1321,7 +1328,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:233</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumLinSolvSetups(Pointer, LongBuffer)} and {@link #ARKStepGetNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumLinSolvSetups(Pointer arkode_mem, LongByReference nlinsetups);
@@ -1333,7 +1340,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:235</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumErrTestFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumErrTestFails(Pointer arkode_mem, LongByReference netfails);
@@ -1345,7 +1352,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentButcherTables(void*, ARKodeButcherTable*, ARKodeButcherTable*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:237</i><br>
-	 * @deprecated use the safer method {@link #ARKStepGetCurrentButcherTables(Pointer, ARKodeButcherTableMem.ByReference[], ARKodeButcherTableMem.ByReference[])} instead
+	 * @deprecated use the safer method {@link #ARKStepGetCurrentButcherTables(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.ARKodeButcherTableMem.ByReference[], cn.catarc.jsundials.arkode.ARKodeButcherTableMem.ByReference[])} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentButcherTables(Pointer arkode_mem, PointerByReference Bi, PointerByReference Be);
@@ -1357,7 +1364,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:240</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetEstLocalErrors(Pointer, N_Vector)} and {@link #ARKStepGetEstLocalErrors(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetEstLocalErrors(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepGetEstLocalErrors(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetEstLocalErrors(Pointer arkode_mem, Pointer ele);
@@ -1365,11 +1372,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:240</i>
 	 */
-	int ARKStepGetEstLocalErrors(Pointer arkode_mem, N_Vector ele);
+	int ARKStepGetEstLocalErrors(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector ele);
 	/**
 	 * Original signature : <code>int ARKStepGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:241</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ARKStepGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetWorkSpace(Pointer arkode_mem, LongByReference lenrw, LongByReference leniw);
@@ -1381,7 +1388,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:243</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumSteps(Pointer, LongBuffer)} and {@link #ARKStepGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumSteps(Pointer arkode_mem, LongByReference nsteps);
@@ -1393,7 +1400,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetActualInitStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:244</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetActualInitStep(Pointer, DoubleBuffer)} and {@link #ARKStepGetActualInitStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetActualInitStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetActualInitStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetActualInitStep(Pointer arkode_mem, DoubleByReference hinused);
@@ -1405,7 +1412,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:246</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetLastStep(Pointer, DoubleBuffer)} and {@link #ARKStepGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetLastStep(Pointer arkode_mem, DoubleByReference hlast);
@@ -1417,7 +1424,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:247</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetCurrentStep(Pointer, DoubleBuffer)} and {@link #ARKStepGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentStep(Pointer arkode_mem, DoubleByReference hcur);
@@ -1429,7 +1436,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:248</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetCurrentTime(Pointer, DoubleBuffer)} and {@link #ARKStepGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentTime(Pointer arkode_mem, DoubleByReference tcur);
@@ -1441,7 +1448,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:249</i><br>
-	 * @deprecated use the safer method {@link #ARKStepGetCurrentState(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepGetCurrentState(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentState(Pointer arkode_mem, Pointer state);
@@ -1453,7 +1460,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentGamma(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:250</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetCurrentGamma(Pointer, DoubleBuffer)} and {@link #ARKStepGetCurrentGamma(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetCurrentGamma(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetCurrentGamma(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentGamma(Pointer arkode_mem, DoubleByReference gamma);
@@ -1465,7 +1472,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetCurrentMassMatrix(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:251</i><br>
-	 * @deprecated use the safer method {@link #ARKStepGetCurrentMassMatrix(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepGetCurrentMassMatrix(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetCurrentMassMatrix(Pointer arkode_mem, Pointer M);
@@ -1477,7 +1484,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:252</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #ARKStepGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetTolScaleFactor(Pointer arkode_mem, DoubleByReference tolsfac);
@@ -1489,7 +1496,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:254</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetErrWeights(Pointer, N_Vector)} and {@link #ARKStepGetErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetErrWeights(Pointer arkode_mem, Pointer eweight);
@@ -1497,11 +1504,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:254</i>
 	 */
-	int ARKStepGetErrWeights(Pointer arkode_mem, N_Vector eweight);
+	int ARKStepGetErrWeights(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector eweight);
 	/**
 	 * Original signature : <code>int ARKStepGetResWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:255</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetResWeights(Pointer, N_Vector)} and {@link #ARKStepGetResWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetResWeights(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ARKStepGetResWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetResWeights(Pointer arkode_mem, Pointer rweight);
@@ -1509,11 +1516,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepGetResWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:255</i>
 	 */
-	int ARKStepGetResWeights(Pointer arkode_mem, N_Vector rweight);
+	int ARKStepGetResWeights(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector rweight);
 	/**
 	 * Original signature : <code>int ARKStepGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:256</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumGEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumGEvals(Pointer arkode_mem, LongByReference ngevals);
@@ -1525,7 +1532,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:257</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetRootInfo(Pointer, IntBuffer)} and {@link #ARKStepGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #ARKStepGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetRootInfo(Pointer arkode_mem, IntByReference rootsfound);
@@ -1537,7 +1544,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumConstrFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:258</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumConstrFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumConstrFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumConstrFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumConstrFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumConstrFails(Pointer arkode_mem, LongByReference nconstrfails);
@@ -1554,7 +1561,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:261</i><br>
-	 * @deprecated use the safer method {@link #ARKStepPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #ARKStepPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int ARKStepPrintAllStats(Pointer arkode_mem, Pointer outfile, int fmt);
@@ -1571,7 +1578,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepWriteParameters(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:265</i><br>
-	 * @deprecated use the safer method {@link #ARKStepWriteParameters(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepWriteParameters(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepWriteParameters(Pointer arkode_mem, Pointer fp);
@@ -1583,7 +1590,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepWriteButcher(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:267</i><br>
-	 * @deprecated use the safer method {@link #ARKStepWriteButcher(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepWriteButcher(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepWriteButcher(Pointer arkode_mem, Pointer fp);
@@ -1596,7 +1603,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Grouped optional output functions<br>
 	 * Original signature : <code>int ARKStepGetTimestepperStats(void*, long long*, long long*, long long*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:270</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetTimestepperStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #ARKStepGetTimestepperStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetTimestepperStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetTimestepperStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetTimestepperStats(Pointer arkode_mem, LongByReference expsteps, LongByReference accsteps, LongByReference step_attempts, LongByReference nfe_evals, LongByReference nfi_evals, LongByReference nlinsetups, LongByReference netfails);
@@ -1609,7 +1616,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetStepStats(void*, long long*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:274</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetStepStats(Pointer, LongBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #ARKStepGetStepStats(Pointer, LongByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetStepStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #ARKStepGetStepStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetStepStats(Pointer arkode_mem, LongByReference nsteps, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);
@@ -1622,7 +1629,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Nonlinear solver optional output functions<br>
 	 * Original signature : <code>int ARKStepGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, N_Vector*, void**)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:279</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNonlinearSystemData(Pointer, DoubleBuffer, PointerByReference, PointerByReference, PointerByReference, DoubleBuffer, PointerByReference, PointerByReference)} and {@link #ARKStepGetNonlinearSystemData(Pointer, DoubleByReference, PointerByReference, PointerByReference, PointerByReference, DoubleByReference, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNonlinearSystemData(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #ARKStepGetNonlinearSystemData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNonlinearSystemData(Pointer arkode_mem, DoubleByReference tcur, Pointer zpred, Pointer z, Pointer Fi, DoubleByReference gamma, Pointer sdata, PointerByReference user_data);
@@ -1641,7 +1648,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:283</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #ARKStepGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumNonlinSolvIters(Pointer arkode_mem, LongByReference nniters);
@@ -1653,7 +1660,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:285</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumNonlinSolvConvFails(Pointer arkode_mem, LongByReference nnfails);
@@ -1665,7 +1672,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:287</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #ARKStepGetNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNonlinSolvStats(Pointer arkode_mem, LongByReference nniters, LongByReference nnfails);
@@ -1677,7 +1684,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumStepSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:289</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumStepSolveFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumStepSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumStepSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumStepSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumStepSolveFails(Pointer arkode_mem, LongByReference nncfails);
@@ -1690,7 +1697,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Linear solver optional output functions<br>
 	 * Original signature : <code>int ARKStepGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:293</i><br>
-	 * @deprecated use the safer method {@link #ARKStepGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetJac(Pointer arkode_mem, Pointer J);
@@ -1703,7 +1710,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetJacTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:294</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetJacTime(Pointer, DoubleBuffer)} and {@link #ARKStepGetJacTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetJacTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ARKStepGetJacTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetJacTime(Pointer arkode_mem, DoubleByReference t_J);
@@ -1715,7 +1722,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetJacNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:295</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetJacNumSteps(Pointer, LongBuffer)} and {@link #ARKStepGetJacNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetJacNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetJacNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetJacNumSteps(Pointer arkode_mem, LongByReference nst_J);
@@ -1727,7 +1734,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:296</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ARKStepGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetLinWorkSpace(Pointer arkode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -1739,7 +1746,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:298</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumJacEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumJacEvals(Pointer arkode_mem, LongByReference njevals);
@@ -1751,7 +1758,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:299</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumPrecEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumPrecEvals(Pointer arkode_mem, LongByReference npevals);
@@ -1763,7 +1770,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:300</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumPrecSolves(Pointer, LongBuffer)} and {@link #ARKStepGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumPrecSolves(Pointer arkode_mem, LongByReference npsolves);
@@ -1775,7 +1782,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:301</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumLinIters(Pointer, LongBuffer)} and {@link #ARKStepGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumLinIters(Pointer arkode_mem, LongByReference nliters);
@@ -1787,7 +1794,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:302</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumLinConvFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumLinConvFails(Pointer arkode_mem, LongByReference nlcfails);
@@ -1799,7 +1806,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumJTSetupEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:304</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumJTSetupEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumJTSetupEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumJTSetupEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumJTSetupEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumJTSetupEvals(Pointer arkode_mem, LongByReference njtsetups);
@@ -1811,7 +1818,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:306</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumJtimesEvals(Pointer arkode_mem, LongByReference njvevals);
@@ -1823,7 +1830,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumLinRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:308</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumLinRhsEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumLinRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumLinRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumLinRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumLinRhsEvals(Pointer arkode_mem, LongByReference nfevalsLS);
@@ -1835,7 +1842,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:310</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetLastLinFlag(Pointer, LongBuffer)} and {@link #ARKStepGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetLastLinFlag(Pointer arkode_mem, LongByReference flag);
@@ -1847,7 +1854,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetMassWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:312</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetMassWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ARKStepGetMassWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetMassWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKStepGetMassWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetMassWorkSpace(Pointer arkode_mem, LongByReference lenrwMLS, LongByReference leniwMLS);
@@ -1859,7 +1866,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:314</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassSetups(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassSetups(Pointer arkode_mem, LongByReference nmsetups);
@@ -1871,7 +1878,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassMultSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:315</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassMultSetups(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassMultSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassMultSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassMultSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassMultSetups(Pointer arkode_mem, LongByReference nmvsetups);
@@ -1883,7 +1890,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassMult(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:317</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassMult(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassMult(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassMult(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassMult(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassMult(Pointer arkode_mem, LongByReference nmvevals);
@@ -1895,7 +1902,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:318</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassSolves(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassSolves(Pointer arkode_mem, LongByReference nmsolves);
@@ -1907,7 +1914,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:319</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassPrecEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassPrecEvals(Pointer arkode_mem, LongByReference nmpevals);
@@ -1919,7 +1926,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:321</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassPrecSolves(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassPrecSolves(Pointer arkode_mem, LongByReference nmpsolves);
@@ -1931,7 +1938,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:323</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassIters(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassIters(Pointer arkode_mem, LongByReference nmiters);
@@ -1943,7 +1950,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMassConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:324</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMassConvFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumMassConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMassConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMassConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMassConvFails(Pointer arkode_mem, LongByReference nmcfails);
@@ -1955,7 +1962,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumMTSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:326</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumMTSetups(Pointer, LongBuffer)} and {@link #ARKStepGetNumMTSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumMTSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumMTSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumMTSetups(Pointer arkode_mem, LongByReference nmtsetups);
@@ -1967,7 +1974,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetLastMassFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:327</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetLastMassFlag(Pointer, LongBuffer)} and {@link #ARKStepGetLastMassFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetLastMassFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetLastMassFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetLastMassFlag(Pointer arkode_mem, LongByReference flag);
@@ -1991,7 +1998,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Output the ARKStep memory structure (useful when debugging)<br>
 	 * Original signature : <code>void ARKStepPrintMem(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:335</i><br>
-	 * @deprecated use the safer method {@link #ARKStepPrintMem(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepPrintMem(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void ARKStepPrintMem(Pointer arkode_mem, Pointer outfile);
@@ -2005,7 +2012,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * MRIStep interface functions<br>
 	 * Original signature : <code>int ARKStepCreateMRIStepInnerStepper(void*, MRIStepInnerStepper*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:338</i><br>
-	 * @deprecated use the safer method {@link #ARKStepCreateMRIStepInnerStepper(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKStepCreateMRIStepInnerStepper(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepCreateMRIStepInnerStepper(Pointer arkode_mem, Pointer stepper);
@@ -2020,7 +2027,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKStepSetRelaxFn(void*, ARKRelaxFn, ARKRelaxJacFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:342</i>
 	 */
-	int ARKStepSetRelaxFn(Pointer arkode_mem, ARKRelaxFn rfn, ARKRelaxJacFn rjac);
+	int ARKStepSetRelaxFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRelaxFn rfn, Sundials_arkodeLibrary.ARKRelaxJacFn rjac);
 	/**
 	 * Original signature : <code>int ARKStepSetRelaxEtaFail(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:344</i>
@@ -2064,7 +2071,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxFnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:356</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxFnEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxFnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxFnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxFnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxFnEvals(Pointer arkode_mem, LongByReference r_evals);
@@ -2076,7 +2083,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:358</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxJacEvals(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxJacEvals(Pointer arkode_mem, LongByReference J_evals);
@@ -2088,7 +2095,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:360</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxFails(Pointer arkode_mem, LongByReference relax_fails);
@@ -2100,7 +2107,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxBoundFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:362</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxBoundFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxBoundFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxBoundFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxBoundFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxBoundFails(Pointer arkode_mem, LongByReference fails);
@@ -2112,7 +2119,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:364</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxSolveFails(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxSolveFails(Pointer arkode_mem, LongByReference fails);
@@ -2124,7 +2131,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKStepGetNumRelaxSolveIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_arkstep.h:366</i><br>
-	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxSolveIters(Pointer, LongBuffer)} and {@link #ARKStepGetNumRelaxSolveIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKStepGetNumRelaxSolveIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKStepGetNumRelaxSolveIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKStepGetNumRelaxSolveIters(Pointer arkode_mem, LongByReference iters);
@@ -2143,7 +2150,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int ARKBandPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bandpre.h:13</i><br>
-	 * @deprecated use the safer methods {@link #ARKBandPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ARKBandPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKBandPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKBandPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKBandPrecGetWorkSpace(Pointer arkode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -2156,7 +2163,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKBandPrecGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bandpre.h:15</i><br>
-	 * @deprecated use the safer methods {@link #ARKBandPrecGetNumRhsEvals(Pointer, LongBuffer)} and {@link #ARKBandPrecGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKBandPrecGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKBandPrecGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKBandPrecGetNumRhsEvals(Pointer arkode_mem, LongByReference nfevalsBP);
@@ -2170,7 +2177,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ARKBBDPrecInit(void*, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, ARKLocalFn, ARKCommFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bbdpre.h:16</i>
 	 */
-	int ARKBBDPrecInit(Pointer arkode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, ARKLocalFn gloc, ARKCommFn cfn);
+	int ARKBBDPrecInit(Pointer arkode_mem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dqrely, Sundials_arkodeLibrary.ARKLocalFn gloc, Sundials_arkodeLibrary.ARKCommFn cfn);
 	/**
 	 * Original signature : <code>int ARKBBDPrecReInit(void*, sunindextype, sunindextype, sunrealtype)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bbdpre.h:22</i>
@@ -2180,7 +2187,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Optional output functions<br>
 	 * Original signature : <code>int ARKBBDPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bbdpre.h:27</i><br>
-	 * @deprecated use the safer methods {@link #ARKBBDPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ARKBBDPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKBBDPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKBBDPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKBBDPrecGetWorkSpace(Pointer arkode_mem, LongByReference lenrwBBDP, LongByReference leniwBBDP);
@@ -2193,7 +2200,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKBBDPrecGetNumGfnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_bbdpre.h:30</i><br>
-	 * @deprecated use the safer methods {@link #ARKBBDPrecGetNumGfnEvals(Pointer, LongBuffer)} and {@link #ARKBBDPrecGetNumGfnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ARKBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ARKBBDPrecGetNumGfnEvals(Pointer arkode_mem, LongByReference ngevalsBBDP);
@@ -2206,44 +2213,44 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* ERKStepCreate(ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:26</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepCreate(ARKRhsFn, double, N_Vector, SUNContext)} and {@link #ERKStepCreate(ARKRhsFn, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNContext)} and {@link #ERKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	Pointer ERKStepCreate(ARKRhsFn f, double t0, Pointer y0, Pointer sunctx);
+	Pointer ERKStepCreate(Sundials_arkodeLibrary.ARKRhsFn f, double t0, Pointer y0, Pointer sunctx);
 	/**
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* ERKStepCreate(ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:26</i>
 	 */
-	Pointer ERKStepCreate(ARKRhsFn f, double t0, N_Vector y0, SUNContext sunctx);
+	Pointer ERKStepCreate(Sundials_arkodeLibrary.ARKRhsFn f, double t0, Sundials_arkodeLibrary.N_Vector y0, Sundials_arkodeLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int ERKStepResize(void*, N_Vector, sunrealtype, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:29</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepResize(Pointer, N_Vector, double, double, ARKVecResizeFn, Pointer)} and {@link #ERKStepResize(Pointer, Pointer, double, double, ARKVecResizeFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepResize(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, double, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} and {@link #ERKStepResize(com.sun.jna.Pointer, com.sun.jna.Pointer, double, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int ERKStepResize(Pointer arkode_mem, Pointer ynew, double hscale, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int ERKStepResize(Pointer arkode_mem, Pointer ynew, double hscale, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int ERKStepResize(void*, N_Vector, sunrealtype, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:29</i>
 	 */
-	int ERKStepResize(Pointer arkode_mem, N_Vector ynew, double hscale, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int ERKStepResize(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector ynew, double hscale, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int ERKStepReInit(void*, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:33</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepReInit(Pointer, ARKRhsFn, double, N_Vector)} and {@link #ERKStepReInit(Pointer, ARKRhsFn, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int ERKStepReInit(Pointer arkode_mem, ARKRhsFn f, double t0, Pointer y0);
+	int ERKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn f, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int ERKStepReInit(void*, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:33</i>
 	 */
-	int ERKStepReInit(Pointer arkode_mem, ARKRhsFn f, double t0, N_Vector y0);
+	int ERKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn f, double t0, Sundials_arkodeLibrary.N_Vector y0);
 	/**
 	 * Original signature : <code>int ERKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:36</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepReset(Pointer, double, N_Vector)} and {@link #ERKStepReset(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepReset(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepReset(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepReset(Pointer arkode_mem, double tR, Pointer yR);
@@ -2251,7 +2258,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:36</i>
 	 */
-	int ERKStepReset(Pointer arkode_mem, double tR, N_Vector yR);
+	int ERKStepReset(Pointer arkode_mem, double tR, Sundials_arkodeLibrary.N_Vector yR);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int ERKStepSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -2261,7 +2268,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:41</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSVtolerances(Pointer, double, N_Vector)} and {@link #ERKStepSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepSVtolerances(Pointer arkode_mem, double reltol, Pointer abstol);
@@ -2269,18 +2276,18 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:41</i>
 	 */
-	int ERKStepSVtolerances(Pointer arkode_mem, double reltol, N_Vector abstol);
+	int ERKStepSVtolerances(Pointer arkode_mem, double reltol, Sundials_arkodeLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int ERKStepWFtolerances(void*, ARKEwtFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:43</i>
 	 */
-	int ERKStepWFtolerances(Pointer arkode_mem, ARKEwtFn efun);
+	int ERKStepWFtolerances(Pointer arkode_mem, Sundials_arkodeLibrary.ARKEwtFn efun);
 	/**
 	 * Rootfinding initialization<br>
 	 * Original signature : <code>int ERKStepRootInit(void*, int, ARKRootFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:46</i>
 	 */
-	int ERKStepRootInit(Pointer arkode_mem, int nrtfn, ARKRootFn g);
+	int ERKStepRootInit(Pointer arkode_mem, int nrtfn, Sundials_arkodeLibrary.ARKRootFn g);
 	/**
 	 * Optional input functions -- must be called AFTER ERKStepCreate<br>
 	 * Original signature : <code>int ERKStepSetDefaults(void*)</code><br>
@@ -2320,7 +2327,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSetTableName(void*, const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:57</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSetTableName(Pointer, String)} and {@link #ERKStepSetTableName(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSetTableName(com.sun.jna.Pointer, java.lang.String)} and {@link #ERKStepSetTableName(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepSetTableName(Pointer arkode_mem, Pointer etable);
@@ -2332,7 +2339,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSetAdaptController(void*, SUNAdaptController)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:58</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSetAdaptController(Pointer, SUNAdaptController)} and {@link #ERKStepSetAdaptController(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSetAdaptController(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNAdaptController)} and {@link #ERKStepSetAdaptController(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepSetAdaptController(Pointer arkode_mem, Pointer C);
@@ -2340,7 +2347,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetAdaptController(void*, SUNAdaptController)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:58</i>
 	 */
-	int ERKStepSetAdaptController(Pointer arkode_mem, SUNAdaptController C);
+	int ERKStepSetAdaptController(Pointer arkode_mem, Sundials_arkodeLibrary.SUNAdaptController C);
 	/**
 	 * Original signature : <code>int ERKStepSetAdaptivityAdjustment(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:60</i>
@@ -2379,7 +2386,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSetAdaptivityMethod(void*, int, int, int, sunrealtype[3])</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:69</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSetAdaptivityMethod(Pointer, int, int, int, DoubleBuffer)} and {@link #ERKStepSetAdaptivityMethod(Pointer, int, int, int, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSetAdaptivityMethod(com.sun.jna.Pointer, int, int, int, java.nio.DoubleBuffer)} and {@link #ERKStepSetAdaptivityMethod(com.sun.jna.Pointer, int, int, int, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepSetAdaptivityMethod(Pointer arkode_mem, int imethod, int idefault, int pq, DoubleByReference adapt_params);
@@ -2392,7 +2399,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetAdaptivityFn(void*, ARKAdaptFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:72</i>
 	 */
-	int ERKStepSetAdaptivityFn(Pointer arkode_mem, ARKAdaptFn hfun, Pointer h_data);
+	int ERKStepSetAdaptivityFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKAdaptFn hfun, Pointer h_data);
 	/**
 	 * Original signature : <code>int ERKStepSetMaxFirstGrowth(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:74</i>
@@ -2412,7 +2419,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetStabilityFn(void*, ARKExpStabFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:79</i>
 	 */
-	int ERKStepSetStabilityFn(Pointer arkode_mem, ARKExpStabFn EStab, Pointer estab_data);
+	int ERKStepSetStabilityFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKExpStabFn EStab, Pointer estab_data);
 	/**
 	 * Original signature : <code>int ERKStepSetMaxErrTestFails(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:81</i>
@@ -2421,7 +2428,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:82</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSetConstraints(Pointer, N_Vector)} and {@link #ERKStepSetConstraints(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepSetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepSetConstraints(Pointer arkode_mem, Pointer constraints);
@@ -2429,7 +2436,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:82</i>
 	 */
-	int ERKStepSetConstraints(Pointer arkode_mem, N_Vector constraints);
+	int ERKStepSetConstraints(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector constraints);
 	/**
 	 * Original signature : <code>int ERKStepSetMaxNumSteps(void*, long long)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:83</i>
@@ -2483,7 +2490,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepSetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:95</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepSetRootDirection(Pointer, IntBuffer)} and {@link #ERKStepSetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepSetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #ERKStepSetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepSetRootDirection(Pointer arkode_mem, IntByReference rootdir);
@@ -2506,17 +2513,17 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetPostprocessStepFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:100</i>
 	 */
-	int ERKStepSetPostprocessStepFn(Pointer arkode_mem, ARKPostProcessFn ProcessStep);
+	int ERKStepSetPostprocessStepFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStep);
 	/**
 	 * Original signature : <code>int ERKStepSetPostprocessStageFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:102</i>
 	 */
-	int ERKStepSetPostprocessStageFn(Pointer arkode_mem, ARKPostProcessFn ProcessStage);
+	int ERKStepSetPostprocessStageFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStage);
 	/**
 	 * Integrate the ODE over an interval in t<br>
 	 * Original signature : <code>int ERKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:106</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepEvolve(Pointer, double, N_Vector, DoubleBuffer, int)} and {@link #ERKStepEvolve(Pointer, double, Pointer, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #ERKStepEvolve(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #ERKStepEvolve(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
 	int ERKStepEvolve(Pointer arkode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
@@ -2525,12 +2532,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:106</i>
 	 */
-	int ERKStepEvolve(Pointer arkode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask);
+	int ERKStepEvolve(Pointer arkode_mem, double tout, Sundials_arkodeLibrary.N_Vector yout, DoubleBuffer tret, int itask);
 	/**
 	 * Computes the kth derivative of the y function at time t<br>
 	 * Original signature : <code>int ERKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:110</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetDky(Pointer, double, int, N_Vector)} and {@link #ERKStepGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetDky(Pointer arkode_mem, double t, int k, Pointer dky);
@@ -2539,12 +2546,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:110</i>
 	 */
-	int ERKStepGetDky(Pointer arkode_mem, double t, int k, N_Vector dky);
+	int ERKStepGetDky(Pointer arkode_mem, double t, int k, Sundials_arkodeLibrary.N_Vector dky);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int ERKStepGetNumExpSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:114</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumExpSteps(Pointer, LongBuffer)} and {@link #ERKStepGetNumExpSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumExpSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumExpSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumExpSteps(Pointer arkode_mem, LongByReference expsteps);
@@ -2557,7 +2564,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumAccSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:115</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumAccSteps(Pointer, LongBuffer)} and {@link #ERKStepGetNumAccSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumAccSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumAccSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumAccSteps(Pointer arkode_mem, LongByReference accsteps);
@@ -2569,7 +2576,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumStepAttempts(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:116</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumStepAttempts(Pointer, LongBuffer)} and {@link #ERKStepGetNumStepAttempts(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumStepAttempts(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumStepAttempts(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumStepAttempts(Pointer arkode_mem, LongByReference step_attempts);
@@ -2581,7 +2588,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:118</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRhsEvals(Pointer, LongBuffer)} and {@link #ERKStepGetNumRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRhsEvals(Pointer arkode_mem, LongByReference nfevals);
@@ -2593,7 +2600,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumErrTestFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:119</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumErrTestFails(Pointer, LongBuffer)} and {@link #ERKStepGetNumErrTestFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumErrTestFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumErrTestFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumErrTestFails(Pointer arkode_mem, LongByReference netfails);
@@ -2605,7 +2612,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetCurrentButcherTable(void*, ARKodeButcherTable*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:121</i><br>
-	 * @deprecated use the safer method {@link #ERKStepGetCurrentButcherTable(Pointer, ARKodeButcherTableMem.ByReference[])} instead
+	 * @deprecated use the safer method {@link #ERKStepGetCurrentButcherTable(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.ARKodeButcherTableMem.ByReference[])} instead
 	 */
 	@Deprecated 
 	int ERKStepGetCurrentButcherTable(Pointer arkode_mem, PointerByReference B);
@@ -2617,7 +2624,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:123</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetEstLocalErrors(Pointer, N_Vector)} and {@link #ERKStepGetEstLocalErrors(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetEstLocalErrors(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepGetEstLocalErrors(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetEstLocalErrors(Pointer arkode_mem, Pointer ele);
@@ -2625,11 +2632,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepGetEstLocalErrors(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:123</i>
 	 */
-	int ERKStepGetEstLocalErrors(Pointer arkode_mem, N_Vector ele);
+	int ERKStepGetEstLocalErrors(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector ele);
 	/**
 	 * Original signature : <code>int ERKStepGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:124</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #ERKStepGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ERKStepGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetWorkSpace(Pointer arkode_mem, LongByReference lenrw, LongByReference leniw);
@@ -2641,7 +2648,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:126</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumSteps(Pointer, LongBuffer)} and {@link #ERKStepGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumSteps(Pointer arkode_mem, LongByReference nsteps);
@@ -2653,7 +2660,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetActualInitStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:127</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetActualInitStep(Pointer, DoubleBuffer)} and {@link #ERKStepGetActualInitStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetActualInitStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ERKStepGetActualInitStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetActualInitStep(Pointer arkode_mem, DoubleByReference hinused);
@@ -2665,7 +2672,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:129</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetLastStep(Pointer, DoubleBuffer)} and {@link #ERKStepGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ERKStepGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetLastStep(Pointer arkode_mem, DoubleByReference hlast);
@@ -2677,7 +2684,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:130</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetCurrentStep(Pointer, DoubleBuffer)} and {@link #ERKStepGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ERKStepGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetCurrentStep(Pointer arkode_mem, DoubleByReference hcur);
@@ -2689,7 +2696,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:131</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetCurrentTime(Pointer, DoubleBuffer)} and {@link #ERKStepGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ERKStepGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetCurrentTime(Pointer arkode_mem, DoubleByReference tcur);
@@ -2701,7 +2708,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:132</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #ERKStepGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #ERKStepGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetTolScaleFactor(Pointer arkode_mem, DoubleByReference tolsfac);
@@ -2713,7 +2720,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:134</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetErrWeights(Pointer, N_Vector)} and {@link #ERKStepGetErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #ERKStepGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetErrWeights(Pointer arkode_mem, Pointer eweight);
@@ -2721,11 +2728,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:134</i>
 	 */
-	int ERKStepGetErrWeights(Pointer arkode_mem, N_Vector eweight);
+	int ERKStepGetErrWeights(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector eweight);
 	/**
 	 * Original signature : <code>int ERKStepGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:135</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumGEvals(Pointer, LongBuffer)} and {@link #ERKStepGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumGEvals(Pointer arkode_mem, LongByReference ngevals);
@@ -2737,7 +2744,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:136</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetRootInfo(Pointer, IntBuffer)} and {@link #ERKStepGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #ERKStepGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetRootInfo(Pointer arkode_mem, IntByReference rootsfound);
@@ -2749,7 +2756,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumConstrFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:137</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumConstrFails(Pointer, LongBuffer)} and {@link #ERKStepGetNumConstrFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumConstrFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumConstrFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumConstrFails(Pointer arkode_mem, LongByReference nconstrfails);
@@ -2766,7 +2773,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:140</i><br>
-	 * @deprecated use the safer method {@link #ERKStepPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #ERKStepPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int ERKStepPrintAllStats(Pointer arkode_mem, Pointer outfile, int fmt);
@@ -2783,7 +2790,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepWriteParameters(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:144</i><br>
-	 * @deprecated use the safer method {@link #ERKStepWriteParameters(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ERKStepWriteParameters(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepWriteParameters(Pointer arkode_mem, Pointer fp);
@@ -2795,7 +2802,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepWriteButcher(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:146</i><br>
-	 * @deprecated use the safer method {@link #ERKStepWriteButcher(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ERKStepWriteButcher(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepWriteButcher(Pointer arkode_mem, Pointer fp);
@@ -2808,7 +2815,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Grouped optional output functions<br>
 	 * Original signature : <code>int ERKStepGetTimestepperStats(void*, long long*, long long*, long long*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:149</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetTimestepperStats(Pointer, LongBuffer, LongBuffer, LongBuffer, LongBuffer, LongBuffer)} and {@link #ERKStepGetTimestepperStats(Pointer, LongByReference, LongByReference, LongByReference, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetTimestepperStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ERKStepGetTimestepperStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetTimestepperStats(Pointer arkode_mem, LongByReference expsteps, LongByReference accsteps, LongByReference step_attempts, LongByReference nfevals, LongByReference netfails);
@@ -2821,7 +2828,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetStepStats(void*, long long*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:152</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetStepStats(Pointer, LongBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #ERKStepGetStepStats(Pointer, LongByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetStepStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #ERKStepGetStepStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetStepStats(Pointer arkode_mem, LongByReference nsteps, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);
@@ -2840,7 +2847,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Output the ERKStep memory structure (useful when debugging)<br>
 	 * Original signature : <code>void ERKStepPrintMem(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:160</i><br>
-	 * @deprecated use the safer method {@link #ERKStepPrintMem(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ERKStepPrintMem(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void ERKStepPrintMem(Pointer arkode_mem, Pointer outfile);
@@ -2855,7 +2862,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int ERKStepSetRelaxFn(void*, ARKRelaxFn, ARKRelaxJacFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:163</i>
 	 */
-	int ERKStepSetRelaxFn(Pointer arkode_mem, ARKRelaxFn rfn, ARKRelaxJacFn rjac);
+	int ERKStepSetRelaxFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRelaxFn rfn, Sundials_arkodeLibrary.ARKRelaxJacFn rjac);
 	/**
 	 * Original signature : <code>int ERKStepSetRelaxEtaFail(void*, sunrealtype)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:165</i>
@@ -2899,7 +2906,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxFnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:177</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxFnEvals(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxFnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxFnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxFnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxFnEvals(Pointer arkode_mem, LongByReference r_evals);
@@ -2911,7 +2918,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:179</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxJacEvals(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxJacEvals(Pointer arkode_mem, LongByReference J_evals);
@@ -2923,7 +2930,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:181</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxFails(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxFails(Pointer arkode_mem, LongByReference relax_fails);
@@ -2935,7 +2942,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxBoundFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:183</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxBoundFails(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxBoundFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxBoundFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxBoundFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxBoundFails(Pointer arkode_mem, LongByReference fails);
@@ -2947,7 +2954,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:185</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxSolveFails(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxSolveFails(Pointer arkode_mem, LongByReference fails);
@@ -2959,7 +2966,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ERKStepGetNumRelaxSolveIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_erkstep.h:187</i><br>
-	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxSolveIters(Pointer, LongBuffer)} and {@link #ERKStepGetNumRelaxSolveIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ERKStepGetNumRelaxSolveIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #ERKStepGetNumRelaxSolveIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int ERKStepGetNumRelaxSolveIters(Pointer arkode_mem, LongByReference iters);
@@ -2978,7 +2985,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Accessor routine to load built-in MRI table from string<br>
 	 * Original signature : <code>MRIStepCoupling MRIStepCoupling_LoadTableByName(const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:78</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepCoupling_LoadTableByName(String)} and {@link #MRIStepCoupling_LoadTableByName(Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepCoupling_LoadTableByName(java.lang.String)} and {@link #MRIStepCoupling_LoadTableByName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	MRIStepCouplingMem MRIStepCoupling_LoadTableByName(Pointer method);
@@ -2997,7 +3004,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>MRIStepCoupling MRIStepCoupling_Create(int, int, int, int, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:83</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepCoupling_Create(int, int, int, int, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #MRIStepCoupling_Create(int, int, int, int, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepCoupling_Create(int, int, int, int, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #MRIStepCoupling_Create(int, int, int, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	MRIStepCouplingMem MRIStepCoupling_Create(int nmat, int stages, int q, int p, DoubleByReference W, DoubleByReference G, DoubleByReference c);
@@ -3019,7 +3026,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void MRIStepCoupling_Space(MRIStepCoupling, sunindextype*, sunindextype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:91</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepCoupling_Space(MRIStepCouplingMem, LongBuffer, LongBuffer)} and {@link #MRIStepCoupling_Space(MRIStepCouplingMem, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepCoupling_Space(cn.catarc.jsundials.arkode.MRIStepCouplingMem, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #MRIStepCoupling_Space(cn.catarc.jsundials.arkode.MRIStepCouplingMem, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	void MRIStepCoupling_Space(MRIStepCouplingMem MRIC, LongByReference liw, LongByReference lrw);
@@ -3036,7 +3043,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void MRIStepCoupling_Write(MRIStepCoupling, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:94</i><br>
-	 * @deprecated use the safer method {@link #MRIStepCoupling_Write(MRIStepCouplingMem, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepCoupling_Write(cn.catarc.jsundials.arkode.MRIStepCouplingMem, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void MRIStepCoupling_Write(MRIStepCouplingMem MRIC, Pointer outfile);
@@ -3049,44 +3056,44 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* MRIStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, MRIStepInnerStepper, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:110</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepCreate(ARKRhsFn, ARKRhsFn, double, N_Vector, MRIStepInnerStepper, SUNContext)} and {@link #MRIStepCreate(ARKRhsFn, ARKRhsFn, double, Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNContext)} and {@link #MRIStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	Pointer MRIStepCreate(ARKRhsFn fse, ARKRhsFn fsi, double t0, Pointer y0, Pointer stepper, Pointer sunctx);
+	Pointer MRIStepCreate(Sundials_arkodeLibrary.ARKRhsFn fse, Sundials_arkodeLibrary.ARKRhsFn fsi, double t0, Pointer y0, Pointer stepper, Pointer sunctx);
 	/**
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* MRIStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, MRIStepInnerStepper, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:110</i>
 	 */
-	Pointer MRIStepCreate(ARKRhsFn fse, ARKRhsFn fsi, double t0, N_Vector y0, MRIStepInnerStepper stepper, SUNContext sunctx);
+	Pointer MRIStepCreate(Sundials_arkodeLibrary.ARKRhsFn fse, Sundials_arkodeLibrary.ARKRhsFn fsi, double t0, Sundials_arkodeLibrary.N_Vector y0, Sundials_arkodeLibrary.MRIStepInnerStepper stepper, Sundials_arkodeLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int MRIStepResize(void*, N_Vector, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:114</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepResize(Pointer, N_Vector, double, ARKVecResizeFn, Pointer)} and {@link #MRIStepResize(Pointer, Pointer, double, ARKVecResizeFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepResize(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} and {@link #MRIStepResize(com.sun.jna.Pointer, com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKVecResizeFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int MRIStepResize(Pointer arkode_mem, Pointer ynew, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int MRIStepResize(Pointer arkode_mem, Pointer ynew, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int MRIStepResize(void*, N_Vector, sunrealtype, ARKVecResizeFn, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:114</i>
 	 */
-	int MRIStepResize(Pointer arkode_mem, N_Vector ynew, double t0, ARKVecResizeFn resize, Pointer resize_data);
+	int MRIStepResize(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector ynew, double t0, Sundials_arkodeLibrary.ARKVecResizeFn resize, Pointer resize_data);
 	/**
 	 * Original signature : <code>int MRIStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:117</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, N_Vector)} and {@link #MRIStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int MRIStepReInit(Pointer arkode_mem, ARKRhsFn fse, ARKRhsFn fsi, double t0, Pointer y0);
+	int MRIStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn fse, Sundials_arkodeLibrary.ARKRhsFn fsi, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int MRIStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:117</i>
 	 */
-	int MRIStepReInit(Pointer arkode_mem, ARKRhsFn fse, ARKRhsFn fsi, double t0, N_Vector y0);
+	int MRIStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn fse, Sundials_arkodeLibrary.ARKRhsFn fsi, double t0, Sundials_arkodeLibrary.N_Vector y0);
 	/**
 	 * Original signature : <code>int MRIStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:120</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepReset(Pointer, double, N_Vector)} and {@link #MRIStepReset(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepReset(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepReset(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepReset(Pointer arkode_mem, double tR, Pointer yR);
@@ -3094,7 +3101,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:120</i>
 	 */
-	int MRIStepReset(Pointer arkode_mem, double tR, N_Vector yR);
+	int MRIStepReset(Pointer arkode_mem, double tR, Sundials_arkodeLibrary.N_Vector yR);
 	/**
 	 * Tolerance input functions<br>
 	 * Original signature : <code>int MRIStepSStolerances(void*, sunrealtype, sunrealtype)</code><br>
@@ -3104,7 +3111,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:125</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepSVtolerances(Pointer, double, N_Vector)} and {@link #MRIStepSVtolerances(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepSVtolerances(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepSVtolerances(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepSVtolerances(Pointer arkode_mem, double reltol, Pointer abstol);
@@ -3112,17 +3119,17 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSVtolerances(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:125</i>
 	 */
-	int MRIStepSVtolerances(Pointer arkode_mem, double reltol, N_Vector abstol);
+	int MRIStepSVtolerances(Pointer arkode_mem, double reltol, Sundials_arkodeLibrary.N_Vector abstol);
 	/**
 	 * Original signature : <code>int MRIStepWFtolerances(void*, ARKEwtFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:127</i>
 	 */
-	int MRIStepWFtolerances(Pointer arkode_mem, ARKEwtFn efun);
+	int MRIStepWFtolerances(Pointer arkode_mem, Sundials_arkodeLibrary.ARKEwtFn efun);
 	/**
 	 * Linear solver set function<br>
 	 * Original signature : <code>int MRIStepSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:130</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepSetLinearSolver(Pointer, SUNLinearSolver, SUNMatrix)} and {@link #MRIStepSetLinearSolver(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepSetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNLinearSolver, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNMatrix)} and {@link #MRIStepSetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepSetLinearSolver(Pointer arkode_mem, Pointer LS, Pointer A);
@@ -3131,13 +3138,13 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:130</i>
 	 */
-	int MRIStepSetLinearSolver(Pointer arkode_mem, SUNLinearSolver LS, SUNMatrix A);
+	int MRIStepSetLinearSolver(Pointer arkode_mem, Sundials_arkodeLibrary.SUNLinearSolver LS, Sundials_arkodeLibrary.SUNMatrix A);
 	/**
 	 * Rootfinding initialization<br>
 	 * Original signature : <code>int MRIStepRootInit(void*, int, ARKRootFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:134</i>
 	 */
-	int MRIStepRootInit(Pointer arkode_mem, int nrtfn, ARKRootFn g);
+	int MRIStepRootInit(Pointer arkode_mem, int nrtfn, Sundials_arkodeLibrary.ARKRootFn g);
 	/**
 	 * Optional input functions -- must be called AFTER MRIStepCreate<br>
 	 * Original signature : <code>int MRIStepSetDefaults(void*)</code><br>
@@ -3167,7 +3174,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:142</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepSetNonlinearSolver(Pointer, SUNNonlinearSolver)} and {@link #MRIStepSetNonlinearSolver(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepSetNonlinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNNonlinearSolver)} and {@link #MRIStepSetNonlinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepSetNonlinearSolver(Pointer arkode_mem, Pointer NLS);
@@ -3175,12 +3182,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSetNonlinearSolver(void*, SUNNonlinearSolver)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:142</i>
 	 */
-	int MRIStepSetNonlinearSolver(Pointer arkode_mem, SUNNonlinearSolver NLS);
+	int MRIStepSetNonlinearSolver(Pointer arkode_mem, Sundials_arkodeLibrary.SUNNonlinearSolver NLS);
 	/**
 	 * Original signature : <code>int MRIStepSetNlsRhsFn(void*, ARKRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:144</i>
 	 */
-	int MRIStepSetNlsRhsFn(Pointer arkode_mem, ARKRhsFn nls_fs);
+	int MRIStepSetNlsRhsFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn nls_fs);
 	/**
 	 * Original signature : <code>int MRIStepSetLinear(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:145</i>
@@ -3264,7 +3271,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepSetRootDirection(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:163</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepSetRootDirection(Pointer, IntBuffer)} and {@link #MRIStepSetRootDirection(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepSetRootDirection(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #MRIStepSetRootDirection(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepSetRootDirection(Pointer arkode_mem, IntByReference rootdir);
@@ -3287,27 +3294,27 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSetPostprocessStepFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:166</i>
 	 */
-	int MRIStepSetPostprocessStepFn(Pointer arkode_mem, ARKPostProcessFn ProcessStep);
+	int MRIStepSetPostprocessStepFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStep);
 	/**
 	 * Original signature : <code>int MRIStepSetPostprocessStageFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:168</i>
 	 */
-	int MRIStepSetPostprocessStageFn(Pointer arkode_mem, ARKPostProcessFn ProcessStage);
+	int MRIStepSetPostprocessStageFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStage);
 	/**
 	 * Original signature : <code>int MRIStepSetPreInnerFn(void*, MRIStepPreInnerFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:170</i>
 	 */
-	int MRIStepSetPreInnerFn(Pointer arkode_mem, MRIStepPreInnerFn prefn);
+	int MRIStepSetPreInnerFn(Pointer arkode_mem, Sundials_arkodeLibrary.MRIStepPreInnerFn prefn);
 	/**
 	 * Original signature : <code>int MRIStepSetPostInnerFn(void*, MRIStepPostInnerFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:172</i>
 	 */
-	int MRIStepSetPostInnerFn(Pointer arkode_mem, MRIStepPostInnerFn postfn);
+	int MRIStepSetPostInnerFn(Pointer arkode_mem, Sundials_arkodeLibrary.MRIStepPostInnerFn postfn);
 	/**
 	 * Original signature : <code>int MRIStepSetStagePredictFn(void*, ARKStagePredictFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:174</i>
 	 */
-	int MRIStepSetStagePredictFn(Pointer arkode_mem, ARKStagePredictFn PredictStage);
+	int MRIStepSetStagePredictFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKStagePredictFn PredictStage);
 	/**
 	 * Original signature : <code>int MRIStepSetDeduceImplicitRhs(void*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:176</i>
@@ -3319,7 +3326,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSetJacFn(void*, ARKLsJacFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:181</i>
 	 */
-	int MRIStepSetJacFn(Pointer arkode_mem, ARKLsJacFn jac);
+	int MRIStepSetJacFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsJacFn jac);
 	/**
 	 * Original signature : <code>int MRIStepSetJacEvalFrequency(void*, long long)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:182</i>
@@ -3344,27 +3351,27 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepSetPreconditioner(void*, ARKLsPrecSetupFn, ARKLsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:187</i>
 	 */
-	int MRIStepSetPreconditioner(Pointer arkode_mem, ARKLsPrecSetupFn psetup, ARKLsPrecSolveFn psolve);
+	int MRIStepSetPreconditioner(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsPrecSetupFn psetup, Sundials_arkodeLibrary.ARKLsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int MRIStepSetJacTimes(void*, ARKLsJacTimesSetupFn, ARKLsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:190</i>
 	 */
-	int MRIStepSetJacTimes(Pointer arkode_mem, ARKLsJacTimesSetupFn jtsetup, ARKLsJacTimesVecFn jtimes);
+	int MRIStepSetJacTimes(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsJacTimesSetupFn jtsetup, Sundials_arkodeLibrary.ARKLsJacTimesVecFn jtimes);
 	/**
 	 * Original signature : <code>int MRIStepSetJacTimesRhsFn(void*, ARKRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:193</i>
 	 */
-	int MRIStepSetJacTimesRhsFn(Pointer arkode_mem, ARKRhsFn jtimesRhsFn);
+	int MRIStepSetJacTimesRhsFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn jtimesRhsFn);
 	/**
 	 * Original signature : <code>int MRIStepSetLinSysFn(void*, ARKLsLinSysFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:195</i>
 	 */
-	int MRIStepSetLinSysFn(Pointer arkode_mem, ARKLsLinSysFn linsys);
+	int MRIStepSetLinSysFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKLsLinSysFn linsys);
 	/**
 	 * Integrate the ODE over an interval in t<br>
 	 * Original signature : <code>int MRIStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:198</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepEvolve(Pointer, double, N_Vector, DoubleBuffer, int)} and {@link #MRIStepEvolve(Pointer, double, Pointer, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #MRIStepEvolve(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #MRIStepEvolve(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
 	int MRIStepEvolve(Pointer arkode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
@@ -3373,12 +3380,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:198</i>
 	 */
-	int MRIStepEvolve(Pointer arkode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask);
+	int MRIStepEvolve(Pointer arkode_mem, double tout, Sundials_arkodeLibrary.N_Vector yout, DoubleBuffer tret, int itask);
 	/**
 	 * Computes the kth derivative of the y function at time t<br>
 	 * Original signature : <code>int MRIStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:202</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetDky(Pointer, double, int, N_Vector)} and {@link #MRIStepGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetDky(Pointer arkode_mem, double t, int k, Pointer dky);
@@ -3387,12 +3394,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:202</i>
 	 */
-	int MRIStepGetDky(Pointer arkode_mem, double t, int k, N_Vector dky);
+	int MRIStepGetDky(Pointer arkode_mem, double t, int k, Sundials_arkodeLibrary.N_Vector dky);
 	/**
 	 * Utility function to update/compute y based on zcor<br>
 	 * Original signature : <code>int MRIStepComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:206</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepComputeState(Pointer, N_Vector, N_Vector)} and {@link #MRIStepComputeState(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepComputeState(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepComputeState(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepComputeState(Pointer arkode_mem, Pointer zcor, Pointer z);
@@ -3401,12 +3408,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepComputeState(void*, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:206</i>
 	 */
-	int MRIStepComputeState(Pointer arkode_mem, N_Vector zcor, N_Vector z);
+	int MRIStepComputeState(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector zcor, Sundials_arkodeLibrary.N_Vector z);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int MRIStepGetNumRhsEvals(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:210</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumRhsEvals(Pointer, LongBuffer, LongBuffer)} and {@link #MRIStepGetNumRhsEvals(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #MRIStepGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumRhsEvals(Pointer arkode_mem, LongByReference nfse_evals, LongByReference nfsi_evals);
@@ -3419,7 +3426,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumLinSolvSetups(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:212</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumLinSolvSetups(Pointer, LongBuffer)} and {@link #MRIStepGetNumLinSolvSetups(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumLinSolvSetups(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumLinSolvSetups(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumLinSolvSetups(Pointer arkode_mem, LongByReference nlinsetups);
@@ -3431,7 +3438,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetCurrentCoupling(void*, MRIStepCoupling*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:214</i><br>
-	 * @deprecated use the safer method {@link #MRIStepGetCurrentCoupling(Pointer, MRIStepCouplingMem.ByReference[])} instead
+	 * @deprecated use the safer method {@link #MRIStepGetCurrentCoupling(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.MRIStepCouplingMem.ByReference[])} instead
 	 */
 	@Deprecated 
 	int MRIStepGetCurrentCoupling(Pointer arkode_mem, PointerByReference MRIC);
@@ -3443,7 +3450,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:216</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #MRIStepGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #MRIStepGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetWorkSpace(Pointer arkode_mem, LongByReference lenrw, LongByReference leniw);
@@ -3455,7 +3462,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:218</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumSteps(Pointer, LongBuffer)} and {@link #MRIStepGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumSteps(Pointer arkode_mem, LongByReference nssteps);
@@ -3467,7 +3474,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:219</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetLastStep(Pointer, DoubleBuffer)} and {@link #MRIStepGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #MRIStepGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetLastStep(Pointer arkode_mem, DoubleByReference hlast);
@@ -3479,7 +3486,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:220</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetCurrentTime(Pointer, DoubleBuffer)} and {@link #MRIStepGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #MRIStepGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetCurrentTime(Pointer arkode_mem, DoubleByReference tcur);
@@ -3491,7 +3498,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:221</i><br>
-	 * @deprecated use the safer method {@link #MRIStepGetCurrentState(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepGetCurrentState(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetCurrentState(Pointer arkode_mem, Pointer state);
@@ -3503,7 +3510,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetCurrentGamma(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:222</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetCurrentGamma(Pointer, DoubleBuffer)} and {@link #MRIStepGetCurrentGamma(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetCurrentGamma(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #MRIStepGetCurrentGamma(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetCurrentGamma(Pointer arkode_mem, DoubleByReference gamma);
@@ -3515,7 +3522,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetTolScaleFactor(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:223</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetTolScaleFactor(Pointer, DoubleBuffer)} and {@link #MRIStepGetTolScaleFactor(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetTolScaleFactor(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #MRIStepGetTolScaleFactor(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetTolScaleFactor(Pointer arkode_mem, DoubleByReference tolsfac);
@@ -3527,7 +3534,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:225</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetErrWeights(Pointer, N_Vector)} and {@link #MRIStepGetErrWeights(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetErrWeights(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepGetErrWeights(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetErrWeights(Pointer arkode_mem, Pointer eweight);
@@ -3535,11 +3542,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepGetErrWeights(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:225</i>
 	 */
-	int MRIStepGetErrWeights(Pointer arkode_mem, N_Vector eweight);
+	int MRIStepGetErrWeights(Pointer arkode_mem, Sundials_arkodeLibrary.N_Vector eweight);
 	/**
 	 * Original signature : <code>int MRIStepGetNumGEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:226</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumGEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumGEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumGEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumGEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumGEvals(Pointer arkode_mem, LongByReference ngevals);
@@ -3551,7 +3558,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:227</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetRootInfo(Pointer, IntBuffer)} and {@link #MRIStepGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #MRIStepGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetRootInfo(Pointer arkode_mem, IntByReference rootsfound);
@@ -3563,7 +3570,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetLastInnerStepFlag(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:228</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetLastInnerStepFlag(Pointer, IntBuffer)} and {@link #MRIStepGetLastInnerStepFlag(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetLastInnerStepFlag(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #MRIStepGetLastInnerStepFlag(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetLastInnerStepFlag(Pointer arkode_mem, IntByReference flag);
@@ -3580,7 +3587,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:230</i><br>
-	 * @deprecated use the safer method {@link #MRIStepPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #MRIStepPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int MRIStepPrintAllStats(Pointer arkode_mem, Pointer outfile, int fmt);
@@ -3597,7 +3604,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepWriteParameters(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:234</i><br>
-	 * @deprecated use the safer method {@link #MRIStepWriteParameters(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepWriteParameters(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepWriteParameters(Pointer arkode_mem, Pointer fp);
@@ -3609,7 +3616,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepWriteCoupling(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:236</i><br>
-	 * @deprecated use the safer method {@link #MRIStepWriteCoupling(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepWriteCoupling(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepWriteCoupling(Pointer arkode_mem, Pointer fp);
@@ -3622,7 +3629,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Nonlinear solver optional output functions<br>
 	 * Original signature : <code>int MRIStepGetNonlinearSystemData(void*, sunrealtype*, N_Vector*, N_Vector*, N_Vector*, sunrealtype*, N_Vector*, void**)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:239</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNonlinearSystemData(Pointer, DoubleBuffer, PointerByReference, PointerByReference, PointerByReference, DoubleBuffer, PointerByReference, PointerByReference)} and {@link #MRIStepGetNonlinearSystemData(Pointer, DoubleByReference, PointerByReference, PointerByReference, PointerByReference, DoubleByReference, PointerByReference, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNonlinearSystemData(com.sun.jna.Pointer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} and {@link #MRIStepGetNonlinearSystemData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNonlinearSystemData(Pointer arkode_mem, DoubleByReference tcur, Pointer zpred, Pointer z, Pointer F, DoubleByReference gamma, Pointer sdata, PointerByReference user_data);
@@ -3641,7 +3648,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:242</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #MRIStepGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumNonlinSolvIters(Pointer arkode_mem, LongByReference nniters);
@@ -3653,7 +3660,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumNonlinSolvConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:244</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumNonlinSolvConvFails(Pointer, LongBuffer)} and {@link #MRIStepGetNumNonlinSolvConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumNonlinSolvConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumNonlinSolvConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumNonlinSolvConvFails(Pointer arkode_mem, LongByReference nnfails);
@@ -3665,7 +3672,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNonlinSolvStats(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:246</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNonlinSolvStats(Pointer, LongBuffer, LongBuffer)} and {@link #MRIStepGetNonlinSolvStats(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNonlinSolvStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #MRIStepGetNonlinSolvStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNonlinSolvStats(Pointer arkode_mem, LongByReference nniters, LongByReference nnfails);
@@ -3677,7 +3684,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumStepSolveFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:248</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumStepSolveFails(Pointer, LongBuffer)} and {@link #MRIStepGetNumStepSolveFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumStepSolveFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumStepSolveFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumStepSolveFails(Pointer arkode_mem, LongByReference nncfails);
@@ -3690,7 +3697,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Linear solver optional output functions<br>
 	 * Original signature : <code>int MRIStepGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:252</i><br>
-	 * @deprecated use the safer method {@link #MRIStepGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetJac(Pointer arkode_mem, Pointer J);
@@ -3703,7 +3710,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetJacTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:253</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetJacTime(Pointer, DoubleBuffer)} and {@link #MRIStepGetJacTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetJacTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #MRIStepGetJacTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetJacTime(Pointer arkode_mem, DoubleByReference t_J);
@@ -3720,7 +3727,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:255</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #MRIStepGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #MRIStepGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetLinWorkSpace(Pointer arkode_mem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -3732,7 +3739,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:257</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumJacEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumJacEvals(Pointer arkode_mem, LongByReference njevals);
@@ -3744,7 +3751,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:258</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumPrecEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumPrecEvals(Pointer arkode_mem, LongByReference npevals);
@@ -3756,7 +3763,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:259</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumPrecSolves(Pointer, LongBuffer)} and {@link #MRIStepGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumPrecSolves(Pointer arkode_mem, LongByReference npsolves);
@@ -3768,7 +3775,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:260</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumLinIters(Pointer, LongBuffer)} and {@link #MRIStepGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumLinIters(Pointer arkode_mem, LongByReference nliters);
@@ -3780,7 +3787,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:261</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumLinConvFails(Pointer, LongBuffer)} and {@link #MRIStepGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumLinConvFails(Pointer arkode_mem, LongByReference nlcfails);
@@ -3792,7 +3799,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumJTSetupEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:263</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumJTSetupEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumJTSetupEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumJTSetupEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumJTSetupEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumJTSetupEvals(Pointer arkode_mem, LongByReference njtsetups);
@@ -3804,7 +3811,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:265</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumJtimesEvals(Pointer arkode_mem, LongByReference njvevals);
@@ -3816,7 +3823,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetNumLinRhsEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:267</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetNumLinRhsEvals(Pointer, LongBuffer)} and {@link #MRIStepGetNumLinRhsEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetNumLinRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetNumLinRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetNumLinRhsEvals(Pointer arkode_mem, LongByReference nfevalsLS);
@@ -3828,7 +3835,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:269</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepGetLastLinFlag(Pointer, LongBuffer)} and {@link #MRIStepGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #MRIStepGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepGetLastLinFlag(Pointer arkode_mem, LongByReference flag);
@@ -3852,7 +3859,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Output the MRIStep memory structure (useful when debugging)<br>
 	 * Original signature : <code>void MRIStepPrintMem(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:277</i><br>
-	 * @deprecated use the safer method {@link #MRIStepPrintMem(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepPrintMem(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void MRIStepPrintMem(Pointer arkode_mem, Pointer outfile);
@@ -3866,7 +3873,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Custom inner stepper functions<br>
 	 * Original signature : <code>int MRIStepInnerStepper_Create(SUNContext, MRIStepInnerStepper*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:280</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_Create(SUNContext, PointerByReference)} and {@link #MRIStepInnerStepper_Create(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_Create(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNContext, com.sun.jna.ptr.PointerByReference)} and {@link #MRIStepInnerStepper_Create(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_Create(Pointer sunctx, Pointer stepper);
@@ -3875,7 +3882,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepInnerStepper_Create(SUNContext, MRIStepInnerStepper*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:280</i>
 	 */
-	int MRIStepInnerStepper_Create(SUNContext sunctx, PointerByReference stepper);
+	int MRIStepInnerStepper_Create(Sundials_arkodeLibrary.SUNContext sunctx, PointerByReference stepper);
 	/**
 	 * Custom inner stepper functions<br>
 	 * Original signature : <code>int MRIStepInnerStepper_Create(SUNContext, MRIStepInnerStepper*)</code><br>
@@ -3885,7 +3892,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_Free(MRIStepInnerStepper*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:283</i><br>
-	 * @deprecated use the safer method {@link #MRIStepInnerStepper_Free(PointerByReference)} instead
+	 * @deprecated use the safer method {@link #MRIStepInnerStepper_Free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_Free(Pointer stepper);
@@ -3897,7 +3904,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetContent(MRIStepInnerStepper, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:285</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetContent(MRIStepInnerStepper, Pointer)} and {@link #MRIStepInnerStepper_SetContent(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetContent(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, com.sun.jna.Pointer)} and {@link #MRIStepInnerStepper_SetContent(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_SetContent(Pointer stepper, Pointer content);
@@ -3905,11 +3912,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepInnerStepper_SetContent(MRIStepInnerStepper, void*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:285</i>
 	 */
-	int MRIStepInnerStepper_SetContent(MRIStepInnerStepper stepper, Pointer content);
+	int MRIStepInnerStepper_SetContent(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, Pointer content);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_GetContent(MRIStepInnerStepper, void**)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:288</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_GetContent(MRIStepInnerStepper, PointerByReference)} and {@link #MRIStepInnerStepper_GetContent(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_GetContent(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, com.sun.jna.ptr.PointerByReference)} and {@link #MRIStepInnerStepper_GetContent(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_GetContent(Pointer stepper, PointerByReference content);
@@ -3917,47 +3924,47 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepInnerStepper_GetContent(MRIStepInnerStepper, void**)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:288</i>
 	 */
-	int MRIStepInnerStepper_GetContent(MRIStepInnerStepper stepper, PointerByReference content);
+	int MRIStepInnerStepper_GetContent(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, PointerByReference content);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetEvolveFn(MRIStepInnerStepper, MRIStepInnerEvolveFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:291</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetEvolveFn(MRIStepInnerStepper, MRIStepInnerEvolveFn)} and {@link #MRIStepInnerStepper_SetEvolveFn(Pointer, MRIStepInnerEvolveFn)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetEvolveFn(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerEvolveFn)} and {@link #MRIStepInnerStepper_SetEvolveFn(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerEvolveFn)} instead
 	 */
 	@Deprecated 
-	int MRIStepInnerStepper_SetEvolveFn(Pointer stepper, MRIStepInnerEvolveFn fn);
+	int MRIStepInnerStepper_SetEvolveFn(Pointer stepper, Sundials_arkodeLibrary.MRIStepInnerEvolveFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetEvolveFn(MRIStepInnerStepper, MRIStepInnerEvolveFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:291</i>
 	 */
-	int MRIStepInnerStepper_SetEvolveFn(MRIStepInnerStepper stepper, MRIStepInnerEvolveFn fn);
+	int MRIStepInnerStepper_SetEvolveFn(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, Sundials_arkodeLibrary.MRIStepInnerEvolveFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetFullRhsFn(MRIStepInnerStepper, MRIStepInnerFullRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:294</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetFullRhsFn(MRIStepInnerStepper, MRIStepInnerFullRhsFn)} and {@link #MRIStepInnerStepper_SetFullRhsFn(Pointer, MRIStepInnerFullRhsFn)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetFullRhsFn(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerFullRhsFn)} and {@link #MRIStepInnerStepper_SetFullRhsFn(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerFullRhsFn)} instead
 	 */
 	@Deprecated 
-	int MRIStepInnerStepper_SetFullRhsFn(Pointer stepper, MRIStepInnerFullRhsFn fn);
+	int MRIStepInnerStepper_SetFullRhsFn(Pointer stepper, Sundials_arkodeLibrary.MRIStepInnerFullRhsFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetFullRhsFn(MRIStepInnerStepper, MRIStepInnerFullRhsFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:294</i>
 	 */
-	int MRIStepInnerStepper_SetFullRhsFn(MRIStepInnerStepper stepper, MRIStepInnerFullRhsFn fn);
+	int MRIStepInnerStepper_SetFullRhsFn(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, Sundials_arkodeLibrary.MRIStepInnerFullRhsFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetResetFn(MRIStepInnerStepper, MRIStepInnerResetFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:297</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetResetFn(MRIStepInnerStepper, MRIStepInnerResetFn)} and {@link #MRIStepInnerStepper_SetResetFn(Pointer, MRIStepInnerResetFn)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_SetResetFn(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerResetFn)} and {@link #MRIStepInnerStepper_SetResetFn(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerResetFn)} instead
 	 */
 	@Deprecated 
-	int MRIStepInnerStepper_SetResetFn(Pointer stepper, MRIStepInnerResetFn fn);
+	int MRIStepInnerStepper_SetResetFn(Pointer stepper, Sundials_arkodeLibrary.MRIStepInnerResetFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_SetResetFn(MRIStepInnerStepper, MRIStepInnerResetFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:297</i>
 	 */
-	int MRIStepInnerStepper_SetResetFn(MRIStepInnerStepper stepper, MRIStepInnerResetFn fn);
+	int MRIStepInnerStepper_SetResetFn(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, Sundials_arkodeLibrary.MRIStepInnerResetFn fn);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_AddForcing(MRIStepInnerStepper, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:300</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_AddForcing(MRIStepInnerStepper, double, N_Vector)} and {@link #MRIStepInnerStepper_AddForcing(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_AddForcing(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #MRIStepInnerStepper_AddForcing(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_AddForcing(Pointer stepper, double t, Pointer f);
@@ -3965,11 +3972,11 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepInnerStepper_AddForcing(MRIStepInnerStepper, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:300</i>
 	 */
-	int MRIStepInnerStepper_AddForcing(MRIStepInnerStepper stepper, double t, N_Vector f);
+	int MRIStepInnerStepper_AddForcing(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, double t, Sundials_arkodeLibrary.N_Vector f);
 	/**
 	 * Original signature : <code>int MRIStepInnerStepper_GetForcingData(MRIStepInnerStepper, sunrealtype*, sunrealtype*, N_Vector**, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:303</i><br>
-	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_GetForcingData(MRIStepInnerStepper, DoubleBuffer, DoubleBuffer, PointerByReference, IntBuffer)} and {@link #MRIStepInnerStepper_GetForcingData(Pointer, DoubleByReference, DoubleByReference, PointerByReference, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #MRIStepInnerStepper_GetForcingData(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.MRIStepInnerStepper, java.nio.DoubleBuffer, java.nio.DoubleBuffer, com.sun.jna.ptr.PointerByReference, java.nio.IntBuffer)} and {@link #MRIStepInnerStepper_GetForcingData(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.PointerByReference, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int MRIStepInnerStepper_GetForcingData(Pointer stepper, DoubleByReference tshift, DoubleByReference tscale, PointerByReference forcing, IntByReference nforcing);
@@ -3977,12 +3984,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int MRIStepInnerStepper_GetForcingData(MRIStepInnerStepper, sunrealtype*, sunrealtype*, N_Vector**, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_mristep.h:303</i>
 	 */
-	int MRIStepInnerStepper_GetForcingData(MRIStepInnerStepper stepper, DoubleBuffer tshift, DoubleBuffer tscale, PointerByReference forcing, IntBuffer nforcing);
+	int MRIStepInnerStepper_GetForcingData(Sundials_arkodeLibrary.MRIStepInnerStepper stepper, DoubleBuffer tshift, DoubleBuffer tscale, PointerByReference forcing, IntBuffer nforcing);
 	/**
 	 * Utility routines to allocate/free/output SPRK structures<br>
 	 * Original signature : <code>ARKodeSPRKTable ARKodeSPRKTable_Create(int, int, const sunrealtype*, const sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprk.h:40</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_Create(int, int, DoubleBuffer, DoubleBuffer)} and {@link #ARKodeSPRKTable_Create(int, int, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_Create(int, int, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #ARKodeSPRKTable_Create(int, int, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	ARKodeSPRKTableMem ARKodeSPRKTable_Create(int s, int q, DoubleByReference a, DoubleByReference ahat);
@@ -4005,7 +4012,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>ARKodeSPRKTable ARKodeSPRKTable_LoadByName(const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprk.h:50</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_LoadByName(String)} and {@link #ARKodeSPRKTable_LoadByName(Pointer)} instead
+	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_LoadByName(java.lang.String)} and {@link #ARKodeSPRKTable_LoadByName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	ARKodeSPRKTableMem ARKodeSPRKTable_LoadByName(Pointer method);
@@ -4022,7 +4029,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void ARKodeSPRKTable_Write(ARKodeSPRKTable, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprk.h:56</i><br>
-	 * @deprecated use the safer method {@link #ARKodeSPRKTable_Write(ARKodeSPRKTableMem, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #ARKodeSPRKTable_Write(cn.catarc.jsundials.arkode.ARKodeSPRKTableMem, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	void ARKodeSPRKTable_Write(ARKodeSPRKTableMem sprk_table, Pointer outfile);
@@ -4034,7 +4041,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>void ARKodeSPRKTable_Space(ARKodeSPRKTable, sunindextype*, sunindextype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprk.h:59</i><br>
-	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_Space(ARKodeSPRKTableMem, LongBuffer, LongBuffer)} and {@link #ARKodeSPRKTable_Space(ARKodeSPRKTableMem, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #ARKodeSPRKTable_Space(cn.catarc.jsundials.arkode.ARKodeSPRKTableMem, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #ARKodeSPRKTable_Space(cn.catarc.jsundials.arkode.ARKodeSPRKTableMem, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	void ARKodeSPRKTable_Space(ARKodeSPRKTableMem sprk_storage, LongByReference liw, LongByReference lrw);
@@ -4051,7 +4058,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int ARKodeSPRKTable_ToButcher(ARKodeSPRKTable, ARKodeButcherTable*, ARKodeButcherTable*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprk.h:65</i><br>
-	 * @deprecated use the safer method {@link #ARKodeSPRKTable_ToButcher(ARKodeSPRKTableMem, ARKodeButcherTableMem.ByReference[], ARKodeButcherTableMem.ByReference[])} instead
+	 * @deprecated use the safer method {@link #ARKodeSPRKTable_ToButcher(cn.catarc.jsundials.arkode.ARKodeSPRKTableMem, cn.catarc.jsundials.arkode.ARKodeButcherTableMem.ByReference[], cn.catarc.jsundials.arkode.ARKodeButcherTableMem.ByReference[])} instead
 	 */
 	@Deprecated 
 	int ARKodeSPRKTable_ToButcher(ARKodeSPRKTableMem sprk_storage, PointerByReference a_ptr, PointerByReference b_ptr);
@@ -4064,32 +4071,32 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* SPRKStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:44</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepCreate(ARKRhsFn, ARKRhsFn, double, N_Vector, SUNContext)} and {@link #SPRKStepCreate(ARKRhsFn, ARKRhsFn, double, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.SUNContext)} and {@link #SPRKStepCreate(cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	Pointer SPRKStepCreate(ARKRhsFn f1, ARKRhsFn f2, double t0, Pointer y0, Pointer sunctx);
+	Pointer SPRKStepCreate(Sundials_arkodeLibrary.ARKRhsFn f1, Sundials_arkodeLibrary.ARKRhsFn f2, double t0, Pointer y0, Pointer sunctx);
 	/**
 	 * Create, Resize, and Reinitialization functions<br>
 	 * Original signature : <code>void* SPRKStepCreate(ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector, SUNContext)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:44</i>
 	 */
-	Pointer SPRKStepCreate(ARKRhsFn f1, ARKRhsFn f2, double t0, N_Vector y0, SUNContext sunctx);
+	Pointer SPRKStepCreate(Sundials_arkodeLibrary.ARKRhsFn f1, Sundials_arkodeLibrary.ARKRhsFn f2, double t0, Sundials_arkodeLibrary.N_Vector y0, Sundials_arkodeLibrary.SUNContext sunctx);
 	/**
 	 * Original signature : <code>int SPRKStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:47</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, N_Vector)} and {@link #SPRKStepReInit(Pointer, ARKRhsFn, ARKRhsFn, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #SPRKStepReInit(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.ARKRhsFn, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int SPRKStepReInit(Pointer arkode_mem, ARKRhsFn f1, ARKRhsFn f2, double t0, Pointer y0);
+	int SPRKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn f1, Sundials_arkodeLibrary.ARKRhsFn f2, double t0, Pointer y0);
 	/**
 	 * Original signature : <code>int SPRKStepReInit(void*, ARKRhsFn, ARKRhsFn, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:47</i>
 	 */
-	int SPRKStepReInit(Pointer arkode_mem, ARKRhsFn f1, ARKRhsFn f2, double t0, N_Vector y0);
+	int SPRKStepReInit(Pointer arkode_mem, Sundials_arkodeLibrary.ARKRhsFn f1, Sundials_arkodeLibrary.ARKRhsFn f2, double t0, Sundials_arkodeLibrary.N_Vector y0);
 	/**
 	 * Original signature : <code>int SPRKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:50</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepReset(Pointer, double, N_Vector)} and {@link #SPRKStepReset(Pointer, double, Pointer)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepReset(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #SPRKStepReset(com.sun.jna.Pointer, double, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int SPRKStepReset(Pointer arkode_mem, double tR, Pointer yR);
@@ -4097,13 +4104,13 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int SPRKStepReset(void*, sunrealtype, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:50</i>
 	 */
-	int SPRKStepReset(Pointer arkode_mem, double tR, N_Vector yR);
+	int SPRKStepReset(Pointer arkode_mem, double tR, Sundials_arkodeLibrary.N_Vector yR);
 	/**
 	 * Rootfinding initialization<br>
 	 * Original signature : <code>int SPRKStepRootInit(void*, int, ARKRootFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:55</i>
 	 */
-	int SPRKStepRootInit(Pointer arkode_mem, int nrtfn, ARKRootFn g);
+	int SPRKStepRootInit(Pointer arkode_mem, int nrtfn, Sundials_arkodeLibrary.ARKRootFn g);
 	/**
 	 * Optional input functions -- must be called AFTER SPRKStepCreate<br>
 	 * Original signature : <code>int SPRKStepSetDefaults(void*)</code><br>
@@ -4123,7 +4130,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepSetMethodName(void*, const char*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:63</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepSetMethodName(Pointer, String)} and {@link #SPRKStepSetMethodName(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepSetMethodName(com.sun.jna.Pointer, java.lang.String)} and {@link #SPRKStepSetMethodName(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int SPRKStepSetMethodName(Pointer arkode_mem, Pointer method);
@@ -4171,17 +4178,17 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int SPRKStepSetPostprocessStepFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:72</i>
 	 */
-	int SPRKStepSetPostprocessStepFn(Pointer arkode_mem, ARKPostProcessFn ProcessStep);
+	int SPRKStepSetPostprocessStepFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStep);
 	/**
 	 * Original signature : <code>int SPRKStepSetPostprocessStageFn(void*, ARKPostProcessFn)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:74</i>
 	 */
-	int SPRKStepSetPostprocessStageFn(Pointer arkode_mem, ARKPostProcessFn ProcessStage);
+	int SPRKStepSetPostprocessStageFn(Pointer arkode_mem, Sundials_arkodeLibrary.ARKPostProcessFn ProcessStage);
 	/**
 	 * Integrate the ODE over an interval in t<br>
 	 * Original signature : <code>int SPRKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:78</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepEvolve(Pointer, double, N_Vector, DoubleBuffer, int)} and {@link #SPRKStepEvolve(Pointer, double, Pointer, DoubleByReference, int)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepEvolve(com.sun.jna.Pointer, double, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector, java.nio.DoubleBuffer, int)} and {@link #SPRKStepEvolve(com.sun.jna.Pointer, double, com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference, int)} instead
 	 */
 	@Deprecated 
 	int SPRKStepEvolve(Pointer arkode_mem, double tout, Pointer yout, DoubleByReference tret, int itask);
@@ -4190,12 +4197,12 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int SPRKStepEvolve(void*, sunrealtype, N_Vector, sunrealtype*, int)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:78</i>
 	 */
-	int SPRKStepEvolve(Pointer arkode_mem, double tout, N_Vector yout, DoubleBuffer tret, int itask);
+	int SPRKStepEvolve(Pointer arkode_mem, double tout, Sundials_arkodeLibrary.N_Vector yout, DoubleBuffer tret, int itask);
 	/**
 	 * Computes the kth derivative of the y function at time t<br>
 	 * Original signature : <code>int SPRKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:82</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetDky(Pointer, double, int, N_Vector)} and {@link #SPRKStepGetDky(Pointer, double, int, Pointer)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetDky(com.sun.jna.Pointer, double, int, cn.catarc.jsundials.arkode.Sundials_arkodeLibrary.N_Vector)} and {@link #SPRKStepGetDky(com.sun.jna.Pointer, double, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetDky(Pointer arkode_mem, double t, int k, Pointer dky);
@@ -4204,7 +4211,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Original signature : <code>int SPRKStepGetDky(void*, sunrealtype, int, N_Vector)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:82</i>
 	 */
-	int SPRKStepGetDky(Pointer arkode_mem, double t, int k, N_Vector dky);
+	int SPRKStepGetDky(Pointer arkode_mem, double t, int k, Sundials_arkodeLibrary.N_Vector dky);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>char* SPRKStepGetReturnFlagName(long long)</code><br>
@@ -4214,7 +4221,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetCurrentMethod(void*, ARKodeSPRKTable*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:87</i><br>
-	 * @deprecated use the safer method {@link #SPRKStepGetCurrentMethod(Pointer, ARKodeSPRKTableMem.ByReference[])} instead
+	 * @deprecated use the safer method {@link #SPRKStepGetCurrentMethod(com.sun.jna.Pointer, cn.catarc.jsundials.arkode.ARKodeSPRKTableMem.ByReference[])} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetCurrentMethod(Pointer arkode_mem, PointerByReference sprk_storage);
@@ -4226,7 +4233,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetCurrentState(void*, N_Vector*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:89</i><br>
-	 * @deprecated use the safer method {@link #SPRKStepGetCurrentState(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #SPRKStepGetCurrentState(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetCurrentState(Pointer arkode_mem, Pointer state);
@@ -4238,7 +4245,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetCurrentStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:90</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetCurrentStep(Pointer, DoubleBuffer)} and {@link #SPRKStepGetCurrentStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetCurrentStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #SPRKStepGetCurrentStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetCurrentStep(Pointer arkode_mem, DoubleByReference hcur);
@@ -4250,7 +4257,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetCurrentTime(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:91</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetCurrentTime(Pointer, DoubleBuffer)} and {@link #SPRKStepGetCurrentTime(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetCurrentTime(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #SPRKStepGetCurrentTime(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetCurrentTime(Pointer arkode_mem, DoubleByReference tcur);
@@ -4262,7 +4269,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetLastStep(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:92</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetLastStep(Pointer, DoubleBuffer)} and {@link #SPRKStepGetLastStep(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetLastStep(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #SPRKStepGetLastStep(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetLastStep(Pointer arkode_mem, DoubleByReference hlast);
@@ -4274,7 +4281,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetNumRhsEvals(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:93</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetNumRhsEvals(Pointer, LongBuffer, LongBuffer)} and {@link #SPRKStepGetNumRhsEvals(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetNumRhsEvals(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #SPRKStepGetNumRhsEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetNumRhsEvals(Pointer arkode_mem, LongByReference nf1, LongByReference nf2);
@@ -4286,7 +4293,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetNumStepAttempts(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:95</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetNumStepAttempts(Pointer, LongBuffer)} and {@link #SPRKStepGetNumStepAttempts(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetNumStepAttempts(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #SPRKStepGetNumStepAttempts(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetNumStepAttempts(Pointer arkode_mem, LongByReference step_attempts);
@@ -4298,7 +4305,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetNumSteps(void*, long long*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:97</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetNumSteps(Pointer, LongBuffer)} and {@link #SPRKStepGetNumSteps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetNumSteps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #SPRKStepGetNumSteps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetNumSteps(Pointer arkode_mem, LongByReference nsteps);
@@ -4310,7 +4317,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepGetRootInfo(void*, int*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:98</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetRootInfo(Pointer, IntBuffer)} and {@link #SPRKStepGetRootInfo(Pointer, IntByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetRootInfo(com.sun.jna.Pointer, java.nio.IntBuffer)} and {@link #SPRKStepGetRootInfo(com.sun.jna.Pointer, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetRootInfo(Pointer arkode_mem, IntByReference rootsfound);
@@ -4327,7 +4334,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:100</i><br>
-	 * @deprecated use the safer method {@link #SPRKStepPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #SPRKStepPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int SPRKStepPrintAllStats(Pointer arkode_mem, Pointer outfile, int fmt);
@@ -4339,7 +4346,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	/**
 	 * Original signature : <code>int SPRKStepWriteParameters(void*, FILE*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:102</i><br>
-	 * @deprecated use the safer method {@link #SPRKStepWriteParameters(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #SPRKStepWriteParameters(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepWriteParameters(Pointer arkode_mem, Pointer fp);
@@ -4352,7 +4359,7 @@ public interface Sundials_arkodeLibrary extends Library {
 	 * Grouped optional output functions<br>
 	 * Original signature : <code>int SPRKStepGetStepStats(void*, long long*, sunrealtype*, sunrealtype*, sunrealtype*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\arkode\arkode_sprkstep.h:105</i><br>
-	 * @deprecated use the safer methods {@link #SPRKStepGetStepStats(Pointer, LongBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer, DoubleBuffer)} and {@link #SPRKStepGetStepStats(Pointer, LongByReference, DoubleByReference, DoubleByReference, DoubleByReference, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #SPRKStepGetStepStats(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer, java.nio.DoubleBuffer)} and {@link #SPRKStepGetStepStats(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int SPRKStepGetStepStats(Pointer arkode_mem, LongByReference nsteps, DoubleByReference hinused, DoubleByReference hlast, DoubleByReference hcur, DoubleByReference tcur);

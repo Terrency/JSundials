@@ -1,11 +1,14 @@
 package cn.catarc.jsundials.kinsol;
-
-import com.sun.jna.*;
+import com.sun.jna.Callback;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
 import com.sun.jna.ptr.DoubleByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.nio.DoubleBuffer;
 import java.nio.LongBuffer;
 /**
@@ -144,7 +147,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * ==================================================================<br>
 	 * Original signature : <code>int KINSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:41</i><br>
-	 * @deprecated use the safer methods {@link #KINSetLinearSolver(Pointer, SUNLinearSolver, SUNMatrix)} and {@link #KINSetLinearSolver(Pointer, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #KINSetLinearSolver(com.sun.jna.Pointer, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.SUNLinearSolver, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.SUNMatrix)} and {@link #KINSetLinearSolver(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int KINSetLinearSolver(Pointer kinmem, Pointer LS, Pointer A);
@@ -155,7 +158,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>int KINSetLinearSolver(void*, SUNLinearSolver, SUNMatrix)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:41</i>
 	 */
-	int KINSetLinearSolver(Pointer kinmem, SUNLinearSolver LS, SUNMatrix A);
+	int KINSetLinearSolver(Pointer kinmem, Sundials_kinsolLibrary.SUNLinearSolver LS, Sundials_kinsolLibrary.SUNMatrix A);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional inputs to the KINLS linear solver interface<br>
@@ -163,24 +166,24 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>int KINSetJacFn(void*, KINLsJacFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:48</i>
 	 */
-	int KINSetJacFn(Pointer kinmem, KINLsJacFn jac);
+	int KINSetJacFn(Pointer kinmem, Sundials_kinsolLibrary.KINLsJacFn jac);
 	/**
 	 * Original signature : <code>int KINSetPreconditioner(void*, KINLsPrecSetupFn, KINLsPrecSolveFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:49</i>
 	 */
-	int KINSetPreconditioner(Pointer kinmem, KINLsPrecSetupFn psetup, KINLsPrecSolveFn psolve);
+	int KINSetPreconditioner(Pointer kinmem, Sundials_kinsolLibrary.KINLsPrecSetupFn psetup, Sundials_kinsolLibrary.KINLsPrecSolveFn psolve);
 	/**
 	 * Original signature : <code>int KINSetJacTimesVecFn(void*, KINLsJacTimesVecFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:51</i>
 	 */
-	int KINSetJacTimesVecFn(Pointer kinmem, KINLsJacTimesVecFn jtv);
+	int KINSetJacTimesVecFn(Pointer kinmem, Sundials_kinsolLibrary.KINLsJacTimesVecFn jtv);
 	/**
 	 * -----------------------------------------------------------------<br>
 	 * Optional outputs from the KINLS linear solver interface<br>
 	 * -----------------------------------------------------------------<br>
 	 * Original signature : <code>int KINGetJac(void*, SUNMatrix*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:57</i><br>
-	 * @deprecated use the safer method {@link #KINGetJac(Pointer, PointerByReference)} instead
+	 * @deprecated use the safer method {@link #KINGetJac(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetJac(Pointer kinmem, Pointer J);
@@ -195,7 +198,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetJacNumIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:58</i><br>
-	 * @deprecated use the safer methods {@link #KINGetJacNumIters(Pointer, LongBuffer)} and {@link #KINGetJacNumIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetJacNumIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetJacNumIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetJacNumIters(Pointer kinmem, LongByReference nni_J);
@@ -207,7 +210,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetLinWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:59</i><br>
-	 * @deprecated use the safer methods {@link #KINGetLinWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #KINGetLinWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetLinWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #KINGetLinWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetLinWorkSpace(Pointer kinmem, LongByReference lenrwLS, LongByReference leniwLS);
@@ -219,7 +222,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumJacEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:61</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumJacEvals(Pointer, LongBuffer)} and {@link #KINGetNumJacEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumJacEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumJacEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumJacEvals(Pointer kinmem, LongByReference njevals);
@@ -231,7 +234,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumLinFuncEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:62</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumLinFuncEvals(Pointer, LongBuffer)} and {@link #KINGetNumLinFuncEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumLinFuncEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumLinFuncEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumLinFuncEvals(Pointer kinmem, LongByReference nfevals);
@@ -243,7 +246,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumPrecEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:63</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumPrecEvals(Pointer, LongBuffer)} and {@link #KINGetNumPrecEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumPrecEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumPrecEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumPrecEvals(Pointer kinmem, LongByReference npevals);
@@ -255,7 +258,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumPrecSolves(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:64</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumPrecSolves(Pointer, LongBuffer)} and {@link #KINGetNumPrecSolves(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumPrecSolves(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumPrecSolves(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumPrecSolves(Pointer kinmem, LongByReference npsolves);
@@ -267,7 +270,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumLinIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:65</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumLinIters(Pointer, LongBuffer)} and {@link #KINGetNumLinIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumLinIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumLinIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumLinIters(Pointer kinmem, LongByReference nliters);
@@ -279,7 +282,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumLinConvFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:66</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumLinConvFails(Pointer, LongBuffer)} and {@link #KINGetNumLinConvFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumLinConvFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumLinConvFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumLinConvFails(Pointer kinmem, LongByReference nlcfails);
@@ -291,7 +294,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumJtimesEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:67</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumJtimesEvals(Pointer, LongBuffer)} and {@link #KINGetNumJtimesEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumJtimesEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumJtimesEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumJtimesEvals(Pointer kinmem, LongByReference njvevals);
@@ -303,7 +306,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetLastLinFlag(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_ls.h:68</i><br>
-	 * @deprecated use the safer methods {@link #KINGetLastLinFlag(Pointer, LongBuffer)} and {@link #KINGetLastLinFlag(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetLastLinFlag(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetLastLinFlag(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetLastLinFlag(Pointer kinmem, LongByReference flag);
@@ -321,7 +324,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Creation function<br>
 	 * Original signature : <code>void* KINCreate(SUNContext)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:92</i><br>
-	 * @deprecated use the safer methods {@link #KINCreate(SUNContext)} and {@link #KINCreate(Pointer)} instead
+	 * @deprecated use the safer methods {@link #KINCreate(cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.SUNContext)} and {@link #KINCreate(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	Pointer KINCreate(Pointer sunctx);
@@ -330,26 +333,26 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>void* KINCreate(SUNContext)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:92</i>
 	 */
-	Pointer KINCreate(SUNContext sunctx);
+	Pointer KINCreate(Sundials_kinsolLibrary.SUNContext sunctx);
 	/**
 	 * Initialization function<br>
 	 * Original signature : <code>int KINInit(void*, KINSysFn, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:95</i><br>
-	 * @deprecated use the safer methods {@link #KINInit(Pointer, KINSysFn, N_Vector)} and {@link #KINInit(Pointer, KINSysFn, Pointer)} instead
+	 * @deprecated use the safer methods {@link #KINInit(com.sun.jna.Pointer, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.KINSysFn, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.N_Vector)} and {@link #KINInit(com.sun.jna.Pointer, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.KINSysFn, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
-	int KINInit(Pointer kinmem, KINSysFn func, Pointer tmpl);
+	int KINInit(Pointer kinmem, Sundials_kinsolLibrary.KINSysFn func, Pointer tmpl);
 	/**
 	 * Initialization function<br>
 	 * Original signature : <code>int KINInit(void*, KINSysFn, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:95</i>
 	 */
-	int KINInit(Pointer kinmem, KINSysFn func, N_Vector tmpl);
+	int KINInit(Pointer kinmem, Sundials_kinsolLibrary.KINSysFn func, Sundials_kinsolLibrary.N_Vector tmpl);
 	/**
 	 * Solver function<br>
 	 * Original signature : <code>int KINSol(void*, N_Vector, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:98</i><br>
-	 * @deprecated use the safer methods {@link #KINSol(Pointer, N_Vector, int, N_Vector, N_Vector)} and {@link #KINSol(Pointer, Pointer, int, Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #KINSol(com.sun.jna.Pointer, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.N_Vector, int, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.N_Vector, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.N_Vector)} and {@link #KINSol(com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int KINSol(Pointer kinmem, Pointer uu, int strategy, Pointer u_scale, Pointer f_scale);
@@ -358,7 +361,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>int KINSol(void*, N_Vector, int, N_Vector, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:98</i>
 	 */
-	int KINSol(Pointer kinmem, N_Vector uu, int strategy, N_Vector u_scale, N_Vector f_scale);
+	int KINSol(Pointer kinmem, Sundials_kinsolLibrary.N_Vector uu, int strategy, Sundials_kinsolLibrary.N_Vector u_scale, Sundials_kinsolLibrary.N_Vector f_scale);
 	/**
 	 * Optional input functions<br>
 	 * Original signature : <code>int KINSetUserData(void*, void*)</code><br>
@@ -478,7 +481,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:127</i><br>
-	 * @deprecated use the safer methods {@link #KINSetConstraints(Pointer, N_Vector)} and {@link #KINSetConstraints(Pointer, Pointer)} instead
+	 * @deprecated use the safer methods {@link #KINSetConstraints(com.sun.jna.Pointer, cn.catarc.jsundials.kinsol.Sundials_kinsolLibrary.N_Vector)} and {@link #KINSetConstraints(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	int KINSetConstraints(Pointer kinmem, Pointer constraints);
@@ -486,17 +489,17 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>int KINSetConstraints(void*, N_Vector)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:127</i>
 	 */
-	int KINSetConstraints(Pointer kinmem, N_Vector constraints);
+	int KINSetConstraints(Pointer kinmem, Sundials_kinsolLibrary.N_Vector constraints);
 	/**
 	 * Original signature : <code>int KINSetSysFunc(void*, KINSysFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:128</i>
 	 */
-	int KINSetSysFunc(Pointer kinmem, KINSysFn func);
+	int KINSetSysFunc(Pointer kinmem, Sundials_kinsolLibrary.KINSysFn func);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int KINGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:131</i><br>
-	 * @deprecated use the safer methods {@link #KINGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #KINGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #KINGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetWorkSpace(Pointer kinmem, LongByReference lenrw, LongByReference leniw);
@@ -509,7 +512,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumNonlinSolvIters(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:133</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumNonlinSolvIters(Pointer, LongBuffer)} and {@link #KINGetNumNonlinSolvIters(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumNonlinSolvIters(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumNonlinSolvIters(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumNonlinSolvIters(Pointer kinmem, LongByReference nniters);
@@ -521,7 +524,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumFuncEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:134</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumFuncEvals(Pointer, LongBuffer)} and {@link #KINGetNumFuncEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumFuncEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumFuncEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumFuncEvals(Pointer kinmem, LongByReference nfevals);
@@ -533,7 +536,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumBetaCondFails(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:135</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumBetaCondFails(Pointer, LongBuffer)} and {@link #KINGetNumBetaCondFails(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumBetaCondFails(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumBetaCondFails(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumBetaCondFails(Pointer kinmem, LongByReference nbcfails);
@@ -545,7 +548,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetNumBacktrackOps(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:136</i><br>
-	 * @deprecated use the safer methods {@link #KINGetNumBacktrackOps(Pointer, LongBuffer)} and {@link #KINGetNumBacktrackOps(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetNumBacktrackOps(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINGetNumBacktrackOps(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetNumBacktrackOps(Pointer kinmem, LongByReference nbacktr);
@@ -557,7 +560,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetFuncNorm(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:137</i><br>
-	 * @deprecated use the safer methods {@link #KINGetFuncNorm(Pointer, DoubleBuffer)} and {@link #KINGetFuncNorm(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetFuncNorm(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #KINGetFuncNorm(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetFuncNorm(Pointer kinmem, DoubleByReference fnorm);
@@ -569,7 +572,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINGetStepLength(void*, sunrealtype*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:138</i><br>
-	 * @deprecated use the safer methods {@link #KINGetStepLength(Pointer, DoubleBuffer)} and {@link #KINGetStepLength(Pointer, DoubleByReference)} instead
+	 * @deprecated use the safer methods {@link #KINGetStepLength(com.sun.jna.Pointer, java.nio.DoubleBuffer)} and {@link #KINGetStepLength(com.sun.jna.Pointer, com.sun.jna.ptr.DoubleByReference)} instead
 	 */
 	@Deprecated 
 	int KINGetStepLength(Pointer kinmem, DoubleByReference steplength);
@@ -586,7 +589,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINPrintAllStats(void*, FILE*, SUNOutputFormat)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:140</i><br>
-	 * @deprecated use the safer method {@link #KINPrintAllStats(Pointer, PointerByReference, int)} instead
+	 * @deprecated use the safer method {@link #KINPrintAllStats(com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference, int)} instead
 	 */
 	@Deprecated 
 	int KINPrintAllStats(Pointer kinmem, Pointer outfile, int fmt);
@@ -611,18 +614,18 @@ public interface Sundials_kinsolLibrary extends Library {
 	 * Original signature : <code>int KINSetJacTimesVecSysFn(void*, KINSysFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol.h:148</i>
 	 */
-	int KINSetJacTimesVecSysFn(Pointer kinmem, KINSysFn jtimesSysFn);
+	int KINSetJacTimesVecSysFn(Pointer kinmem, Sundials_kinsolLibrary.KINSysFn jtimesSysFn);
 	/**
 	 * Exported Functions<br>
 	 * Original signature : <code>int KINBBDPrecInit(void*, sunindextype, sunindextype, sunindextype, sunindextype, sunindextype, sunrealtype, KINBBDLocalFn, KINBBDCommFn)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_bbdpre.h:21</i>
 	 */
-	int KINBBDPrecInit(Pointer kinmem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dq_rel_uu, KINBBDLocalFn gloc, KINBBDCommFn gcomm);
+	int KINBBDPrecInit(Pointer kinmem, long Nlocal, long mudq, long mldq, long mukeep, long mlkeep, double dq_rel_uu, Sundials_kinsolLibrary.KINBBDLocalFn gloc, Sundials_kinsolLibrary.KINBBDCommFn gcomm);
 	/**
 	 * Optional output functions<br>
 	 * Original signature : <code>int KINBBDPrecGetWorkSpace(void*, long long*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_bbdpre.h:29</i><br>
-	 * @deprecated use the safer methods {@link #KINBBDPrecGetWorkSpace(Pointer, LongBuffer, LongBuffer)} and {@link #KINBBDPrecGetWorkSpace(Pointer, LongByReference, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINBBDPrecGetWorkSpace(com.sun.jna.Pointer, java.nio.LongBuffer, java.nio.LongBuffer)} and {@link #KINBBDPrecGetWorkSpace(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINBBDPrecGetWorkSpace(Pointer kinmem, LongByReference lenrwBBDP, LongByReference leniwBBDP);
@@ -635,7 +638,7 @@ public interface Sundials_kinsolLibrary extends Library {
 	/**
 	 * Original signature : <code>int KINBBDPrecGetNumGfnEvals(void*, long long*)</code><br>
 	 * <i>native declaration : include\kinsol\kinsol_bbdpre.h:32</i><br>
-	 * @deprecated use the safer methods {@link #KINBBDPrecGetNumGfnEvals(Pointer, LongBuffer)} and {@link #KINBBDPrecGetNumGfnEvals(Pointer, LongByReference)} instead
+	 * @deprecated use the safer methods {@link #KINBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, java.nio.LongBuffer)} and {@link #KINBBDPrecGetNumGfnEvals(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	int KINBBDPrecGetNumGfnEvals(Pointer kinmem, LongByReference ngevalsBBDP);

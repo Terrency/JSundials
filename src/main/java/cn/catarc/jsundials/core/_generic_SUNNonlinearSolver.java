@@ -1,9 +1,7 @@
-package cn.catarc.jsundials.cvode;
-
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNContext;
+package cn.catarc.jsundials.core;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNContext;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -19,7 +17,7 @@ public class _generic_SUNNonlinearSolver extends Structure {
 	/** C type : void* */
 	public Pointer content;
 	/** C type : SUNNonlinearSolver_Ops */
-	public _generic_SUNNonlinearSolver_Ops.ByReference ops;
+	public cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.ByReference ops;
 	/** C type : SUNContext */
 	public SUNContext sunctx;
 	public _generic_SUNNonlinearSolver() {
@@ -33,7 +31,7 @@ public class _generic_SUNNonlinearSolver extends Structure {
 	 * @param ops C type : SUNNonlinearSolver_Ops<br>
 	 * @param sunctx C type : SUNContext
 	 */
-	public _generic_SUNNonlinearSolver(Pointer content, _generic_SUNNonlinearSolver_Ops.ByReference ops, SUNContext sunctx) {
+	public _generic_SUNNonlinearSolver(Pointer content, cn.catarc.jsundials.core._generic_SUNNonlinearSolver_Ops.ByReference ops, SUNContext sunctx) {
 		super();
 		this.content = content;
 		this.ops = ops;

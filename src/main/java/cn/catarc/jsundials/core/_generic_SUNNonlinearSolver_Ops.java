@@ -1,15 +1,13 @@
-package cn.catarc.jsundials.cvode;
-
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNNonlinSolConvTestFn;
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNNonlinSolLSetupFn;
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNNonlinSolLSolveFn;
-import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNNonlinSolSysFn;
+package cn.catarc.jsundials.core;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNNonlinSolConvTestFn;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNNonlinSolLSetupFn;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNNonlinSolLSolveFn;
+import cn.catarc.jsundials.core.Sundials_coreLibrary.SUNNonlinSolSysFn;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
-
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -21,11 +19,11 @@ import java.util.List;
  */
 public class _generic_SUNNonlinearSolver_Ops extends Structure {
 	/** C type : gettype_callback* */
-	public gettype_callback gettype;
+	public _generic_SUNNonlinearSolver_Ops.gettype_callback gettype;
 	/** C type : setup_callback* */
-	public setup_callback setup;
+	public _generic_SUNNonlinearSolver_Ops.setup_callback setup;
 	/** C type : solve_callback* */
-	public solve_callback solve;
+	public _generic_SUNNonlinearSolver_Ops.solve_callback solve;
 	/** <i>native declaration : include\sundials\sundials_nonlinearsolver.h</i> */
 	public interface gettype_callback extends Callback {
 		int apply(_generic_SUNNonlinearSolver SUNNonlinearSolver1);
@@ -89,7 +87,7 @@ public class _generic_SUNNonlinearSolver_Ops extends Structure {
 	 * @param setup C type : setup_callback*<br>
 	 * @param solve C type : solve_callback*
 	 */
-	public _generic_SUNNonlinearSolver_Ops(gettype_callback gettype, setup_callback setup, solve_callback solve) {
+	public _generic_SUNNonlinearSolver_Ops(_generic_SUNNonlinearSolver_Ops.gettype_callback gettype, _generic_SUNNonlinearSolver_Ops.setup_callback setup, _generic_SUNNonlinearSolver_Ops.solve_callback solve) {
 		super();
 		this.gettype = gettype;
 		this.setup = setup;
