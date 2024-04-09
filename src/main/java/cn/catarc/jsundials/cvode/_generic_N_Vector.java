@@ -1,7 +1,6 @@
-package cn.catarc.jsundials;
+package cn.catarc.jsundials.cvode;
 
-import cn.catarc.jsundials.SundialsLibrary.N_Vector_Ops;
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.SUNContext;
+import cn.catarc.jsundials.cvode.Sundials_cvodeLibrary.SUNContext;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
@@ -20,7 +19,7 @@ public class _generic_N_Vector extends Structure {
 	/** C type : void* */
 	public Pointer content;
 	/** C type : N_Vector_Ops */
-	public N_Vector_Ops ops;
+	public _generic_N_Vector_Ops.ByReference ops;
 	/** C type : SUNContext */
 	public SUNContext sunctx;
 	public _generic_N_Vector() {
@@ -34,7 +33,7 @@ public class _generic_N_Vector extends Structure {
 	 * @param ops C type : N_Vector_Ops<br>
 	 * @param sunctx C type : SUNContext
 	 */
-	public _generic_N_Vector(Pointer content, N_Vector_Ops ops, SUNContext sunctx) {
+	public _generic_N_Vector(Pointer content, _generic_N_Vector_Ops.ByReference ops, SUNContext sunctx) {
 		super();
 		this.content = content;
 		this.ops = ops;

@@ -1,12 +1,10 @@
-package cn.catarc.jsundials;
+package cn.catarc.jsundials.cvode;
 
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.FILE;
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.N_Vector;
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunindextype;
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunrealtype;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.ptr.DoubleByReference;
+import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
 import java.util.Arrays;
@@ -71,6 +69,10 @@ public class _generic_N_Vector_Ops extends Structure {
 	public nvl1norm_callback nvl1norm;
 	/** C type : nvcompare_callback* */
 	public nvcompare_callback nvcompare;
+	/** C type : nvinvtest_callback* */
+	public nvinvtest_callback nvinvtest;
+	/** C type : nvconstrmask_callback* */
+	public nvconstrmask_callback nvconstrmask;
 	/** C type : nvminquotient_callback* */
 	public nvminquotient_callback nvminquotient;
 	/** C type : nvdotprodlocal_callback* */
@@ -81,6 +83,10 @@ public class _generic_N_Vector_Ops extends Structure {
 	public nvminlocal_callback nvminlocal;
 	/** C type : nvl1normlocal_callback* */
 	public nvl1normlocal_callback nvl1normlocal;
+	/** C type : nvinvtestlocal_callback* */
+	public nvinvtestlocal_callback nvinvtestlocal;
+	/** C type : nvconstrmasklocal_callback* */
+	public nvconstrmasklocal_callback nvconstrmasklocal;
 	/** C type : nvminquotientlocal_callback* */
 	public nvminquotientlocal_callback nvminquotientlocal;
 	/** C type : nvwsqrsumlocal_callback* */
@@ -93,233 +99,233 @@ public class _generic_N_Vector_Ops extends Structure {
 	public nvprintfile_callback nvprintfile;
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetvectorid_callback extends Callback {
-		int apply(N_Vector N_Vector1);
+		int apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvclone_callback extends Callback {
-		N_Vector apply(N_Vector N_Vector1);
+		_generic_N_Vector apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvcloneempty_callback extends Callback {
-		N_Vector apply(N_Vector N_Vector1);
+		_generic_N_Vector apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvdestroy_callback extends Callback {
-		void apply(N_Vector N_Vector1);
+		void apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvspace_callback extends Callback {
-		void apply(N_Vector N_Vector1, Pointer sunindextypePtr1, Pointer sunindextypePtr2);
+		void apply(_generic_N_Vector N_Vector1, LongByReference sunindextypePtr1, LongByReference sunindextypePtr2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetarraypointer_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		DoubleByReference apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetdevicearraypointer_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		DoubleByReference apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvsetarraypointer_callback extends Callback {
-		void apply(sunrealtype sunrealtypePtr1, N_Vector N_Vector1);
+		void apply(DoubleByReference sunrealtypePtr1, _generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNComm_callback extends Callback {
-		int apply(N_Vector N_Vector1);
+		int apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetlength_callback extends Callback {
-		sunindextype apply(N_Vector N_Vector1);
+		long apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvgetlocallength_callback extends Callback {
-		sunindextype apply(N_Vector N_Vector1);
+		long apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvlinearsum_callback extends Callback {
-		void apply(sunrealtype sunrealtype1, N_Vector N_Vector1, sunrealtype sunrealtype2, N_Vector N_Vector2, N_Vector N_Vector3);
+		void apply(double sunrealtype1, _generic_N_Vector N_Vector1, double sunrealtype2, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvconst_callback extends Callback {
-		void apply(sunrealtype sunrealtype1, N_Vector N_Vector1);
+		void apply(double sunrealtype1, _generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvprod_callback extends Callback {
-		void apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+		void apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvdiv_callback extends Callback {
-		void apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+		void apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvscale_callback extends Callback {
-		void apply(sunrealtype sunrealtype1, N_Vector N_Vector1, N_Vector N_Vector2);
+		void apply(double sunrealtype1, _generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvabs_callback extends Callback {
-		void apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		void apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvinv_callback extends Callback {
-		void apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		void apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvaddconst_callback extends Callback {
-		void apply(N_Vector N_Vector1, sunrealtype sunrealtype1, N_Vector N_Vector2);
+		void apply(_generic_N_Vector N_Vector1, double sunrealtype1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvdotprod_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvmaxnorm_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvwrmsnorm_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvwrmsnormmask_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvmin_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvwl2norm_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvl1norm_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvcompare_callback extends Callback {
-		void apply(sunrealtype sunrealtype1, N_Vector N_Vector1, N_Vector N_Vector2);
+		void apply(double sunrealtype1, _generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
-	public interface sunbooleantype_callback extends Callback {
-		int apply(N_Vector N_Vector1, N_Vector N_Vector2);
+	public interface nvinvtest_callback extends Callback {
+		int apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
-	public interface sunbooleantype_callback2 extends Callback {
-		int apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+	public interface nvconstrmask_callback extends Callback {
+		int apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvminquotient_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback extends Callback {
-		int apply(int int1, sunrealtype sunrealtypePtr1, N_Vector N_VectorPtr1, N_Vector N_Vector1);
+		int apply(int int1, DoubleByReference sunrealtypePtr1, PointerByReference N_VectorPtr1, _generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback2 extends Callback {
-		int apply(int int1, sunrealtype sunrealtypePtr1, N_Vector N_Vector1, N_Vector N_VectorPtr1, N_Vector N_VectorPtr2);
+		int apply(int int1, DoubleByReference sunrealtypePtr1, _generic_N_Vector N_Vector1, PointerByReference N_VectorPtr1, PointerByReference N_VectorPtr2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback3 extends Callback {
-		int apply(int int1, N_Vector N_Vector1, N_Vector N_VectorPtr1, sunrealtype sunrealtypePtr1);
+		int apply(int int1, _generic_N_Vector N_Vector1, PointerByReference N_VectorPtr1, DoubleByReference sunrealtypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback4 extends Callback {
-		int apply(int int1, sunrealtype sunrealtype1, N_Vector N_VectorPtr1, sunrealtype sunrealtype2, N_Vector N_VectorPtr2, N_Vector N_VectorPtr3);
+		int apply(int int1, double sunrealtype1, PointerByReference N_VectorPtr1, double sunrealtype2, PointerByReference N_VectorPtr2, PointerByReference N_VectorPtr3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback5 extends Callback {
-		int apply(int int1, sunrealtype sunrealtypePtr1, N_Vector N_VectorPtr1, N_Vector N_VectorPtr2);
+		int apply(int int1, DoubleByReference sunrealtypePtr1, PointerByReference N_VectorPtr1, PointerByReference N_VectorPtr2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback6 extends Callback {
-		int apply(int int1, sunrealtype sunrealtype1, N_Vector N_VectorPtr1);
+		int apply(int int1, double sunrealtype1, PointerByReference N_VectorPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback7 extends Callback {
-		int apply(int int1, N_Vector N_VectorPtr1, N_Vector N_VectorPtr2, sunrealtype sunrealtypePtr1);
+		int apply(int int1, PointerByReference N_VectorPtr1, PointerByReference N_VectorPtr2, DoubleByReference sunrealtypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback8 extends Callback {
-		int apply(int int1, N_Vector N_VectorPtr1, N_Vector N_VectorPtr2, N_Vector N_Vector1, sunrealtype sunrealtypePtr1);
+		int apply(int int1, PointerByReference N_VectorPtr1, PointerByReference N_VectorPtr2, _generic_N_Vector N_Vector1, DoubleByReference sunrealtypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback9 extends Callback {
-		int apply(int int1, int int2, sunrealtype sunrealtypePtr1, N_Vector N_VectorPtr1, PointerByReference N_VectorPtrPtr1, PointerByReference N_VectorPtrPtr2);
+		int apply(int int1, int int2, DoubleByReference sunrealtypePtr1, PointerByReference N_VectorPtr1, PointerByReference N_VectorPtrPtr1, PointerByReference N_VectorPtrPtr2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback10 extends Callback {
-		int apply(int int1, int int2, sunrealtype sunrealtypePtr1, PointerByReference N_VectorPtrPtr1, N_Vector N_VectorPtr1);
+		int apply(int int1, int int2, DoubleByReference sunrealtypePtr1, PointerByReference N_VectorPtrPtr1, PointerByReference N_VectorPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvdotprodlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvmaxnormlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvminlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvl1normlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1);
+		double apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
-	public interface sunbooleantype_callback3 extends Callback {
-		int apply(N_Vector N_Vector1, N_Vector N_Vector2);
+	public interface nvinvtestlocal_callback extends Callback {
+		int apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
-	public interface sunbooleantype_callback4 extends Callback {
-		int apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+	public interface nvconstrmasklocal_callback extends Callback {
+		int apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvminquotientlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvwsqrsumlocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvwsqrsummasklocal_callback extends Callback {
-		sunrealtype apply(N_Vector N_Vector1, N_Vector N_Vector2, N_Vector N_Vector3);
+		double apply(_generic_N_Vector N_Vector1, _generic_N_Vector N_Vector2, _generic_N_Vector N_Vector3);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback11 extends Callback {
-		int apply(int int1, N_Vector N_Vector1, N_Vector N_VectorPtr1, sunrealtype sunrealtypePtr1);
+		int apply(int int1, _generic_N_Vector N_Vector1, PointerByReference N_VectorPtr1, DoubleByReference sunrealtypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback12 extends Callback {
-		int apply(int int1, N_Vector N_Vector1, sunrealtype sunrealtypePtr1);
+		int apply(int int1, _generic_N_Vector N_Vector1, DoubleByReference sunrealtypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback13 extends Callback {
-		int apply(N_Vector N_Vector1, Pointer sunindextypePtr1);
+		int apply(_generic_N_Vector N_Vector1, LongByReference sunindextypePtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback14 extends Callback {
-		int apply(N_Vector N_Vector1, Pointer voidPtr1);
+		int apply(_generic_N_Vector N_Vector1, Pointer voidPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface SUNErrCode_callback15 extends Callback {
-		int apply(N_Vector N_Vector1, Pointer voidPtr1);
+		int apply(_generic_N_Vector N_Vector1, Pointer voidPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvprint_callback extends Callback {
-		void apply(N_Vector N_Vector1);
+		void apply(_generic_N_Vector N_Vector1);
 	};
 	/** <i>native declaration : include\sundials\sundials_nvector.h</i> */
 	public interface nvprintfile_callback extends Callback {
-		void apply(N_Vector N_Vector1, FILE FILEPtr1);
+		void apply(_generic_N_Vector N_Vector1, Pointer FILEPtr1);
 	};
 	public _generic_N_Vector_Ops() {
 		super();
 	}
 	protected List<? > getFieldOrder() {
-		return Arrays.asList("nvgetvectorid", "nvclone", "nvcloneempty", "nvdestroy", "nvspace", "nvgetarraypointer", "nvgetdevicearraypointer", "nvsetarraypointer", "nvgetlength", "nvgetlocallength", "nvlinearsum", "nvconst", "nvprod", "nvdiv", "nvscale", "nvabs", "nvinv", "nvaddconst", "nvdotprod", "nvmaxnorm", "nvwrmsnorm", "nvwrmsnormmask", "nvmin", "nvwl2norm", "nvl1norm", "nvcompare", "nvminquotient", "nvdotprodlocal", "nvmaxnormlocal", "nvminlocal", "nvl1normlocal", "nvminquotientlocal", "nvwsqrsumlocal", "nvwsqrsummasklocal", "nvprint", "nvprintfile");
+		return Arrays.asList("nvgetvectorid", "nvclone", "nvcloneempty", "nvdestroy", "nvspace", "nvgetarraypointer", "nvgetdevicearraypointer", "nvsetarraypointer", "nvgetlength", "nvgetlocallength", "nvlinearsum", "nvconst", "nvprod", "nvdiv", "nvscale", "nvabs", "nvinv", "nvaddconst", "nvdotprod", "nvmaxnorm", "nvwrmsnorm", "nvwrmsnormmask", "nvmin", "nvwl2norm", "nvl1norm", "nvcompare", "nvinvtest", "nvconstrmask", "nvminquotient", "nvdotprodlocal", "nvmaxnormlocal", "nvminlocal", "nvl1normlocal", "nvinvtestlocal", "nvconstrmasklocal", "nvminquotientlocal", "nvwsqrsumlocal", "nvwsqrsummasklocal", "nvprint", "nvprintfile");
 	}
 	public _generic_N_Vector_Ops(Pointer peer) {
 		super(peer);

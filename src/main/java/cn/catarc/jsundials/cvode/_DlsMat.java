@@ -1,9 +1,9 @@
-package cn.catarc.jsundials;
+package cn.catarc.jsundials.cvode;
 
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunindextype;
-import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunrealtype;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.ptr.DoubleByReference;
+import com.sun.jna.ptr.PointerByReference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,23 +16,23 @@ import java.util.List;
 public class _DlsMat extends Structure {
 	public int type;
 	/** C type : sunindextype */
-	public sunindextype M;
+	public long M;
 	/** C type : sunindextype */
-	public sunindextype N;
+	public long N;
 	/** C type : sunindextype */
-	public sunindextype ldim;
+	public long ldim;
 	/** C type : sunindextype */
-	public sunindextype mu;
+	public long mu;
 	/** C type : sunindextype */
-	public sunindextype ml;
+	public long ml;
 	/** C type : sunindextype */
-	public sunindextype s_mu;
+	public long s_mu;
 	/** C type : sunrealtype* */
-	public sunrealtype data;
+	public DoubleByReference data;
 	/** C type : sunindextype */
-	public sunindextype ldata;
+	public long ldata;
 	/** C type : sunrealtype** */
-	public sunrealtype[] cols;
+	public PointerByReference cols;
 	public _DlsMat() {
 		super();
 	}

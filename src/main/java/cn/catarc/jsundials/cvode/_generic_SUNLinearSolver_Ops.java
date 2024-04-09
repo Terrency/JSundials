@@ -1,4 +1,4 @@
-package cn.catarc.jsundials;
+package cn.catarc.jsundials.cvode;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
@@ -16,74 +16,74 @@ import java.util.List;
  */
 public class _generic_SUNLinearSolver_Ops extends Structure {
 	/** C type : gettype_callback* */
-	public gettype_callback gettype;
+	public _generic_SUNNonlinearSolver_Ops.gettype_callback gettype;
 	/** C type : getid_callback* */
 	public getid_callback getid;
 	/** C type : setup_callback* */
-	public setup_callback setup;
+	public _generic_SUNNonlinearSolver_Ops.setup_callback setup;
 	/** C type : solve_callback* */
-	public solve_callback solve;
+	public _generic_SUNNonlinearSolver_Ops.solve_callback solve;
 	/** C type : numiters_callback* */
 	public numiters_callback numiters;
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface gettype_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface getid_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback extends Callback {
-		int apply(Pointer voidPtr1);
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1, Pointer voidPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback2 extends Callback {
-		int apply(Pointer voidPtr1);
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1, Pointer voidPtr1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback3 extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback4 extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1, int int1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback5 extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface setup_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface solve_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface numiters_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface sunrealtype_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface sunindextype_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback6 extends Callback {
-		int apply(LongByReference longPtr1, LongByReference longPtr2);
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1, LongByReference longPtr1, LongByReference longPtr2);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface N_Vector_callback extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	/** <i>native declaration : include\sundials\sundials_linearsolver.h</i> */
 	public interface SUNErrCode_callback7 extends Callback {
-		int apply();
+		int apply(_generic_SUNLinearSolver SUNLinearSolver1);
 	};
 	public _generic_SUNLinearSolver_Ops() {
 		super();
@@ -98,7 +98,7 @@ public class _generic_SUNLinearSolver_Ops extends Structure {
 	 * @param solve C type : solve_callback*<br>
 	 * @param numiters C type : numiters_callback*
 	 */
-	public _generic_SUNLinearSolver_Ops(gettype_callback gettype, getid_callback getid, setup_callback setup, solve_callback solve, numiters_callback numiters) {
+	public _generic_SUNLinearSolver_Ops(_generic_SUNNonlinearSolver_Ops.gettype_callback gettype, getid_callback getid, _generic_SUNNonlinearSolver_Ops.setup_callback setup, _generic_SUNNonlinearSolver_Ops.solve_callback solve, numiters_callback numiters) {
 		super();
 		this.gettype = gettype;
 		this.getid = getid;
