@@ -1,7 +1,7 @@
 package cn.catarc.jsundials;
 
-import cn.catarc.jsundials.LibSundials_coreDllLibrary.sunindextype;
-import cn.catarc.jsundials.LibSundials_coreDllLibrary.sunrealtype;
+import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunindextype;
+import cn.catarc.jsundials.SundialsSunmatrixdenseLibrary.sunrealtype;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
